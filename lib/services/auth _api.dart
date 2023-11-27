@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'package:dio/dio.dart';
 
 class AuthApi{

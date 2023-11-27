@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:pin_code_fields/pin_code_fields.dart';
 
+// ignore: must_be_immutable
 class InputOtp extends StatefulWidget {
   String massageEmail;
   TextEditingController otpController;
