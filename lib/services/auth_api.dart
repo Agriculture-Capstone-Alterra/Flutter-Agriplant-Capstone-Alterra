@@ -41,9 +41,6 @@ class AuthApi{
           "password" : password,
         },
       );
-      // if (response==200){
-      //   return RegisterModel.fromJson(response.data);
-      // }
       return RegisterModel.fromJson(response.data);
     } catch(e){
       rethrow;

@@ -82,7 +82,6 @@ class _SendOtpState extends State<SendOtp> {
                 textResendOtp: authProvider.textGetBackOtp,
                 buttonColor: authProvider.mainColor,
               )
-
             ],
           ),
         );

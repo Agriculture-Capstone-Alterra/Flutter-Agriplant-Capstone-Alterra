@@ -2,6 +2,7 @@ import 'package:capstone_project/screens/autentikasi_screens/send_otp_screen.dar
 import 'package:capstone_project/screens/autentikasi_screens/regist_screen.dart';
 import 'package:capstone_project/screens/navigation_bar.dart';
 import 'package:capstone_project/services/auth_api.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -31,6 +32,8 @@ class AuthProvider extends ChangeNotifier {
   String haveNoAccount = 'Anda belum mempunya Akun? ';
   String textRegist = 'Daftar';
   Color textRegistColor = const Color(0xff448E75);
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+  String firebaseDeviceToken = 'null';
 
   void showPassword() {
     if(visiblePassword==false){
@@ -58,9 +61,15 @@ class AuthProvider extends ChangeNotifier {
           ),
         (_) => false,
       );
-    } catch(e){
+    } catch(e){}
+    notifyListeners();
+  }
 
-    }
+  void getToken() async{
+    await firebaseMessaging.getToken().then((token) {
+      firebaseDeviceToken = token!;
+      print('token is $firebaseDeviceToken');
+    });
     notifyListeners();
   }
 
@@ -69,6 +78,7 @@ class AuthProvider extends ChangeNotifier {
       context,
       MaterialPageRoute(builder: (context) => const RegistScreen()),
     );
+    getToken();
     notifyListeners();
   }
 
@@ -120,6 +130,15 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void register(BuildContext context) async{
+    try{
+      await AuthApi().register(
+        email: emailRegistController.text,
+        firebase_device_token: firebaseDeviceToken,
+        name: usernameRegistController.text,
+        password: passwordRegistController.text,
+      );
+    } catch(e){}
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SendOtp(),),
