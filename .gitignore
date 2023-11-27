@@ -48,4 +48,4 @@ app.*.map.json
 .idea/
 .vscode/
 ios/Pods/
-/build
+build/
