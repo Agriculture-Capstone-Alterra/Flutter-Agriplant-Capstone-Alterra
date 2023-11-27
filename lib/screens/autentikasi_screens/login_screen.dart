@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 //input password
                 FormLoginInput(
                   formLabel: 'input password',
-                  formController: authProvider.passwrodController,
+                  formController: authProvider.passwordController,
                   hintText: authProvider.passwordHint,
                   obscureText: authProvider.visiblePassword==false?
                   authProvider.passwordObscureTextTrue :
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 LoginButton(
                   textLoginButton: authProvider.textLoginButton,
                   buttonColor: authProvider.mainColor,
-                  onTap: (){authProvider.login();},
+                  onTap: (){authProvider.postLogin(context);},
                 ),
 
                 const SizedBox(height: 20,),
