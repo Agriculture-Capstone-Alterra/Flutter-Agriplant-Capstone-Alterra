@@ -1,5 +1,7 @@
 import 'package:capstone_project/screens/autentikasi_screens/send_otp_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/regist_screen.dart';
+import 'package:capstone_project/screens/navigation_bar.dart';
+import 'package:capstone_project/services/auth_api.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -17,7 +19,7 @@ class AuthProvider extends ChangeNotifier {
   String usernameOrEmailHint = 'Username/Email';
   String passwordHint = 'Password';
   TextEditingController usernameContorller = TextEditingController();
-  TextEditingController passwrodController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool usernameObscureText = false;
   bool visiblePassword = false;
   bool passwordObscureTextTrue = true;
@@ -40,7 +42,27 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  void login(){}
+  void postLogin(BuildContext context) async{
+    try{
+      await AuthApi().login(
+        email: usernameContorller.text,
+        password: passwordController.text,
+      );
+
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context){
+              return NavBar();
+              },
+          ),
+        (_) => false,
+      );
+    } catch(e){
+
+    }
+    notifyListeners();
+  }
 
   void onRegist(BuildContext context) async{
     Navigator.push(
