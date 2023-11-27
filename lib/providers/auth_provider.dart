@@ -40,7 +40,10 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  void login(){}
+  void login() async{
+
+    notifyListeners();
+  }
 
   void onRegist(BuildContext context) async{
     Navigator.push(
