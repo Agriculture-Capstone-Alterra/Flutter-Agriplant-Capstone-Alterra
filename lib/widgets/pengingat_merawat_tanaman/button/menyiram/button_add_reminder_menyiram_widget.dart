@@ -1,4 +1,5 @@
 import 'package:capstone_project/data/theme_color.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/text_field/text_field_reminder_widget.dart';
 import 'package:flutter/material.dart';
 
 class ButtonAddReminderMenyiram extends StatelessWidget {
@@ -20,7 +21,6 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
           padding: EdgeInsets.zero,
         ),
         onPressed: () {
-          // Display the bottom sheet when the button is pressed
           _showAddReminderMenyiram(context);
         },
         child: const Center(
@@ -38,30 +38,60 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          // Customize the appearance of your bottom sheet here
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                title: Text('Text Field'),
-                onTap: () {
-                  // Handle option 1
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('Time Picker'),
-                onTap: () {
-                  // Handle option 2
-                  Navigator.pop(context);
-                },
-              ),
-              // Add more options as needed
-            ],
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+           children: <Widget>[
+            Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Batalkan'),
+                ),
+                // const SizedBox(width: 80.0), 
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                child: const Text('Selesai'),
+                ),
+              ],
+            ),
+              
+          const ListTile(
+            title: TextFieldReminderWidget(), 
           ),
+            ListTile(
+              subtitle: InkWell(
+                onTap: () {
+                  _selectTime(context);
+                },
+                child: const Row(
+                  children: <Widget>[
+                    SizedBox(width: 8.0),
+                    Text('Select Time'),
+                  ],
+                ),
+              ),
+            ),
+            // Add more options as needed
+          ],
         );
       },
     );
+  }
+
+  Future<void> _selectTime(BuildContext context) async {
+    TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (pickedTime != null) {
+      // Do something with the picked time
+      print('Selected Time: ${pickedTime.format(context)}');
+    }
   }
 }
