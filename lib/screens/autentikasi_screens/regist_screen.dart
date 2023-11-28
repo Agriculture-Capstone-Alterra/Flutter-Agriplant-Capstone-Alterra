@@ -14,6 +14,13 @@ class RegistScreen extends StatefulWidget {
 
 class _RegistScreenState extends State<RegistScreen> {
   @override
+  void initState() {
+    // final authProvider = Provider.of<AuthProvider>(context);
+    // authProvider.getToken();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context){
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) {
@@ -99,7 +106,7 @@ class _RegistScreenState extends State<RegistScreen> {
                       textRegistButton: authProvider.textRegistButton,
                       buttonColor: authProvider.mainColor,
                       onTap: (){authProvider.register(context);},
-                    )
+                    ),
                   ],
                 ),
               ],

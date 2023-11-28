@@ -6,14 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 // import 'package:pin_code_fields/pin_code_fields.dart';
 
-class SendOtp extends StatefulWidget {
-  const SendOtp({Key? key}) : super(key: key);
+class SendOtpScreen extends StatefulWidget {
+  const SendOtpScreen({Key? key}) : super(key: key);
 
   @override
-  State<SendOtp> createState() => _SendOtpState();
+  State<SendOtpScreen> createState() => _SendOtpScreenState();
 }
 
-class _SendOtpState extends State<SendOtp> {
+class _SendOtpScreenState extends State<SendOtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(
@@ -71,7 +71,9 @@ class _SendOtpState extends State<SendOtp> {
               InputOtp(
                 massageEmail: authProvider.EmailOtpMessage,
                 otpController: authProvider.otpController,
+                otpFill: authProvider.otpFill,
                 otpFieldColor: authProvider.otpFieldColor,
+                onTap: (){authProvider.processOtp(context);},
               ),
 
               const SizedBox(
@@ -79,10 +81,9 @@ class _SendOtpState extends State<SendOtp> {
               ),
 
               GetBackOtpButton(
-                textResendOtp: authProvider.textGetBackOtp,
-                buttonColor: authProvider.mainColor,
+                textResendOtp : authProvider.textGetBackOtp,
+                buttonColor : authProvider.mainColor,
               )
-
             ],
           ),
         );
