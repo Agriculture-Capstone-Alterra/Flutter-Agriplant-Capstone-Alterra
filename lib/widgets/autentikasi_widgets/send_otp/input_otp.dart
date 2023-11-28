@@ -6,13 +6,17 @@ import 'package:google_fonts/google_fonts.dart';
 class InputOtp extends StatefulWidget {
   String massageEmail;
   TextEditingController otpController;
+  String otpFill;
   Color otpFieldColor;
+  Function() onTap;
 
   InputOtp({
     Key? key, 
     required this.massageEmail,
     required this.otpController,
+    required this.otpFill,
     required this.otpFieldColor,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -38,20 +42,6 @@ class _InputOtpState extends State<InputOtp> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24,),
-          // PinCodeTextField(
-          //   appContext: context,
-          //   length: 4,
-          //   pinTheme: PinTheme(
-          //     shape: PinCodeFieldShape.box,
-          //     borderRadius: BorderRadius.circular(12),
-          //     activeFillColor: Color(0xffC5E3D9),
-          //     inactiveFillColor: Color(0xffC5E3D9),
-          //     selectedFillColor: Color(0xffC5E3D9),
-          //     activeColor: Color(0xffC5E3D9),
-          //   ),
-          //   onChanged: (valuse){},
-          //   onCompleted: (value){},
-          // )
 
           Container(
             width: double.infinity,
@@ -67,6 +57,12 @@ class _InputOtpState extends State<InputOtp> {
                 fontSize: 18,
               ),
               textAlign: TextAlign.center,
+              onChanged: (String value){
+                widget.otpFill = value;
+                print(widget.otpFill);
+                widget.onTap;
+              },
+              // onTap: ,
             ),
           )
         ],
