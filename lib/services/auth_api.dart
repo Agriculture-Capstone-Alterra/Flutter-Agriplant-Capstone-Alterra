@@ -1,6 +1,7 @@
 import 'package:capstone_project/models/autentikasi_model/login_model.dart';
 import 'package:dio/dio.dart';
 import '../models/autentikasi_model/register_model.dart';
+import '../models/autentikasi_model/verify_otp_model.dart';
 
 String baseUrl = 'http://13.213.19.179:8000';
 
@@ -47,10 +48,21 @@ class AuthApi{
     }
   }
 
-  // Future verifyOtp({
-  //   required String email,
-  // }){
-  //   return;
-  // }
-
+  Future<VerifyOtpModel> verifyOtp({
+    required String email,
+    required String otp,
+  }) async{
+    try{
+      final response = await dio.post(
+        '$baseUrl/auth/verify-otp',
+        data: {
+          "email" : email,
+          "otp" : otp,
+        }
+      );
+      return VerifyOtpModel.fromJson(response.data);
+    } catch(e){
+      rethrow;
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:capstone_project/screens/autentikasi_screens/login_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/send_otp_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/regist_screen.dart';
 import 'package:capstone_project/screens/navigation_bar.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
   Color mainColor = const Color(0xff51AB8C);
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+  String firebaseDeviceToken = 'null';
 
   void pop(BuildContext context){
     Navigator.of(context).pop();
@@ -32,8 +35,6 @@ class AuthProvider extends ChangeNotifier {
   String haveNoAccount = 'Anda belum mempunya Akun? ';
   String textRegist = 'Daftar';
   Color textRegistColor = const Color(0xff448E75);
-  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-  String firebaseDeviceToken = 'null';
 
   void showPassword() {
     if(visiblePassword==false){
@@ -53,13 +54,10 @@ class AuthProvider extends ChangeNotifier {
       );
 
       Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context){
-              return NavBar();
-              },
-          ),
-        (_) => false,
+        context,
+        MaterialPageRoute(
+          builder: (context){return NavBar();},
+        ), (_) => false,
       );
     } catch(e){}
     notifyListeners();
@@ -137,11 +135,12 @@ class AuthProvider extends ChangeNotifier {
         name: usernameRegistController.text,
         password: passwordRegistController.text,
       );
+      notifyListeners();
     } catch(e){}
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SendOtp(),),
+      MaterialPageRoute(builder: (context) => SendOtpScreen(),),
     );
     notifyListeners();
   }
@@ -149,6 +148,29 @@ class AuthProvider extends ChangeNotifier {
   //untuk menerima code otp
   Color otpFieldColor = const Color(0xffC5E3D9);
   TextEditingController otpController = TextEditingController();
+  String otpFill = '';
   String get EmailOtpMessage => 'Cek email ${emailRegistController.text} untuk mengetahui OTP anda';
   String textGetBackOtp = 'Kirim Ulang OTP';
+
+  void processOtp(BuildContext context) async{
+    if (otpFill.length==4){
+      try{
+        await AuthApi().verifyOtp(
+          email: emailRegistController.text,
+          otp: otpController.text,
+        );
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context){
+            return LoginScreen();
+          }), (_) => false,
+        );
+        notifyListeners();
+      } catch(e){
+        rethrow;
+      }
+      notifyListeners();
+    }
+    notifyListeners();
+  }
 }
