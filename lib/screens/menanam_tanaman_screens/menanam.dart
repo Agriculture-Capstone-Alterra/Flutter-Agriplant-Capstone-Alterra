@@ -70,9 +70,16 @@ class _MenanamState extends State<Menanam> {
                         ],
                       ),
 
-                      searchPageProvider.isSearching==false?
-                      IsSearchingFalse():
-                      IsSearchingTrue(),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 40),
+                        width: double.infinity,
+
+                      )
+
+
+                      // searchPageProvider.isSearching==false?
+                      // IsSearchingFalse():
+                      // IsSearchingTrue(),
                     ],
                   ),
                 ),
