@@ -62,7 +62,7 @@ class _MenanamState extends State<Menanam> {
                               icon: plantProvider.searchIcon,
                               searchController: plantProvider.searchController,
                               searchFocusNode: plantProvider.searchFocusNode,
-                              hinText: plantProvider.searchHinText,
+                              searchHinText: plantProvider.searchHinText,
                               enableSearch: plantProvider.enableSearch,
                               onTap: (){
                                 plantProvider.search();
