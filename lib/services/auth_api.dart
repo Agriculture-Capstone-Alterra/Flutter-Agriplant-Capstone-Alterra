@@ -3,9 +3,11 @@ import 'package:dio/dio.dart';
 import '../models/autentikasi_model/register_model.dart';
 import '../models/autentikasi_model/verify_otp_model.dart';
 
-String baseUrl = 'http://13.213.19.179:8000';
+
 
 class AuthApi{
+  String baseUrl = 'https://service.api-agriplant.xyz';
+
   Dio dio = Dio();
 
   Future<Data> login({

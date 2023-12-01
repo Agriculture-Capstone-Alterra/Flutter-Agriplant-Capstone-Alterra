@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../data/menanam_tanaman/menanam_tanaman_data.dart';
-import '../../models/menanam_tanaman_model.dart';
+import '../../models/menanam_tanaman_model/menanam_tanaman_model.dart';
 
 class SelectTanaman extends StatefulWidget {
   const SelectTanaman({Key? key}) : super(key: key);
