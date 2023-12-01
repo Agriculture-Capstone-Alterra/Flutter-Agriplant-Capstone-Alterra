@@ -3,7 +3,7 @@ import 'package:capstone_project/screens/pengingat_merawat_tanaman/pengingat_scr
 import 'package:capstone_project/screens/riwayat/riwayat.dart';
 import 'package:flutter/material.dart';
 import 'informasi_cuaca/home.dart';
-import 'menanam_tanaman_screens/menanam.dart';
+import 'menanam_tanaman_screens/menanam_screen.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);

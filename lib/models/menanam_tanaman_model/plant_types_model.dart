@@ -32,7 +32,7 @@ class PlantTypesModel {
   };
 }
 
-class PlantList {
+class PlantList{
   int id;
   String name;
   DateTime createdAt;
