@@ -1,4 +1,5 @@
 import 'package:capstone_project/data/theme_color.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/testing/timepicker.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/text_field/text_field_reminder_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -40,9 +41,9 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
       builder: (BuildContext context) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-           children: <Widget>[
+          children: <Widget>[
             Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
                   onPressed: () {
@@ -50,31 +51,21 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
                   },
                   child: const Text('Batalkan'),
                 ),
-                // const SizedBox(width: 80.0), 
+                // const SizedBox(width: 80.0),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                child: const Text('Selesai'),
+                  child: const Text('Selesai'),
                 ),
               ],
             ),
-              
-          const ListTile(
-            title: TextFieldReminderWidget(), 
-          ),
-            ListTile(
-              subtitle: InkWell(
-                onTap: () {
-                  _selectTime(context);
-                },
-                child: const Row(
-                  children: <Widget>[
-                    SizedBox(width: 8.0),
-                    Text('Select Time'),
-                  ],
-                ),
-              ),
+
+            const ListTile(
+              title: TextFieldReminderWidget(),
+            ),
+            const ListTile(
+              title: NumberPage(),
             ),
             // Add more options as needed
           ],

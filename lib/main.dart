@@ -1,7 +1,10 @@
 import 'package:capstone_project/providers/auth_provider.dart';
 import 'package:capstone_project/providers/search_page_provider.dart';
+import 'package:capstone_project/screens/chat_bot/chat_bot.dart';
 // import 'package:capstone_project/screens/autentikasi_screens/login_screen.dart';
 import 'package:capstone_project/screens/navigation_bar.dart';
+import 'package:capstone_project/screens/pengingat_merawat_tanaman/menyiram/menyiram_screen.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/testing/timepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home:const NavBar(),
+        home: const Menyiram(),
       ),
     );
   }
