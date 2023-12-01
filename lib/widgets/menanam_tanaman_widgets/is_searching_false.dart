@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../data/menanam_tanaman/menanam_tanaman_data.dart';
 import '../../models/menanam_tanaman_model/menanam_tanaman_model.dart';
+import '../../models/menanam_tanaman_model/plant_types_model.dart';
+import '../../services/plant_api.dart';
 
 class IsSearchingFalse extends StatefulWidget {
   const IsSearchingFalse({Key? key}) : super(key: key);
@@ -23,11 +25,23 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
         Container(
           margin: EdgeInsets.symmetric(horizontal: 18),
           width: double.infinity,
-          child: Text(
-            'Jenis Tanaman',
-            style: GoogleFonts.inter(
-                textStyle:
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Jenis Tanaman',
+                style: GoogleFonts.inter(
+                    textStyle:
                     TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              ),
+
+              Text(
+                'lihat semua',
+                style: GoogleFonts.inter(
+                    textStyle:
+                    TextStyle(color: Colors.blueAccent)),
+              )
+            ],
           ),
         ),
 
@@ -35,54 +49,47 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
           height: 12,
         ),
 
-        // SelectTanaman(),
-
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 40),
-          width: double.infinity,
-          child: GridView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: menanamList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-            ),
-            itemBuilder: (_, index) {
-              MenanamTanaman menanamTanaman = menanamList[index];
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    menanamTanaman.icon,
-                    width: MediaQuery.of(context).size.width / 7,
-                    height: MediaQuery.of(context).size.width / 7,
-                  ),
-                  Text(
-                    menanamTanaman.labelIcon,
-                    style: GoogleFonts.inter(
-                        fontSize: 12, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
-
-        const SizedBox(
-          height: 32,
-        ),
-
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 18),
-          width: double.infinity,
-          child: Text(
-            'Tanaman Terakhir & Rekomendasi Kami',
-            style: GoogleFonts.inter(
-                textStyle:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-          ),
+        StreamBuilder<PlantTypesModel>(
+          stream: Stream.fromFuture(PlantApi().getPlantList()),
+          builder: (_, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (snapshot.hasData) {
+              // Memeriksa apakah data yang diterima memiliki struktur yang sesuai
+              if (snapshot.data != null) {
+                PlantTypesModel plantData = snapshot.data!;
+                return plantList(plantData.data);
+              } else {
+                return Center(child: Text('Data tidak valid.'));
+              }
+            } else {
+              return Center(child: Text('Tidak ada data.'));
+            }
+          },
         ),
       ],
+    );
+  }
+
+  Widget plantList(List<PlantList> plants){
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40),
+      width: double.infinity,
+      child: GridView.builder(
+        itemCount: plants.length,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,),
+        itemBuilder: (_, index){
+          final plant = plants[index];
+          return Text(
+            plant.name,
+            textAlign: TextAlign.center,
+          );
+        },
+      ),
     );
   }
 }

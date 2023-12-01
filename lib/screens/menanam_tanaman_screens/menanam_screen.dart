@@ -1,6 +1,5 @@
 import 'package:capstone_project/data/menanam_tanaman/menanam_style.dart';
 import 'package:capstone_project/providers/plant_provider.dart';
-import 'package:capstone_project/providers/search_page_provider.dart';
 import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,62 +72,9 @@ class _MenanamState extends State<Menanam> {
                         ],
                       ),
 
-                      const SizedBox(
-                        height: 12,
-                      ),
-
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 18),
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Jenis Tanaman',
-                              style: GoogleFonts.inter(
-                                  textStyle:
-                                  TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                            ),
-
-                            Text(
-                              'lihat semua',
-                              style: GoogleFonts.inter(
-                                  textStyle:
-                                  TextStyle(color: Colors.blueAccent)),
-                            )
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(
-                        height: 12,
-                      ),
-
-                      StreamBuilder<PlantTypesModel>(
-                        stream: Stream.fromFuture(PlantApi().getPlantList()),
-                        builder: (_, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return Center(child: CircularProgressIndicator());
-                          } else if (snapshot.hasError) {
-                            return Center(child: Text('Error: ${snapshot.error}'));
-                          } else if (snapshot.hasData) {
-                            // Memeriksa apakah data yang diterima memiliki struktur yang sesuai
-                            if (snapshot.data != null) {
-                              PlantTypesModel plantData = snapshot.data!;
-                              return plantList(plantData.data);
-                            } else {
-                              return Center(child: Text('Data tidak valid.'));
-                            }
-                          } else {
-                            return Center(child: Text('Tidak ada data.'));
-                          }
-                        },
-                      ),
-
-                      Container(),
-                      // searchPageProvider.isSearching==false?
-                      // IsSearchingFalse():
-                      // IsSearchingTrue(),
+                      plantProvider.isSearching==false?
+                      IsSearchingFalse():
+                      IsSearchingTrue(),
                     ],
                   ),
                 ),
@@ -144,23 +90,4 @@ class _MenanamState extends State<Menanam> {
     );
   }
 
-  Widget plantList(List<PlantList> plants){
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 40),
-      width: double.infinity,
-      child: GridView.builder(
-        itemCount: plants.length,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,),
-        itemBuilder: (_, index){
-          final plant = plants[index];
-          return Text(
-            plant.name,
-            textAlign: TextAlign.center,
-          );
-        },
-      ),
-    );
-  }
 }
