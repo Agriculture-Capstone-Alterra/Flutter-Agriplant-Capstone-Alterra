@@ -27,7 +27,7 @@ class _MenanamState extends State<Menanam> {
               appBar: plantProvider.isSearching==false?
               AppBar(
                 title: Text(
-                  'Pilih Jenis Tanaman',
+                  plantProvider.appBarText,
                   style: GoogleFonts.inter(textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white)),
                 ),
                 centerTitle: true,
@@ -59,10 +59,10 @@ class _MenanamState extends State<Menanam> {
                           ),
                           Expanded(
                             child: SearchTanaman(
-                              icon: Icon(Icons.search, color: Colors.black,),
+                              icon: plantProvider.searchIcon,
                               searchController: plantProvider.searchController,
                               searchFocusNode: plantProvider.searchFocusNode,
-                              hinText: plantProvider.hinText,
+                              searchHinText: plantProvider.searchHinText,
                               enableSearch: plantProvider.enableSearch,
                               onTap: (){
                                 plantProvider.search();

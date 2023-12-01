@@ -43,6 +43,7 @@ dependencies:
   dio: ^5.3.4
   numberpicker: ^2.1.2
   firebase_messaging: ^14.7.5
+  sqflite: ^2.3.0
   # pin_code_fields: ^8.0.1
   # pinput: ^3.0.1
 
