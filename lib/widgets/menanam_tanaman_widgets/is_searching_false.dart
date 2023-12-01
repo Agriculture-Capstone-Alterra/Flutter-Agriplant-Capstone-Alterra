@@ -18,12 +18,10 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: 12,
-        ),
+        const SizedBox(height: 12,),
 
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 18),
+          margin: EdgeInsets.symmetric(horizontal: 16),
           width: double.infinity,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,22 +30,20 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
                 'Jenis Tanaman',
                 style: GoogleFonts.inter(
                     textStyle:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w600,)),
               ),
 
               Text(
                 'lihat semua',
                 style: GoogleFonts.inter(
                     textStyle:
-                    TextStyle(color: Colors.blueAccent)),
+                    TextStyle(fontWeight: FontWeight.w600, color: Colors.blueAccent,)),
               )
             ],
           ),
         ),
 
-        const SizedBox(
-          height: 12,
-        ),
+        const SizedBox(height: 12,),
 
         StreamBuilder<PlantTypesModel>(
           stream: Stream.fromFuture(PlantApi().getPlantList()),
@@ -69,6 +65,26 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
             }
           },
         ),
+
+        const SizedBox(height: 12,),
+
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 16),
+            width: double.infinity,
+            child: Text(
+              'Tanaman Terakhir',
+              style: GoogleFonts.inter(
+                textStyle: TextStyle(
+                  fontSize: 16, fontWeight: FontWeight.w600,
+                )
+              )
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 12,),
       ],
     );
   }
