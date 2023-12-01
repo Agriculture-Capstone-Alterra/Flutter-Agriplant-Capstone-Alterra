@@ -6,7 +6,7 @@ class SearchTanaman extends StatefulWidget {
   Icon icon;
   TextEditingController searchController = TextEditingController();
   FocusNode searchFocusNode;
-  String hinText;
+  String searchHinText;
   bool enableSearch;
   Function() onTap;
 
@@ -15,7 +15,7 @@ class SearchTanaman extends StatefulWidget {
     required this.icon,
     required this.searchController,
     required this.searchFocusNode,
-    required this.hinText,
+    required this.searchHinText,
     required this.enableSearch,
     required this.onTap,
   }) : super(key: key);
@@ -43,7 +43,7 @@ class _SearchTanamanState extends State<SearchTanaman> {
               child: TextFormField(
                 controller: widget.searchController,
                 decoration: InputDecoration(
-                    hintText: widget.hinText,
+                    hintText: widget.searchHinText,
                     hintStyle: GoogleFonts.inter(textStyle: const TextStyle(fontSize: 12, color: Colors.black)),
                     border: InputBorder.none
                 ),
