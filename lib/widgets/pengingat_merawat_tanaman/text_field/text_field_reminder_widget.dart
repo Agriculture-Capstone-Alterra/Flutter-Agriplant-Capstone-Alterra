@@ -7,32 +7,31 @@ class TextFieldReminderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return const TextField(
       decoration: InputDecoration(
-        hintText: 'Nama Pengingat',
-        
+        hintText: 'Input Nama Pengingat',
+        labelText: 'Nama Pengingat',
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(
-            color: Colors.black,
-            width: 1.5, 
-          ),
+          // borderRadius: BorderRadius.circular(10.0),
+          // borderSide: const BorderSide(
+          //   color: Colors.black,
+          //   width: 1.5, 
+          // ),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(
-            color: Colors.black,
-            width: 1.5, 
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(
-            color: Colors.black,
-            width: 1.5, 
-          ),
-        ),
-      ),
-    );
+        // focusedBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(10.0),
+        //   borderSide: const BorderSide(
+        //     color: Colors.black,
+        //     width: 1.5, 
+        //   ),
+        // ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(10.0),
+        //   borderSide: const BorderSide(
+        //     color: Colors.black,
+        //     width: 1.5, 
+        //   ),
+    ));
+    
   }
 }
