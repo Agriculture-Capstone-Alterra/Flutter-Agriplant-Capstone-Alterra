@@ -51,8 +51,7 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
             children: <Widget>[
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
-                },
+                  Navigator.pop(context);                },
                 child: const Text("Batalkan"),
               ),
               TextButton(
@@ -66,12 +65,12 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
             title: TextFieldReminderWidget(),
           ),
           ListTile(
-            title: const Text("Pilih Waktu"),
-            trailing: const Icon(Icons.access_time),
+            title: const Text("Set Pengingat"),
             onTap: () async {
               TimeOfDay? pickedTime = await showTimePicker(
                 context: context,
                 initialTime: selectedTime,
+                initialEntryMode: TimePickerEntryMode.input,
               );
 
               if (pickedTime != null && pickedTime != selectedTime) {
@@ -85,70 +84,3 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
   );
 }
 }
-
-
-//   void _showAddReminderMenyiram(BuildContext context) {
-//     showModalBottomSheet(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return Column(
-//           mainAxisSize: MainAxisSize.min,
-//            children: <Widget>[
-//             Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 TextButton(
-//                   onPressed: () {
-//                     Navigator.of(context).pop();
-//                   },
-//                   child: const Text('Batalkan'),
-//                 ),
-//                 // const SizedBox(width: 80.0), 
-//                 TextButton(
-//                   onPressed: () {
-//                     Navigator.of(context).pop();
-//                   },
-//                 child: const Text('Selesai'),
-//                 ),
-//               ],
-//             ),
-              
-//           const ListTile(
-//             title: TextFieldReminderWidget(), 
-//           ),
-//           // const ListTile(
-//           //   title: NumberPage(), 
-//           // ),
-//             ListTile(
-//               subtitle: InkWell(
-//                 onTap: () {
-//                   _selectTime(context);
-//                 },
-//                 child: const Row(
-//                   children: <Widget>[
-//                     SizedBox(width: 8.0),
-//                     Text('Select Time'),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//             //Add more options as needed
-//           ],
-//         );
-//       },
-//     );
-//   }
-
-
-//   Future<void> _selectTime(BuildContext context) async {
-//     TimeOfDay? pickedTime = await showTimePicker(
-//       context: context,
-//       initialTime: TimeOfDay.now(),
-//     );
-
-//     if (pickedTime != null) {
-//       // Do something with the picked time
-//       print('Selected Time: ${pickedTime.format(context)}');
-//     }
-//   }
-// }
