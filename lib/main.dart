@@ -20,9 +20,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<SearchPageProvider>(
-          create: (context) => SearchPageProvider(),
-        ),
         ChangeNotifierProvider<AuthProvider>(
           create: (context) => AuthProvider(),
         ),
