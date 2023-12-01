@@ -1,9 +1,15 @@
+import 'package:capstone_project/screens/autentikasi_screens/login_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/send_otp_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/regist_screen.dart';
+import 'package:capstone_project/screens/navigation_bar.dart';
+import 'package:capstone_project/services/auth_api.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
   Color mainColor = const Color(0xff51AB8C);
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+  String firebaseDeviceToken = 'null';
 
   void pop(BuildContext context){
     Navigator.of(context).pop();
@@ -17,7 +23,7 @@ class AuthProvider extends ChangeNotifier {
   String usernameOrEmailHint = 'Username/Email';
   String passwordHint = 'Password';
   TextEditingController usernameContorller = TextEditingController();
-  TextEditingController passwrodController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool usernameObscureText = false;
   bool visiblePassword = false;
   bool passwordObscureTextTrue = true;
@@ -40,13 +46,37 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  void login(){}
+  void postLogin(BuildContext context) async{
+    try{
+      await AuthApi().login(
+        email: usernameContorller.text,
+        password: passwordController.text,
+      );
+
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context){return NavBar();},
+        ), (_) => false,
+      );
+    } catch(e){}
+    notifyListeners();
+  }
+
+  void getToken() async{
+    await firebaseMessaging.getToken().then((token) {
+      firebaseDeviceToken = token!;
+      print('token is $firebaseDeviceToken');
+    });
+    notifyListeners();
+  }
 
   void onRegist(BuildContext context) async{
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const RegistScreen()),
     );
+    getToken();
     notifyListeners();
   }
 
@@ -98,9 +128,19 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void register(BuildContext context) async{
+    try{
+      await AuthApi().register(
+        email: emailRegistController.text,
+        firebase_device_token: firebaseDeviceToken,
+        name: usernameRegistController.text,
+        password: passwordRegistController.text,
+      );
+      notifyListeners();
+    } catch(e){}
+
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SendOtp(),),
+      MaterialPageRoute(builder: (context) => SendOtpScreen(),),
     );
     notifyListeners();
   }
@@ -108,6 +148,29 @@ class AuthProvider extends ChangeNotifier {
   //untuk menerima code otp
   Color otpFieldColor = const Color(0xffC5E3D9);
   TextEditingController otpController = TextEditingController();
+  String otpFill = '';
   String get EmailOtpMessage => 'Cek email ${emailRegistController.text} untuk mengetahui OTP anda';
   String textGetBackOtp = 'Kirim Ulang OTP';
+
+  void processOtp(BuildContext context) async{
+    if (otpFill.length==4){
+      try{
+        await AuthApi().verifyOtp(
+          email: emailRegistController.text,
+          otp: otpController.text,
+        );
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context){
+            return LoginScreen();
+          }), (_) => false,
+        );
+        notifyListeners();
+      } catch(e){
+        rethrow;
+      }
+      notifyListeners();
+    }
+    notifyListeners();
+  }
 }

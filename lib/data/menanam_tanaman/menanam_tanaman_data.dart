@@ -1,4 +1,4 @@
-import '../../models/menanam_tanaman_model.dart';
+import '../../models/menanam_tanaman_model/menanam_tanaman_model.dart';
 
 List<MenanamTanaman> menanamList = [
   MenanamTanaman(
