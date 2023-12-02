@@ -51,7 +51,7 @@ class PlantProvider extends ChangeNotifier{
   //IsSearchingFalse
 
   //all plant
-  String AllPlantScreenAppBarText = 'Tanaman';
+  String AllPlantScreenAppBarText = 'Semua Tanaman';
   TextEditingController searchAllPlantController = TextEditingController();
   String searchAllPlantHint = 'Cari tanaman';
 
