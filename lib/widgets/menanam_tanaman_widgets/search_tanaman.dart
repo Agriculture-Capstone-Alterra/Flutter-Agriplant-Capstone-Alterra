@@ -8,7 +8,7 @@ class SearchTanaman extends StatefulWidget {
   FocusNode searchFocusNode;
   String searchHinText;
   bool enableSearch;
-  Function() onTap;
+  Function() formOnTap;
 
   SearchTanaman({
     Key? key,
@@ -17,7 +17,7 @@ class SearchTanaman extends StatefulWidget {
     required this.searchFocusNode,
     required this.searchHinText,
     required this.enableSearch,
-    required this.onTap,
+    required this.formOnTap,
   }) : super(key: key);
 
   @override
@@ -38,7 +38,6 @@ class _SearchTanamanState extends State<SearchTanaman> {
         ),
         child: Row(
           children: [
-            widget.icon,
             Expanded(
               child: TextFormField(
                 controller: widget.searchController,
@@ -54,11 +53,12 @@ class _SearchTanamanState extends State<SearchTanaman> {
                 // onTap: (){widget.onTap();},
               ),
             ),
+            widget.icon,
           ],
         ),
       ),
       onTap: (){
-        widget.onTap();
+        widget.formOnTap();
       },
     );
   }

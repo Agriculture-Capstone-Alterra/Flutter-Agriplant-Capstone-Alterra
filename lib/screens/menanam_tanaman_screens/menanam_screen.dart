@@ -1,10 +1,8 @@
 import 'package:capstone_project/data/menanam_tanaman/menanam_style.dart';
 import 'package:capstone_project/providers/plant_provider.dart';
-import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../../models/menanam_tanaman_model/plant_types_model.dart';
 import '../../widgets/menanam_tanaman_widgets/is_searching_false.dart';
 import '../../widgets/menanam_tanaman_widgets/is_searching_true.dart';
 import '../../widgets/menanam_tanaman_widgets/search_tanaman.dart';
@@ -24,16 +22,16 @@ class _MenanamState extends State<Menanam> {
       builder: (context, plantProvider, child) {
         return WillPopScope(
           child: Scaffold(
-              appBar: plantProvider.isSearching==false?
+              appBar: plantProvider.isSearching==false && plantProvider.seeAllPlantType==false?
               AppBar(
                 title: Text(
                   plantProvider.appBarText,
-                  style: GoogleFonts.inter(textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white)),
+                  style: GoogleFonts.inter(textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white)),
                 ),
                 centerTitle: true,
                 backgroundColor: MenanamStyle.mainColor,
               ) :
-              PreferredSize(preferredSize: Size.fromHeight(0), child: AppBar(backgroundColor: MenanamStyle.mainColor,)),
+              PreferredSize(preferredSize: const Size.fromHeight(0), child: AppBar(backgroundColor: MenanamStyle.mainColor,)),
 
               body: Material(
                 color: MenanamStyle.mainColor,
@@ -56,7 +54,7 @@ class _MenanamState extends State<Menanam> {
                               child: Icon(Icons.arrow_back),
                             ),
                             onTap: (){plantProvider.setIsSearchingFalse();},
-                          ),
+                          ) ,
                           Expanded(
                             child: SearchTanaman(
                               icon: plantProvider.searchIcon,
@@ -64,17 +62,23 @@ class _MenanamState extends State<Menanam> {
                               searchFocusNode: plantProvider.searchFocusNode,
                               searchHinText: plantProvider.searchHinText,
                               enableSearch: plantProvider.enableSearch,
-                              onTap: (){
-                                plantProvider.search();
-                              },
+                              formOnTap: (){plantProvider.search();},
                             ),
                           ),
                         ],
                       ),
 
                       plantProvider.isSearching==false?
-                      IsSearchingFalse():
-                      IsSearchingTrue(),
+                      IsSearchingFalse(
+                        headPlantTypeText: plantProvider.headPlantTypeText,
+                        allPlantNavigatorText: plantProvider.allPlantNavigatorText,
+                        allPlantNavigatorOnTap: (){plantProvider.allPlantNavigatorOnTap(context);},
+                        headLastPlantText: plantProvider.headLastPlantText,
+                      ) :
+                      // plantProvider.isSearching==false && plantProvider.seeAllPlantType==true?
+                      // AllPlantScreen(appBarText: 'Tanaman',) :
+                      IsSearchingTrue()
+                          // : IsSearchingTrue(),
                     ],
                   ),
                 ),
@@ -89,5 +93,4 @@ class _MenanamState extends State<Menanam> {
       } ,
     );
   }
-
 }
