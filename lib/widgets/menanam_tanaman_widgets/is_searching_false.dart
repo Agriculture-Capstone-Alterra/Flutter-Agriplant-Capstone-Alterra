@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../data/menanam_tanaman/menanam_tanaman_data.dart';
-import '../../models/menanam_tanaman_model/menanam_tanaman_model.dart';
 import '../../models/menanam_tanaman_model/plant_types_model.dart';
-import '../../services/plant_api.dart';
+import '../../services/menanam_tanaman/plant_api.dart';
 
 class IsSearchingFalse extends StatefulWidget {
-  const IsSearchingFalse({Key? key}) : super(key: key);
+  String headPlantTypeText;
+  String allPlantNavigatorText;
+  Function() allPlantNavigatorOnTap;
+  String headLastPlantText;
+
+  IsSearchingFalse({
+    Key? key,
+    required this.headPlantTypeText,
+    required this.allPlantNavigatorText,
+    required this.allPlantNavigatorOnTap,
+    required this.headLastPlantText,
+  }) : super(key: key);
 
   @override
   State<IsSearchingFalse> createState() => _IsSearchingFalseState();
@@ -27,17 +35,20 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Jenis Tanaman',
+                widget.headPlantTypeText,
                 style: GoogleFonts.inter(
                     textStyle:
                     TextStyle(fontSize: 16, fontWeight: FontWeight.w600,)),
               ),
 
-              Text(
-                'lihat semua',
-                style: GoogleFonts.inter(
-                    textStyle:
-                    TextStyle(fontWeight: FontWeight.w600, color: Colors.blueAccent,)),
+              GestureDetector(
+                child: Text(
+                  widget.allPlantNavigatorText,
+                  style: GoogleFonts.inter(
+                      textStyle:
+                      TextStyle(fontWeight: FontWeight.w600, color: Colors.blueAccent,)),
+                ),
+                onTap: widget.allPlantNavigatorOnTap,
               )
             ],
           ),
@@ -46,7 +57,7 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
         const SizedBox(height: 12,),
 
         StreamBuilder<PlantTypesModel>(
-          stream: Stream.fromFuture(PlantApi().getPlantList()),
+          stream: Stream.fromFuture(PlantApi().getPlantTypetList()),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
@@ -56,7 +67,7 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
               // Memeriksa apakah data yang diterima memiliki struktur yang sesuai
               if (snapshot.data != null) {
                 PlantTypesModel plantData = snapshot.data!;
-                return plantList(plantData.data);
+                return plantType(plantData.data);
               } else {
                 return Center(child: Text('Data tidak valid.'));
               }
@@ -74,7 +85,7 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
             margin: EdgeInsets.symmetric(horizontal: 16),
             width: double.infinity,
             child: Text(
-              'Tanaman Terakhir',
+              widget.headLastPlantText,
               style: GoogleFonts.inter(
                 textStyle: TextStyle(
                   fontSize: 16, fontWeight: FontWeight.w600,
@@ -89,7 +100,7 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
     );
   }
 
-  Widget plantList(List<PlantList> plants){
+  Widget plantType(List<PlantList> plants){
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
       width: double.infinity,
