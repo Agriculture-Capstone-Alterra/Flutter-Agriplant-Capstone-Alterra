@@ -5,7 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../models/menanam_tanaman_model/all_plants_model.dart';
 
 class PlantsList extends StatefulWidget {
-  const PlantsList({Key? key}) : super(key: key);
+  Function() seeDetail;
+
+  PlantsList({
+    Key? key,
+    required this.seeDetail,
+  }) : super(key: key);
 
   @override
   State<PlantsList> createState() => _PlantsListState();
@@ -25,7 +30,10 @@ class _PlantsListState extends State<PlantsList> {
           // Memeriksa apakah data yang diterima memiliki struktur yang sesuai
           if (snapshot.data != null) {
             AllPlantsModel plantData = snapshot.data!;
-            return result(plantData.data);
+            return result(
+              data: plantData.data,
+              seeDetail: widget.seeDetail,
+            );
           } else {
             return Center(child: Text('Data tidak valid.'));
           }
@@ -36,7 +44,10 @@ class _PlantsListState extends State<PlantsList> {
     );
   }
 
-  Widget result(List<PlantData> data){
+  Widget result({
+    required List<PlantData> data,
+    required Function() seeDetail,
+  }){
     return GestureDetector(
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 24),
@@ -82,6 +93,7 @@ class _PlantsListState extends State<PlantsList> {
           },
         ),
       ),
+      onTap: seeDetail,
     );
   }
 }

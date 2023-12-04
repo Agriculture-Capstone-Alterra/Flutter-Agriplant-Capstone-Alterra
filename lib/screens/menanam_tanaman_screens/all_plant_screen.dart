@@ -31,7 +31,11 @@ class _AllPlantScreenState extends State<AllPlantScreen> {
 
                 const SizedBox(height: 46,),
 
-                PlantsList(),
+                PlantsList(
+                  seeDetail: (){
+                    plantProvider.seeDetailPlant(context);
+                  },
+                ),
               ],
             )
         );
@@ -39,5 +43,3 @@ class _AllPlantScreenState extends State<AllPlantScreen> {
     );
   }
 }
-
-
