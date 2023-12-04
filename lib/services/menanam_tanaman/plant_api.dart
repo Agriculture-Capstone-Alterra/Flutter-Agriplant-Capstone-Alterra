@@ -1,6 +1,5 @@
 import 'package:capstone_project/models/menanam_tanaman_model/plant_types_model.dart';
 import 'package:dio/dio.dart';
-
 import '../../models/menanam_tanaman_model/all_plants_model.dart';
 
 class PlantApi{
