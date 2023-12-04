@@ -9,7 +9,7 @@ AllPlantsModel allPlantsModelFromJson(String str) => AllPlantsModel.fromJson(jso
 String allPlantsModelToJson(AllPlantsModel data) => json.encode(data.toJson());
 
 class AllPlantsModel {
-  List<Datum> data;
+  List<PlantData> data;
   String message;
   String status;
 
@@ -20,7 +20,7 @@ class AllPlantsModel {
   });
 
   factory AllPlantsModel.fromJson(Map<String, dynamic> json) => AllPlantsModel(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+    data: List<PlantData>.from(json["data"].map((x) => PlantData.fromJson(x))),
     message: json["message"],
     status: json["status"],
   );
@@ -32,7 +32,7 @@ class AllPlantsModel {
   };
 }
 
-class Datum {
+class PlantData {
   int id;
   String name;
   PlantType plantType;
@@ -51,7 +51,7 @@ class Datum {
   DateTime updatedAt;
   String plantImageThumbnail;
 
-  Datum({
+  PlantData({
     required this.id,
     required this.name,
     required this.plantType,
@@ -71,24 +71,26 @@ class Datum {
     required this.plantImageThumbnail,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory PlantData.fromJson(Map<String, dynamic> json) => PlantData(
     id: json["id"],
-    name: json["name"],
+    name: json["name"] ?? 'get no data',
     plantType: PlantType.fromJson(json["plant_type"]),
     technology: PlantType.fromJson(json["technology"]),
-    variety: json["variety"],
-    description: json["description"],
-    fertilizerInfo: json["fertilizer_info"],
-    pestInfo: json["pest_info"],
+    variety: json["variety"] ?? 'get no data',
+    description: json["description"] ?? 'get no data',
+    fertilizerInfo: json["fertilizer_info"] ?? 'get no data',
+    pestInfo: json["pest_info"] ?? 'get no data',
     drySeasonStartPlant: DateTime.parse(json["dry_season_start_plant"]),
     drySeasonFinishPlant: DateTime.parse(json["dry_season_finish_plant"]),
     rainySeasonStartPlant: DateTime.parse(json["rainy_season_start_plant"]),
     rainySeasonFinishPlant: DateTime.parse(json["rainy_season_finish_plant"]),
-    plantingSuggestions: json["planting_suggestions"],
-    howToMaintain: json["how_to_maintain"],
+    plantingSuggestions: json["planting_suggestions"] ?? 'get no data',
+    howToMaintain: json["how_to_maintain"] ?? 'get no data',
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
-    plantImageThumbnail: json["plant_image_thumbnail"],
+    plantImageThumbnail: json["plant_image_thumbnail"]==''?
+    'https://pertaniansehat.com/v01/wp-content/uploads/2015/08/default-placeholder.png' :
+    json["plant_image_thumbnail"],
   );
 
   Map<String, dynamic> toJson() => {

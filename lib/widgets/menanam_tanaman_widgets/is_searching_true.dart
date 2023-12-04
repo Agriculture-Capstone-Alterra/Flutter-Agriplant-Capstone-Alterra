@@ -12,7 +12,7 @@ class _IsSearchingTrueState extends State<IsSearchingTrue> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 18,),
+        SizedBox(height: 22,),
 
         Container(
           width: double.infinity,

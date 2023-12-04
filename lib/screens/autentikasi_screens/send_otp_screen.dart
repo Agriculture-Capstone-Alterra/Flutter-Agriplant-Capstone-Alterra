@@ -37,32 +37,6 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
           ),
           body: ListView(
             children: [
-              // PinCodeTextField(
-              //   appContext: context,
-              //   length: 4,
-              //   pinTheme: PinTheme(
-              //     shape: PinCodeFieldShape.box,
-              //     borderRadius: BorderRadius.circular(12),
-              //     fieldHeight: 50,
-              //     fieldWidth: 40,
-              //     activeFillColor: Color(0xffC5E3D9),
-              //     inactiveFillColor: Color(0xffC5E3D9),
-              //     // activeColor: Colors.blue,
-              //     // selectedFillColor: ,
-              //     // inactiveFillColor: Colors.grey,
-              //   ),
-              //   // textStyle: TextStyle(
-              //   //   color: Colors.green.shade600,
-              //   //   fontWeight: FontWeight.bold,
-              //   // ),
-              //   pastedTextStyle: TextStyle(
-              //     color: Colors.green.shade600,
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              //
-              //   onChanged: (value){},
-              //   onCompleted: (value){},
-              // )
 
               const SizedBox(
                 height: 14,

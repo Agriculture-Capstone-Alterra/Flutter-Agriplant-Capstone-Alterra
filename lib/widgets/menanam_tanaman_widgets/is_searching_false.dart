@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../data/menanam_tanaman/menanam_tanaman_icon.dart';
 import '../../models/menanam_tanaman_model/plant_types_model.dart';
 import '../../services/menanam_tanaman/plant_api.dart';
 
@@ -26,7 +27,7 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 12,),
+        const SizedBox(height: 22,),
 
         Container(
           margin: EdgeInsets.symmetric(horizontal: 16),
@@ -54,7 +55,7 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
           ),
         ),
 
-        const SizedBox(height: 12,),
+        const SizedBox(height: 14,),
 
         StreamBuilder<PlantTypesModel>(
           stream: Stream.fromFuture(PlantApi().getPlantTypetList()),
@@ -77,7 +78,7 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
           },
         ),
 
-        const SizedBox(height: 12,),
+        const SizedBox(height: 32,),
 
         Align(
           alignment: Alignment.bottomLeft,
@@ -96,6 +97,8 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
         ),
 
         const SizedBox(height: 12,),
+
+        // Image.asset('assets/images/menanam tanaman images/tanaman icons/bunga icon.png')
       ],
     );
   }
@@ -111,9 +114,17 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,),
         itemBuilder: (_, index){
           final plant = plants[index];
-          return Text(
-            plant.name,
-            textAlign: TextAlign.center,
+          return Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(iconTanamanList[index]),
+              Text(
+                plant.name,
+                style: GoogleFonts.inter(textStyle: TextStyle(fontSize: 12)),
+                textAlign: TextAlign.center,
+              ),
+            ],
           );
         },
       ),

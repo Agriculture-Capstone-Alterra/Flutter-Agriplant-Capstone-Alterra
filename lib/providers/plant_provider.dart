@@ -1,4 +1,5 @@
 import 'package:capstone_project/screens/menanam_tanaman_screens/all_plant_screen.dart';
+import 'package:capstone_project/screens/menanam_tanaman_screens/detail_plant_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -50,10 +51,21 @@ class PlantProvider extends ChangeNotifier{
 
   //IsSearchingFalse
 
-  //all plant
+  //see all plant
   String AllPlantScreenAppBarText = 'Semua Tanaman';
   TextEditingController searchAllPlantController = TextEditingController();
   String searchAllPlantHint = 'Cari tanaman';
+  int idPlant = 0;
 
-
+  void seeDetailPlant({
+    required BuildContext context,
+    required int idPlant,
+  }){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DetailPlant())
+    );
+    idPlant = this.idPlant;
+    notifyListeners();
+  }
 }
