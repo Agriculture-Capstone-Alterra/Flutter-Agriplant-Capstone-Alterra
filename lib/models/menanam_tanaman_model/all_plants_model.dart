@@ -9,7 +9,7 @@ AllPlantsModel allPlantsModelFromJson(String str) => AllPlantsModel.fromJson(jso
 String allPlantsModelToJson(AllPlantsModel data) => json.encode(data.toJson());
 
 class AllPlantsModel {
-  List<Datum> data;
+  List<PlantData> data;
   String message;
   String status;
 
@@ -20,7 +20,7 @@ class AllPlantsModel {
   });
 
   factory AllPlantsModel.fromJson(Map<String, dynamic> json) => AllPlantsModel(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+    data: List<PlantData>.from(json["data"].map((x) => PlantData.fromJson(x))),
     message: json["message"],
     status: json["status"],
   );
@@ -32,7 +32,7 @@ class AllPlantsModel {
   };
 }
 
-class Datum {
+class PlantData {
   int id;
   String name;
   PlantType plantType;
@@ -51,7 +51,7 @@ class Datum {
   DateTime updatedAt;
   String plantImageThumbnail;
 
-  Datum({
+  PlantData({
     required this.id,
     required this.name,
     required this.plantType,
@@ -71,7 +71,7 @@ class Datum {
     required this.plantImageThumbnail,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory PlantData.fromJson(Map<String, dynamic> json) => PlantData(
     id: json["id"],
     name: json["name"],
     plantType: PlantType.fromJson(json["plant_type"]),

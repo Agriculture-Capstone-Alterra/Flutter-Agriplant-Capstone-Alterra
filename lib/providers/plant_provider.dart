@@ -55,5 +55,4 @@ class PlantProvider extends ChangeNotifier{
   TextEditingController searchAllPlantController = TextEditingController();
   String searchAllPlantHint = 'Cari tanaman';
 
-
 }
