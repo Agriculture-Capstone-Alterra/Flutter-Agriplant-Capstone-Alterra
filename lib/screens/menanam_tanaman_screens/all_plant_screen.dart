@@ -33,7 +33,10 @@ class _AllPlantScreenState extends State<AllPlantScreen> {
 
                 PlantsList(
                   seeDetail: (){
-                    plantProvider.seeDetailPlant(context);
+                    plantProvider.seeDetailPlant(
+                      context: context,
+                      idPlant: 1
+                    );
                   },
                 ),
               ],

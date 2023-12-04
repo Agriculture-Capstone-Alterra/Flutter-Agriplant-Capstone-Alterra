@@ -55,20 +55,17 @@ class PlantProvider extends ChangeNotifier{
   String AllPlantScreenAppBarText = 'Semua Tanaman';
   TextEditingController searchAllPlantController = TextEditingController();
   String searchAllPlantHint = 'Cari tanaman';
+  int idPlant = 0;
 
-  void seeDetailPlant(BuildContext context){
+  void seeDetailPlant({
+    required BuildContext context,
+    required int idPlant,
+  }){
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => DetailPlant())
     );
+    idPlant = this.idPlant;
     notifyListeners();
   }
-
-  // void seeDetailPlant(BuildContext context) {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => DetailPlant()),
-  //   );
-  // }
-
 }
