@@ -11,6 +11,7 @@ class TextFieldReminderWidget extends StatelessWidget {
       decoration: InputDecoration(
         hintText: 'Input Nama Pengingat',
         labelText: 'Nama Pengingat',
+        floatingLabelBehavior: FloatingLabelBehavior.always,
         border: OutlineInputBorder(
           // borderRadius: BorderRadius.circular(10.0),
           // borderSide: const BorderSide(
