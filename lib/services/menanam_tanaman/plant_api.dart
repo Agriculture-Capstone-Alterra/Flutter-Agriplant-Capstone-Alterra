@@ -22,6 +22,12 @@ class PlantApi{
     dio.options.headers['Authorization'] = 'Bearer $token';
     try{
       final response  = await dio.get('$baseUrl/plants');
+      final filterData = AllPlantsModel.fromJson(response.data);
+      filterData.data.forEach((element) {
+        if(element.id==17){
+          print(element.id);
+        }
+      });
       return AllPlantsModel.fromJson(response.data);
     } catch(e){rethrow;}
   }
