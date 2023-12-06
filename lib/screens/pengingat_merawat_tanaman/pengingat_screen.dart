@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:capstone_project/data/text_style/theme_text_style.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/card/menyiram/card_menyiram_widget.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/card/pupuk/card_pupuk_widget.dart';
 import 'package:capstone_project/screens/pengingat_merawat_tanaman/menyiram/menyiram_screen.dart';
 import 'package:capstone_project/screens/pengingat_merawat_tanaman/pupuk/pupuk_screen.dart';
-import '../../widgets/pengingat_merawat_tanaman/card/menyiram/card_menyiram_widget.dart';
-import '../../widgets/pengingat_merawat_tanaman/card/pupuk/card_pupuk_widget.dart';
 
 class Pengingat extends StatefulWidget {
   const Pengingat({Key? key}) : super(key: key);
@@ -48,7 +48,7 @@ class _PengingatState extends State<Pengingat> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Menyiram(),
+                    builder: (context) => const AllPlantScreen(),
                   ),
                 );
               },
