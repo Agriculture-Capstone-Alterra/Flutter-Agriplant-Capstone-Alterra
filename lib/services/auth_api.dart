@@ -1,12 +1,13 @@
 import 'package:capstone_project/models/autentikasi_model/login_model.dart';
 import 'package:dio/dio.dart';
+import '../models/autentikasi_model/response_resend_otp_model.dart';
 import '../models/autentikasi_model/register_model.dart';
 import '../models/autentikasi_model/verify_otp_model.dart';
 
 
 
 class AuthApi{
-  String baseUrl = 'https://service.api-agriplant.xyz';
+  String baseUrl = 'http://service.api-agriplant.xyz';
 
   Dio dio = Dio();
 
@@ -63,6 +64,22 @@ class AuthApi{
         }
       );
       return VerifyOtpModel.fromJson(response.data);
+    } catch(e){
+      rethrow;
+    }
+  }
+
+  Future<ResponseResendOtpModel> resendOtp({
+    required String email,
+  }) async{
+    try{
+      final response = await dio.post(
+        '$baseUrl/auth/resend-otp',
+        data: {
+          "email": email,
+        }
+      );
+      return ResponseResendOtpModel.fromJson(response.data);
     } catch(e){
       rethrow;
     }

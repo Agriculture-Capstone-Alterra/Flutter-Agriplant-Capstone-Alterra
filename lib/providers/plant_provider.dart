@@ -1,5 +1,6 @@
 import 'package:capstone_project/screens/menanam_tanaman_screens/all_plant_screen.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/detail_plant_screen.dart';
+import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -59,13 +60,24 @@ class PlantProvider extends ChangeNotifier{
 
   void seeDetailPlant({
     required BuildContext context,
-    required int idPlant,
-  }){
+    int? id,
+    // required int idPlant,
+  }) async{
+    try{
+      this.idPlant = id!;
+      await PlantApi().getPlantById(id: idPlant);
+      print('id : $id');
+      notifyListeners();
+    }catch(e){}
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => DetailPlant())
     );
-    idPlant = this.idPlant;
+    // idPlant = this.idPlant;
     notifyListeners();
   }
+
+  //detail plant by id
+  String detailPlantAppBarText = 'Detail Halaman';
+  String anjing = 'anjing';
 }

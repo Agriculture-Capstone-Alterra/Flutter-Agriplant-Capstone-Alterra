@@ -1,7 +1,6 @@
 import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../models/menanam_tanaman_model/all_plants_model.dart';
 
 class PlantsList extends StatefulWidget {
@@ -46,54 +45,56 @@ class _PlantsListState extends State<PlantsList> {
 
   Widget result({
     required List<PlantData> data,
-    required Function() seeDetail,
+    required Function(/*{required int id,}*/) seeDetail,
   }){
-    return GestureDetector(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 24),
-        width: double.infinity,
-        child: GridView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: MediaQuery.of(context).size.width/18,
-            mainAxisSpacing: MediaQuery.of(context).size.width/18,
-          ),
-          itemCount: data.length,
-          itemBuilder: (_, index){
-            final datum = data[index];
-            return Container(
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 24),
+      width: double.infinity,
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: MediaQuery.of(context).size.width/18,
+          mainAxisSpacing: MediaQuery.of(context).size.width/18,
+        ),
+        itemCount: data.length,
+        itemBuilder: (_, index){
+          final datum = data[index];
+          return GestureDetector(
+            child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey, width: 2,
-                ),
               ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: GridTile(
-                  child: Image.network(
-                    datum.plantImageThumbnail,
-                    fit: BoxFit.cover,
-                  ),
-                  footer:
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
-                    color: Colors.white,
-                    child: Center(
+              child: Card(
+                elevation: 6,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: GridTile(
+                    child: Image.network(
+                      datum.plantImageThumbnail,
+                      fit: BoxFit.cover,
+                    ),
+                    footer:
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      color: Colors.white,
+                      child: Center(
                         child: Text(
                           datum.name,
                           style: GoogleFonts.inter(fontSize: 12),
                           textAlign: TextAlign.center,
-                    )),
-                  )
+                        ),
+                      ),
+                    )
+                  ),
                 ),
               ),
-            );
-          },
-        ),
+            ),
+            onTap: seeDetail,
+          );
+        },
       ),
-      onTap: seeDetail,
     );
   }
 }

@@ -8,7 +8,9 @@ class InputOtp extends StatefulWidget {
   TextEditingController otpController;
   String otpFill;
   Color otpFieldColor;
-  Function() onTap;
+  Function() onChanged;
+  // Function(String value) onChanged;
+  // Functg value) onChanged;
 
   InputOtp({
     Key? key, 
@@ -16,7 +18,7 @@ class InputOtp extends StatefulWidget {
     required this.otpController,
     required this.otpFill,
     required this.otpFieldColor,
-    required this.onTap,
+    required this.onChanged,
   }) : super(key: key);
 
   @override
@@ -58,9 +60,9 @@ class _InputOtpState extends State<InputOtp> {
               ),
               textAlign: TextAlign.center,
               onChanged: (String value){
-                widget.otpFill = value;
-                print(widget.otpFill);
-                widget.onTap;
+                if(value==4){
+                  widget.onChanged;
+                }
               },
               // onTap: ,
             ),
