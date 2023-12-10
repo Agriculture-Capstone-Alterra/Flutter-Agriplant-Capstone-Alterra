@@ -63,21 +63,23 @@ class PlantProvider extends ChangeNotifier{
     int? id,
     // required int idPlant,
   }) async{
-    try{
       this.idPlant = id!;
-      await PlantApi().getPlantById(id: idPlant);
       print('id : $id');
-      notifyListeners();
-    }catch(e){}
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => DetailPlant())
-    );
-    // idPlant = this.idPlant;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DetailPlant()),
+      );
     notifyListeners();
   }
 
   //detail plant by id
   String detailPlantAppBarText = 'Detail Halaman';
-  String anjing = 'anjing';
+
+  Future detailPlant() async{
+    try{
+      await PlantApi().getPlantById(id: this.idPlant);
+      notifyListeners();
+    }catch(e){}
+    notifyListeners();
+  }
 }

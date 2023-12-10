@@ -1,5 +1,4 @@
 import 'package:capstone_project/providers/plant_provider.dart';
-import 'package:capstone_project/widgets/menanam_tanaman_widgets/all_plant_screen/plants_list.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/all_plant_screen/search_all_plants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

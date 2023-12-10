@@ -1,4 +1,3 @@
-import 'package:capstone_project/screens/autentikasi_screens/login_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/send_otp_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/regist_screen.dart';
 import 'package:capstone_project/screens/navigation_bar.dart';
