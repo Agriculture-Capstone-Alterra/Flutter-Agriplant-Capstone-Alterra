@@ -2,7 +2,7 @@ import 'package:capstone_project/screens/menanam_tanaman_screens/all_plant_scree
 import 'package:capstone_project/screens/pengingat_merawat_tanaman/menyiram/time_menyiram_screen.dart';
 import 'package:flutter/material.dart';
 
-class PlantProvider extends ChangeNotifier{
+class PlantProviderrrr extends ChangeNotifier{
   String appBarText = 'Pilih Jenis Tanaman';
   Icon searchIcon = const Icon(Icons.search, color: Colors.black,);
 

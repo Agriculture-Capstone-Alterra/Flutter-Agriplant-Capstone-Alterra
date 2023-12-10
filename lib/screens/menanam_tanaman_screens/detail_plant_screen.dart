@@ -1,6 +1,7 @@
-import 'package:capstone_project/providers/pengingat_merawat_tanaman.dart/plant_list_reminder_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../../providers/plant_provider.dart';
 
 class DetailPlant extends StatefulWidget {
   const DetailPlant({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _DetailPlantState extends State<DetailPlant> {
       builder: (context, plantProvider, child){
         return Scaffold(
           appBar: AppBar(
-            title: Text(plantProvider.AllPlantScreenAppBarText),
+            title: Text(plantProvider.AllPlantScreenAppBarText,style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),),
           ),
           body: ListView(
             children: [
