@@ -45,24 +45,24 @@ class _PlantsListState extends State<PlantsList> {
 
   Widget result({
     required List<PlantData> data,
-    required Function() seeDetail,
+    required Function(/*{required int id,}*/) seeDetail,
   }){
-    return GestureDetector(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 24),
-        width: double.infinity,
-        child: GridView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: MediaQuery.of(context).size.width/18,
-            mainAxisSpacing: MediaQuery.of(context).size.width/18,
-          ),
-          itemCount: data.length,
-          itemBuilder: (_, index){
-            final datum = data[index];
-            return Container(
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 24),
+      width: double.infinity,
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: MediaQuery.of(context).size.width/18,
+          mainAxisSpacing: MediaQuery.of(context).size.width/18,
+        ),
+        itemCount: data.length,
+        itemBuilder: (_, index){
+          final datum = data[index];
+          return GestureDetector(
+            child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -80,20 +80,21 @@ class _PlantsListState extends State<PlantsList> {
                       padding: EdgeInsets.symmetric(vertical: 5),
                       color: Colors.white,
                       child: Center(
-                          child: Text(
-                            datum.name,
-                            style: GoogleFonts.inter(fontSize: 12),
-                            textAlign: TextAlign.center,
-                      )),
+                        child: Text(
+                          datum.name,
+                          style: GoogleFonts.inter(fontSize: 12),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     )
                   ),
                 ),
               ),
-            );
-          },
-        ),
+            ),
+            onTap: seeDetail,
+          );
+        },
       ),
-      onTap: seeDetail,
     );
   }
 }

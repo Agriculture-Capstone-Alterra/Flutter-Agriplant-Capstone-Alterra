@@ -128,20 +128,27 @@ class AuthProvider extends ChangeNotifier {
   }
 
   void register(BuildContext context) async{
-    try{
-      await AuthApi().register(
-        email: emailRegistController.text,
-        firebase_device_token: firebaseDeviceToken,
-        name: usernameRegistController.text,
-        password: passwordRegistController.text,
+    if(passwordRegistController.text==confirmPasswordRegistController.text){
+      try{
+        await AuthApi().register(
+          email: emailRegistController.text,
+          firebase_device_token: firebaseDeviceToken,
+          name: usernameRegistController.text,
+          password: passwordRegistController.text,
+        );
+        notifyListeners();
+      } catch(e){}
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SendOtpScreen(),),
       );
       notifyListeners();
-    } catch(e){}
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SendOtpScreen(),),
-    );
+    } else{
+      SnackBar snackbarMessage = SnackBar(content: Text('konfirmasikan password dengan benar'));
+      ScaffoldMessenger.of(context).showSnackBar(snackbarMessage);
+      notifyListeners();
+    }
     notifyListeners();
   }
 
@@ -150,27 +157,33 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController otpController = TextEditingController();
   String otpFill = '';
   String get EmailOtpMessage => 'Cek email ${emailRegistController.text} untuk mengetahui OTP anda';
-  String textGetBackOtp = 'Kirim Ulang OTP';
 
   void processOtp(BuildContext context) async{
-    if (otpFill.length==4){
-      try{
-        await AuthApi().verifyOtp(
-          email: emailRegistController.text,
-          otp: otpController.text,
-        );
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context){
-            return LoginScreen();
-          }), (_) => false,
-        );
-        notifyListeners();
-      } catch(e){
-        rethrow;
-      }
+    print('repsonse object');
+      // try{
+      //   final response = await AuthApi().verifyOtp(
+      //     email: emailRegistController.text,
+      //     otp: otpController.text,
+      //   );
+          // Navigator.pushAndRemoveUntil(
+          //   context,
+          //   MaterialPageRoute(builder: (context){
+          //     return LoginScreen();
+          //   }), (_) => false,
+          // );
+      //     print('response : $response');
+      // } catch(e){
+      //   rethrow;
+      // }
+    notifyListeners();
+  }
+
+  String textGetBackOtp = 'Kirim Ulang OTP';
+  void resendOtpProvider() async{
+    try{
+      await AuthApi().resendOtp(email: emailRegistController.text);
       notifyListeners();
-    }
+    }catch(e){}
     notifyListeners();
   }
 }
