@@ -8,7 +8,7 @@ class InputOtp extends StatefulWidget {
   TextEditingController otpController;
   String otpFill;
   Color otpFieldColor;
-  Function() onChanged;
+  Function(String value) onChanged;
   // Function(String value) onChanged;
   // Functg value) onChanged;
 
@@ -59,11 +59,12 @@ class _InputOtpState extends State<InputOtp> {
                 fontSize: 18,
               ),
               textAlign: TextAlign.center,
-              onChanged: (String value){
-                if(value==4){
-                  widget.onChanged;
-                }
-              },
+              // onChanged: (String value){
+              //   if(value==4){
+              //     widget.onChanged;
+              //   }
+              // },
+              onChanged: widget.onChanged,
               // onTap: ,
             ),
           )

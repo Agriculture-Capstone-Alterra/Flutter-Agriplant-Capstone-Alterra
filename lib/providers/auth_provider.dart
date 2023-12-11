@@ -4,6 +4,7 @@ import 'package:capstone_project/screens/navigation_bar.dart';
 import 'package:capstone_project/services/auth_api.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import '../screens/autentikasi_screens/login_screen.dart';
 
 class AuthProvider extends ChangeNotifier {
   Color mainColor = const Color(0xff51AB8C);
@@ -159,26 +160,27 @@ class AuthProvider extends ChangeNotifier {
 
   void processOtp(BuildContext context) async{
     print('repsonse object');
-      // try{
-      //   final response = await AuthApi().verifyOtp(
-      //     email: emailRegistController.text,
-      //     otp: otpController.text,
-      //   );
-          // Navigator.pushAndRemoveUntil(
-          //   context,
-          //   MaterialPageRoute(builder: (context){
-          //     return LoginScreen();
-          //   }), (_) => false,
-          // );
-      //     print('response : $response');
-      // } catch(e){
-      //   rethrow;
-      // }
+      try{
+        final response = await AuthApi().verifyOtp(
+          email: emailRegistController.text,
+          otp: otpController.text,
+        );
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context){
+            return LoginScreen();
+          }), (_) => false,
+        );
+        print('response : $response');
+      } catch(e){
+        rethrow;
+      }
     notifyListeners();
   }
 
   String textGetBackOtp = 'Kirim Ulang OTP';
   void resendOtpProvider() async{
+    print('object');
     try{
       await AuthApi().resendOtp(email: emailRegistController.text);
       notifyListeners();

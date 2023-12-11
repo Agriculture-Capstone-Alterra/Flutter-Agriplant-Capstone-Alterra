@@ -11,7 +11,6 @@ class AppDescScreen extends StatefulWidget {
 }
 
 class _AppDescScreenState extends State<AppDescScreen> {
-  PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,27 +18,42 @@ class _AppDescScreenState extends State<AppDescScreen> {
       builder: (context, appOpeningProvider, child) {
         return Scaffold(
           body: PageView(
-            controller: pageController,
+            controller: appOpeningProvider.pageController,
             children: [
               AppDesc(
-                pageController: pageController,
+                pageController: appOpeningProvider.pageController,
                 image: appOpeningProvider.feature1Image,
-                featureName: '',
-                featureDesc: '',
+                featureName: appOpeningProvider.feature1Name,
+                featureDesc: appOpeningProvider.feature1Desc,
+                colorFeatureText: appOpeningProvider.colorFeatureText,
+                buttonColor: appOpeningProvider.buttonColor,
+                buttonText: appOpeningProvider.buttonText1,
+                buttonTextColor: appOpeningProvider.buttonTextColor,
+                onTap: (){},
               ),
 
               AppDesc(
-                pageController: pageController,
+                pageController: appOpeningProvider.pageController,
                 image: appOpeningProvider.feature2Image,
-                featureName: '',
-                featureDesc: '',
+                featureName: appOpeningProvider.feature2name,
+                featureDesc: appOpeningProvider.feature2Desc,
+                colorFeatureText: appOpeningProvider.colorFeatureText,
+                buttonColor: appOpeningProvider.buttonColor,
+                buttonText: appOpeningProvider.buttonText1,
+                buttonTextColor: appOpeningProvider.buttonTextColor,
+                onTap: (){},
               ),
 
               AppDesc(
-                pageController: pageController,
+                pageController: appOpeningProvider.pageController,
                 image: appOpeningProvider.feature3Image,
-                featureName: '',
-                featureDesc: '',
+                featureName: appOpeningProvider.feature3name,
+                featureDesc: appOpeningProvider.feature1Desc,
+                colorFeatureText: appOpeningProvider.colorFeatureText,
+                buttonColor: appOpeningProvider.buttonColor,
+                buttonText: appOpeningProvider.buttonText2,
+                buttonTextColor: appOpeningProvider.buttonTextColor,
+                onTap: (){},
               ),
             ],
           ),

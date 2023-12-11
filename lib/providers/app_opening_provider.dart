@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AppOpeningProvider extends ChangeNotifier {
   bool splashScreen = true;
@@ -16,6 +17,7 @@ class AppOpeningProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  PageController pageController = PageController();
   String feature1Image = 'assets/images/app opening images/Deskripsi Fitur 1.png';
   String feature1Name = 'Info Cuaca Terkini';
   String feature1Desc = 'Mendapatkan informasi cuaca terkini sesuai lokasi yang diinginkan dan dapat mengetahui 7 hari ke depan';
@@ -24,4 +26,15 @@ class AppOpeningProvider extends ChangeNotifier {
   String feature2Desc = 'Dapat menanam tanaman yang diinginkan beserta informasi menanam yang kamu butuhkan';
   String feature3Image = 'assets/images/app opening images/Deskripsi Fitur 3.png';
   String feature3name = 'Pengingat Merawat Tanaman';
+  Color colorFeatureText = Colors.white;
+  String buttonText1 = 'Selanjutnya';
+  String buttonText2 = 'Mulai';
+  Color buttonColor = Color(0xff51AB8C);
+  Color buttonTextColor = Colors.white;
+  void nextPage(){
+    if(pageController!=2){
+      notifyListeners();
+    }
+    notifyListeners();
+  }
 }
