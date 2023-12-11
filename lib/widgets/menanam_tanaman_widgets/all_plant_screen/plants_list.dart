@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../models/menanam_tanaman_model/all_plants_model.dart';
 
+// ignore: must_be_immutable
 class PlantsList extends StatefulWidget {
   Function() seeDetail;
 
