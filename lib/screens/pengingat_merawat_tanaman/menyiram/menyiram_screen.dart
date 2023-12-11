@@ -1,5 +1,5 @@
 import 'package:capstone_project/models/menanam_tanaman_model/all_plants_model.dart';
-import 'package:capstone_project/providers/plant_reminder_provider.dart';
+import 'package:capstone_project/providers/pengingat_merawat_tanaman/plant_reminder_provider.dart';
 
 import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/all_plant_screen/search_all_plants.dart';

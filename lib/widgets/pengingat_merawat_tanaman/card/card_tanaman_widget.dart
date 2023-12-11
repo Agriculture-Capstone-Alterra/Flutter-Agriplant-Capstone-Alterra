@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:capstone_project/data/text_style/theme_text_style.dart';
+import 'package:capstone_project/data/pengingat_merawat_tanaman/theme_text_style.dart';
 
 class CardTanamanWidget extends StatelessWidget {
   const CardTanamanWidget({

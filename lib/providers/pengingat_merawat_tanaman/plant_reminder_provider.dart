@@ -1,8 +1,6 @@
 import 'package:capstone_project/screens/menanam_tanaman_screens/all_plant_screen.dart';
-import 'package:capstone_project/screens/menanam_tanaman_screens/detail_plant_screen.dart';
 import 'package:capstone_project/screens/pengingat_merawat_tanaman/menyiram/time_menyiram_screen.dart';
 import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PlantReminderProvider extends ChangeNotifier{

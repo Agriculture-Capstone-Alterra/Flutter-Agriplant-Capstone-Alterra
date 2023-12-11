@@ -1,4 +1,4 @@
-import 'package:capstone_project/data/text_style/theme_text_style.dart';
+import 'package:capstone_project/data/pengingat_merawat_tanaman/theme_text_style.dart';
 import 'package:capstone_project/screens/pengingat_merawat_tanaman/pupuk/time_pupuk_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/pengingat_merawat_tanaman/card/card_tanaman_widget.dart';
