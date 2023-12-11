@@ -47,8 +47,12 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                 otpController: authProvider.otpController,
                 otpFill: authProvider.otpFill,
                 otpFieldColor: authProvider.otpFieldColor,
-                onChanged: () => authProvider.processOtp(context),
-                // onChanged: (value) => authProvider.processOtp(context, value),
+                onChanged: (value){
+                  if(value.length==4){
+                    authProvider.processOtp(context);
+                    print(value);
+                  }
+                },
               ),
 
               const SizedBox(
@@ -58,7 +62,9 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
               GetBackOtpButton(
                 textResendOtp : authProvider.textGetBackOtp,
                 buttonColor : authProvider.mainColor,
-                onTap: (){authProvider.resendOtpProvider;},
+                onTap: (){
+                  authProvider.resendOtpProvider();
+                },
               )
             ],
           ),

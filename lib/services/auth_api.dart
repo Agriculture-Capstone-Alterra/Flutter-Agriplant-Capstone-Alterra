@@ -79,6 +79,7 @@ class AuthApi{
           "email": email,
         }
       );
+      print(response.data);
       return ResponseResendOtpModel.fromJson(response.data);
     } catch(e){
       rethrow;
