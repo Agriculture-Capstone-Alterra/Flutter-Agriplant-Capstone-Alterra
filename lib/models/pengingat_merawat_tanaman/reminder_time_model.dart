@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final reminderTime = reminderTimeFromJson(jsonString);
-
 import 'dart:convert';
 
 List<ReminderTime> reminderTimeFromJson(String str) => List<ReminderTime>.from(json.decode(str).map((x) => ReminderTime.fromJson(x)));

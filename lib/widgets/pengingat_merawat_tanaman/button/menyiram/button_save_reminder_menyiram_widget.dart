@@ -1,4 +1,4 @@
-import 'package:capstone_project/data/text_style/theme_text_style.dart';
+import 'package:capstone_project/data/pengingat_merawat_tanaman/theme_text_style.dart';
 import 'package:capstone_project/data/theme_color.dart';
 import 'package:flutter/material.dart';
 
