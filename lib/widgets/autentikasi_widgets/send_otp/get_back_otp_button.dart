@@ -44,9 +44,7 @@ class _GetBackOtpButtonState extends State<GetBackOtpButton> {
               ),
             ),
           ),
-          onTap: () {
-            widget.onTap;
-          },
+          onTap: widget.onTap,
         ),
       ],
     );
