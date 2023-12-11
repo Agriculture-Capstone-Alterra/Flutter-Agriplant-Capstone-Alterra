@@ -14,7 +14,16 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
+  // void initState() {
+  //   Provider.of<AuthProvider>(context, listen: false).splashScreenIsChanged();
+  //   Provider.of<AuthProvider>(context, listen: false).splashScreenDone();
+  //   super.initState();
+  // }
+
+  @override
   Widget build(BuildContext context){
+    // Provider.of<AuthProvider>(context).splashScreenIsChanged();
+    // Provider.of<AuthProvider>(context).splashScreenDone();
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) {
         return Scaffold(
@@ -24,7 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
               backgroundColor: authProvider.mainColor,
             ),
           ),
-          body: Center(
+          body:
+          Center(
             child: ListView(
               shrinkWrap: true,
               physics: AlwaysScrollableScrollPhysics(),

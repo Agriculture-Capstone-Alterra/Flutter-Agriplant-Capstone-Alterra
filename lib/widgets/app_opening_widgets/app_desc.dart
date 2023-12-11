@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
-class Desc1 extends StatelessWidget {
+class AppDesc extends StatelessWidget {
   PageController pageController;
   String image;
+  String featureName;
+  String featureDesc;
 
-  Desc1({
+  AppDesc({
     Key? key,
     required this.pageController,
     required this.image,
+    required this.featureName,
+    required this.featureDesc,
   }) : super(key: key);
 
   @override

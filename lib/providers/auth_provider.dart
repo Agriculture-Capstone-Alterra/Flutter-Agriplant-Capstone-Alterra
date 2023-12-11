@@ -16,7 +16,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   //untuk halaman login
-  String logoApkDiHalamanLogin = 'assets/images/auth images/Logo 3.png';
+  String logoApkDiHalamanLogin = 'assets/images/app opening images/Logo 3.png';
   String usernameFormLabel = 'username';
   String passwordFormLabel = 'password';
   String usernameOrEmailHint = 'Username/Email';
