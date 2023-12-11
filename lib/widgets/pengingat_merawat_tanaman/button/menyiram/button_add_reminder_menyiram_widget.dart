@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_project/data/theme_color.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/text_field/text_field_reminder_widget.dart';
@@ -34,8 +35,9 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
     );
   }
 
-  void _showAddReminderMenyiram(BuildContext context) async {
+ void _showAddReminderMenyiram(BuildContext context) async {
   TimeOfDay selectedTime = TimeOfDay.now();
+  TextEditingController textFieldController = TextEditingController();
 
   await showModalBottomSheet(
     context: context,
@@ -51,18 +53,25 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
             children: <Widget>[
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);                },
+                  Navigator.pop(context);
+                },
                 child: const Text("Batalkan"),
               ),
               TextButton(
-                onPressed: () {
+                onPressed: () async {
+                  String textFieldData = textFieldController.text;
+                  String timePickerData = selectedTime.format(context);
+
+                  await _postReminderData(textFieldData, timePickerData);
+
+                  Navigator.pop(context);
                 },
                 child: const Text("Selesai"),
               ),
             ],
           ),
-          const ListTile(
-            title: TextFieldReminderWidget(),
+          ListTile(
+            title: TextFieldReminderWidget(controller: textFieldController),
           ),
           ListTile(
             title: const Text("Set Pengingat"),
@@ -83,4 +92,26 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
     ),
   );
 }
-}
+
+
+Future<void> _postReminderData(String textFieldData, String timePickerData) async {
+  try {
+    final response = await Dio().post(
+      "https://6571fd40d61ba6fcc0142a0c.mockapi.io/agriculture/reminder",
+      data: {
+        "description": textFieldData,
+        "time": timePickerData,
+      },
+    );
+
+    print("Reminder data post response: $response");
+
+    if (response.statusCode == 200) {
+      print("Reminder data posted successfully");
+    } else {
+      print("Failed to post Reminder data. Status code: ${response.statusCode}");
+    }
+  } catch (error) {
+    print("Error posting Reminder data: $error");
+  }
+}}

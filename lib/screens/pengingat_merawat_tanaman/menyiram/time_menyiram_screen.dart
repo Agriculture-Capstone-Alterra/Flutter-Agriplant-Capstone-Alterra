@@ -137,10 +137,10 @@ class TimeMenyiram extends StatelessWidget {
               ],
             ), 
 
-            const SizedBox(height: 45),
-            ButtonRekomendasiMenyiram(title: 'Gunakan Rekomendasi',onPressed: () {
-              print('Button pressed!');
-            }, ),
+            // const SizedBox(height: 45),
+            // ButtonRekomendasiMenyiram(title: 'Gunakan Rekomendasi',onPressed: () {
+            //   print('Button pressed!');
+            // }, ),
 
             const SizedBox(height: 25),
             Row(
@@ -164,10 +164,10 @@ class TimeMenyiram extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 274),
-            ButtonSaveReminderMenyiram(title: 'Simpan Reminder',onPressed: () {
-              print('Button pressed!');
-            }, ),
+            // const SizedBox(height: 274),
+            // ButtonSaveReminderMenyiram(title: 'Simpan Reminder',onPressed: () {
+            //   print('Button pressed!');
+            // }, ),
            
 
           ],
