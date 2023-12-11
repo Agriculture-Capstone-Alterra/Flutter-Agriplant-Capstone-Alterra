@@ -1,4 +1,3 @@
-import 'package:capstone_project/screens/autentikasi_screens/login_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/send_otp_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/regist_screen.dart';
 import 'package:capstone_project/screens/navigation_bar.dart';
@@ -17,7 +16,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   //untuk halaman login
-  String logoApkDiHalamanLogin = 'assets/images/auth images/Logo 3.png';
+  String logoApkDiHalamanLogin = 'assets/images/app opening images/Logo 3.png';
   String usernameFormLabel = 'username';
   String passwordFormLabel = 'password';
   String usernameOrEmailHint = 'Username/Email';

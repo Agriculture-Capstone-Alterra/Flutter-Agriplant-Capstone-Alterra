@@ -1,6 +1,9 @@
+import 'package:capstone_project/providers/app_opening_provider.dart';
 import 'package:capstone_project/providers/auth_provider.dart';
 import 'package:capstone_project/providers/plant_provider.dart';
+import 'package:capstone_project/screens/app_opening_screens/app_desc_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/login_screen.dart';
+import 'package:capstone_project/screens/informasi_cuaca/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +27,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<PlantProvider>(
           create: (context) => PlantProvider(),
+        ),
+        ChangeNotifierProvider<AppOpeningProvider>(
+          create: (context) => AppOpeningProvider(),
         ),
       ],
       child: MaterialApp(
