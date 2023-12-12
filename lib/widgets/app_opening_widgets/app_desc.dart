@@ -11,7 +11,10 @@ class AppDesc extends StatelessWidget {
   Color buttonColor;
   String buttonText;
   Color buttonTextColor;
-  Function() onTap;
+  Function() changeView;
+  String skipText;
+  Color skipTextColor;
+  Function() skipToPage;
 
   AppDesc({
     Key? key,
@@ -23,7 +26,10 @@ class AppDesc extends StatelessWidget {
     required this.buttonColor,
     required this.buttonText,
     required this.buttonTextColor,
-    required this.onTap,
+    required this.changeView,
+    required this.skipText,
+    required this.skipTextColor,
+    required this.skipToPage,
   }) : super(key: key);
 
   @override
@@ -47,11 +53,11 @@ class AppDesc extends StatelessWidget {
                   color: colorFeatureText,
                 ),
               ),
-
-              const SizedBox(height: 10,),
-
+              const SizedBox(
+                height: 10,
+              ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 42),
+                margin: const EdgeInsets.symmetric(horizontal: 42),
                 width: double.infinity,
                 child: Text(
                   featureDesc,
@@ -62,34 +68,59 @@ class AppDesc extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-
-              const SizedBox(height: 48,),
-
+              const SizedBox(
+                height: 48,
+              ),
               GestureDetector(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 12, horizontal: 16),
                   decoration: BoxDecoration(
                     color: Colors.lightGreen,
-                    borderRadius: BorderRadius.circular(12)
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     buttonText,
                     style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-                onTap: (){onTap;},
+                onTap: changeView,
               ),
-
-              const SizedBox(height: 44,)
+              const SizedBox(
+                height: 44,
+              )
             ],
           ),
-        )
+        ),
+
+        Align(
+          alignment: Alignment.topRight,
+          child: GestureDetector(
+            child: Container(
+              margin: EdgeInsets.only(top: 26, right: 14),
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.white, width: 1),
+              ),
+              child: Text(
+                skipText,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: skipTextColor,
+                ),
+              ),
+            ),
+            onTap: skipToPage,
+          ),
+        ),
       ],
     );
   }

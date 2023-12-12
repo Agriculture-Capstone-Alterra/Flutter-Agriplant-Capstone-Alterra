@@ -145,7 +145,7 @@ class AuthProvider extends ChangeNotifier {
       );
       notifyListeners();
     } else{
-      SnackBar snackbarMessage = SnackBar(content: Text('konfirmasikan password dengan benar'));
+      SnackBar snackbarMessage = const SnackBar(content: Text('konfirmasikan password dengan benar'));
       ScaffoldMessenger.of(context).showSnackBar(snackbarMessage);
       notifyListeners();
     }
