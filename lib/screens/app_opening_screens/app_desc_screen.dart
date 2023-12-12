@@ -15,7 +15,8 @@ class AppDescScreen extends StatefulWidget {
 class _AppDescScreenState extends State<AppDescScreen> {
   @override
   void initState() {
-    Provider.of<AppOpeningProvider>(context, listen: false).splashScreenIsChanged();
+    Provider.of<AppOpeningProvider>(context, listen: false)
+        .splashScreenIsChanged();
     Provider.of<AppOpeningProvider>(context, listen: false).splashScreenDone();
     super.initState();
   }
@@ -24,60 +25,60 @@ class _AppDescScreenState extends State<AppDescScreen> {
   Widget build(BuildContext context) {
     return Consumer<AppOpeningProvider>(
       builder: (context, appOpeningProvider, child) {
-        return appOpeningProvider.splashScreen==true && appOpeningProvider.splashScreenVal==1?
+        return appOpeningProvider.splashScreen == true && appOpeningProvider.splashScreenVal == 1?
         SplashScreen1() :
-        appOpeningProvider.splashScreen==true && appOpeningProvider.splashScreenVal==2?
+        appOpeningProvider.splashScreen == true && appOpeningProvider.splashScreenVal == 2?
         SplashScreen2() :
         Scaffold(
-        body: PageView(
-        controller: appOpeningProvider.pageController,
-        children: [
-        AppDesc(
-        pageController: appOpeningProvider.pageController,
-        image: appOpeningProvider.feature1Image,
-        featureName: appOpeningProvider.feature1Name,
-        featureDesc: appOpeningProvider.feature1Desc,
-        colorFeatureText: appOpeningProvider.colorFeatureText,
-        buttonColor: appOpeningProvider.buttonColor,
-        buttonText: appOpeningProvider.buttonText1,
-        buttonTextColor: appOpeningProvider.buttonTextColor,
-        changeView: () => appOpeningProvider.nextPage(context),
-        skipText: appOpeningProvider.skipText,
-        skipTextColor: appOpeningProvider.skipTextColor,
-        skipToPage: () => appOpeningProvider.skipToLoginScreen(context),
-        ),
+          body: PageView(
+            controller: appOpeningProvider.pageController,
+            children: [
+              AppDesc(
+                pageController: appOpeningProvider.pageController,
+                image: appOpeningProvider.feature1Image,
+                featureName: appOpeningProvider.feature1Name,
+                featureDesc: appOpeningProvider.feature1Desc,
+                colorFeatureText: appOpeningProvider.colorFeatureText,
+                buttonColor: appOpeningProvider.buttonColor,
+                buttonText: appOpeningProvider.buttonText1,
+                buttonTextColor: appOpeningProvider.buttonTextColor,
+                changeView: () => appOpeningProvider.nextPage(context),
+                skipText: appOpeningProvider.skipText,
+                skipTextColor: appOpeningProvider.skipTextColor,
+                skipToPage: () => appOpeningProvider.skipToLoginScreen(context),
+              ),
 
-        AppDesc(
-        pageController: appOpeningProvider.pageController,
-        image: appOpeningProvider.feature2Image,
-        featureName: appOpeningProvider.feature2name,
-        featureDesc: appOpeningProvider.feature2Desc,
-        colorFeatureText: appOpeningProvider.colorFeatureText,
-        buttonColor: appOpeningProvider.buttonColor,
-        buttonText: appOpeningProvider.buttonText1,
-        buttonTextColor: appOpeningProvider.buttonTextColor,
-        changeView: () => appOpeningProvider.nextPage(context),
-        skipText: appOpeningProvider.skipText,
-        skipTextColor: appOpeningProvider.skipTextColor,
-        skipToPage: () => appOpeningProvider.skipToLoginScreen(context),
-        ),
+              AppDesc(
+                pageController: appOpeningProvider.pageController,
+                image: appOpeningProvider.feature2Image,
+                featureName: appOpeningProvider.feature2name,
+                featureDesc: appOpeningProvider.feature2Desc,
+                colorFeatureText: appOpeningProvider.colorFeatureText,
+                buttonColor: appOpeningProvider.buttonColor,
+                buttonText: appOpeningProvider.buttonText1,
+                buttonTextColor: appOpeningProvider.buttonTextColor,
+                changeView: () => appOpeningProvider.nextPage(context),
+                skipText: appOpeningProvider.skipText,
+                skipTextColor: appOpeningProvider.skipTextColor,
+                skipToPage: () => appOpeningProvider.skipToLoginScreen(context),
+              ),
 
-        AppDesc(
-        pageController: appOpeningProvider.pageController,
-        image: appOpeningProvider.feature3Image,
-        featureName: appOpeningProvider.feature3name,
-        featureDesc: appOpeningProvider.feature1Desc,
-        colorFeatureText: appOpeningProvider.colorFeatureText,
-        buttonColor: appOpeningProvider.buttonColor,
-        buttonText: appOpeningProvider.buttonText2,
-        buttonTextColor: appOpeningProvider.buttonTextColor,
-        changeView: () => appOpeningProvider.nextPage(context),
-        skipText: appOpeningProvider.skipText,
-        skipTextColor: appOpeningProvider.skipTextColor,
-        skipToPage: () => appOpeningProvider.skipToLoginScreen(context),
-        ),
-        ],
-        ),
+              AppDesc(
+                pageController: appOpeningProvider.pageController,
+                image: appOpeningProvider.feature3Image,
+                featureName: appOpeningProvider.feature3name,
+                featureDesc: appOpeningProvider.feature1Desc,
+                colorFeatureText: appOpeningProvider.colorFeatureText,
+                buttonColor: appOpeningProvider.buttonColor,
+                buttonText: appOpeningProvider.buttonText2,
+                buttonTextColor: appOpeningProvider.buttonTextColor,
+                changeView: () => appOpeningProvider.nextPage(context),
+                skipText: appOpeningProvider.skipText,
+                skipTextColor: appOpeningProvider.skipTextColor,
+                skipToPage: () => appOpeningProvider.skipToLoginScreen(context),
+              ),
+            ],
+          ),
         );
       },
     );
