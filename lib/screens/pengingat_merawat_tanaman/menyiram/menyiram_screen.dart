@@ -1,5 +1,6 @@
 import 'package:capstone_project/models/menanam_tanaman_model/all_plants_model.dart';
-import 'package:capstone_project/providers/plant_provider.dart';
+import 'package:capstone_project/providers/pengingat_merawat_tanaman/plant_reminder_provider.dart';
+
 import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/all_plant_screen/search_all_plants.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class AllPlantScreen extends StatefulWidget {
 class _AllPlantScreenState extends State<AllPlantScreen> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<PlantProvider>(
+    return Consumer<PlantReminderProvider>(
       builder: (context, plantProvider, child) {
         return Scaffold(
             appBar: AppBar(

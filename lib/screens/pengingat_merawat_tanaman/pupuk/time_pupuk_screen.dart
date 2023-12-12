@@ -1,4 +1,4 @@
-import 'package:capstone_project/data/text_style/theme_text_style.dart';
+import 'package:capstone_project/data/pengingat_merawat_tanaman/theme_text_style.dart';
 import 'package:flutter/material.dart';
 import '../../../widgets/pengingat_merawat_tanaman/button/pupuk/button_add_reminder_pupuk_widget.dart';
 import '../../../widgets/pengingat_merawat_tanaman/button/pupuk/button_rekomendasi_pupuk_widget.dart';
