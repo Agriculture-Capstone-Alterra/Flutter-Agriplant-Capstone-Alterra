@@ -1,5 +1,5 @@
 import 'package:capstone_project/data/home_text_style.dart';
-import 'package:capstone_project/screens/informasi_cuaca/home.dart';
+import 'package:capstone_project/screens/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 List<String> imgBackground = [
@@ -32,7 +32,7 @@ class _KotaCuacaState extends State<KotaCuaca> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Home(),
+                      builder: (context) => const NavBar(),
                     ),
                   );
                 },
