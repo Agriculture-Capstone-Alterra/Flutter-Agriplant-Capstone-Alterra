@@ -49,3 +49,6 @@ app.*.map.json
 .vscode/
 ios/Pods/
 build/
+
+.env
+env.g.dart

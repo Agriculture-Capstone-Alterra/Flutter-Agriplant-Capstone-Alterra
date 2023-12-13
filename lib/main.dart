@@ -1,6 +1,7 @@
 import 'package:capstone_project/providers/auth_provider.dart';
 import 'package:capstone_project/providers/search_page_provider.dart';
 import 'package:capstone_project/screens/autentikasi_screens/login_screen.dart';
+import 'package:capstone_project/screens/chat_bot/first_screen_chat_bot.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:capstone_project/screens/chat_bot/chat_bot.dart';
 // import 'package:capstone_project/screens/autentikasi_screens/login_screen.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const LoginScreen(),
+        home: const FirstScreenChatBot(),
       ),
     );
   }
