@@ -1,14 +1,14 @@
 import 'package:capstone_project/providers/app_opening_provider.dart';
 import 'package:capstone_project/providers/auth_provider.dart';
 import 'package:capstone_project/providers/plant_provider.dart';
-import 'package:capstone_project/screens/app_opening_screens/app_desc_screen.dart';
 import 'package:capstone_project/providers/pengingat_merawat_tanaman/plant_reminder_provider.dart';
+import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/first_screen_rekomendasi_tanaman.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home:const AppDescScreen(),
+        home: const FirstScreenRekomendasiTanaman(),
       ),
     );
   }
