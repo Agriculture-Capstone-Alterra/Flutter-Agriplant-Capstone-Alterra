@@ -5,23 +5,57 @@ import 'package:dio/dio.dart';
 class ImplementasiAiAPI {
   Dio dio = Dio();
   String baseUrl = "https://service.api-agriplant.xyz";
-  String token = '';
+  String token =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3MzQwOTIxNTIsInJvbGUiOiJVc2VyIEFQSSIsInVzZXJJZCI6MX0.5NGPQKLQXg78s61uqCNdc8Ol9fChi5sIKILM_EyDzR0';
 
-  getToken(LoginModel loginModel) {
+  String getToken(LoginModel loginModel) {
     return loginModel.data.token;
+  }
+
+  void setToken(String authToken) {
+    token = authToken;
+    dio.options.headers['Authorization'] = token;
   }
 
   Future<ImplementasiAiModel> chatbot({
     required String message,
-    required LoginModel loginModel,
+    LoginModel? loginModel,
   }) async {
-    token = getToken(loginModel);
-    dio.options.headers['Authorization'] = token;
+    if (loginModel != null) {
+      setToken(getToken(loginModel));
+    }
+
     try {
+      print('Before Dio API call');
+      dio.options.headers['Authorization'] = token;
       final response = await dio.post(
         '$baseUrl/chatbot',
         data: {
           "message": message,
+        },
+      );
+      print('After Dio API call');
+      return ImplementasiAiModel.fromJson(response.data);
+    } catch (e) {
+      print('Error during Dio API call: $e');
+      rethrow;
+    }
+  }
+
+  Future<ImplementasiAiModel> rekomendasiTanaman({
+    required String message,
+    LoginModel? loginModel,
+  }) async {
+    if (loginModel != null) {
+      setToken(getToken(loginModel));
+    }
+
+    try {
+      final response = await dio.post(
+        '$baseUrl/chatbot',
+        data: {
+          "message":
+              "Berikan saya deskripsi tentang tanaman $message serta berikan langkah-langkah dalam menanam dan merawat tanamannya",
         },
       );
       return ImplementasiAiModel.fromJson(response.data);
@@ -31,37 +65,19 @@ class ImplementasiAiAPI {
   }
 
   Future<ImplementasiAiModel> rekomendasiPupuk({
-    required String tanaman,
-    required LoginModel loginModel,
+    required String message,
+    LoginModel? loginModel,
   }) async {
-    token = getToken(loginModel);
-    dio.options.headers['Authorization'] = token;
-    try {
-      final response = await dio.post(
-        '$baseUrl/chatbot',
-        data: {
-          "message":
-              "Berikan saya saran mengenai jenis dan jumlah pupuk yang tepat untuk tanaman $tanaman",
-        },
-      );
-      return ImplementasiAiModel.fromJson(response.data);
-    } catch (e) {
-      rethrow;
+    if (loginModel != null) {
+      setToken(getToken(loginModel));
     }
-  }
 
-  Future<ImplementasiAiModel> rekomendasiTanaman({
-    required String tanaman,
-    required LoginModel loginModel,
-  }) async {
-    token = getToken(loginModel);
-    dio.options.headers['Authorization'] = token;
     try {
       final response = await dio.post(
         '$baseUrl/chatbot',
         data: {
           "message":
-              "Berikan saya deskripsi tentang tanaman $tanaman serta berikan langkah-langkah dalam menanam dan merawat tanamannya",
+              "Berikan saya saran mengenai jenis dan jumlah pupuk yang tepat untuk tanaman $message",
         },
       );
       return ImplementasiAiModel.fromJson(response.data);

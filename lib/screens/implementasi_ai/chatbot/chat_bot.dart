@@ -1,3 +1,5 @@
+import 'package:capstone_project/models/implementasi_ai_model/implementasi_ai_model.dart';
+import 'package:capstone_project/services/implementasi_ai/implementasi_ai_api.dart';
 import 'package:capstone_project/widgets/implementasi_ai/button_back_chat_bot.dart';
 import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_bubble_chat_bot.dart';
 import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_input_field.dart';
@@ -19,6 +21,7 @@ class _ChatBotState extends State<ChatBot> {
   bool isThumbDownPressed = false;
   bool isVisible = true;
   final TextEditingController textController = TextEditingController();
+  final ImplementasiAiAPI implementasiAiAPI = ImplementasiAiAPI();
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +73,46 @@ class _ChatBotState extends State<ChatBot> {
     );
   }
 
-  void sendMessage(String text) {
+  // void sendMessage(String text) {
+  //   setState(() {
+  //     messages.add(Message(text: text, isMe: true, timestamp: DateTime.now()));
+  //   });
+  // }
+
+  void sendMessage(String text) async {
     setState(() {
-      messages.add(Message(text: text, isMe: true, timestamp: DateTime.now()));
+      messages.add(
+        Message(
+          text: text,
+          isMe: true,
+          timestamp: DateTime.now(),
+        ),
+      );
     });
+
+    try {
+      ImplementasiAiModel response = await implementasiAiAPI.chatbot(
+        message: text,
+      );
+
+      print('ChatBot Response: ${response.data.response}');
+
+      setState(() {
+        // messages.add(Message(
+        //   text: response.data.response,
+        //   isMe: false,
+        // ));
+        messages.add(
+          Message(
+            text: response.data.response,
+            isMe: false,
+            timestamp: DateTime.now(),
+          ),
+        );
+      });
+    } catch (e) {
+      print('Error during API call: $e');
+      rethrow;
+    }
   }
 }

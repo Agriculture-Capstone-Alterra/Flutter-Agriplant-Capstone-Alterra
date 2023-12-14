@@ -1,3 +1,5 @@
+// message_bubble_chat_bot.dart
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -124,38 +126,4 @@ List<Message> messages = [
       text: 'Silakan ketik pertanyaan atau kata kunci untuk memulai.',
       isMe: false,
       timestamp: DateTime.now().subtract(const Duration(minutes: 5))),
-  Message(
-    text: 'Saya ingin bertanya mengenai kondisi tumbuhan saya',
-    isMe: true,
-    timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
-  ),
-  Message(
-    text:
-        'Terima kasih atas pertanyaan Anda. Saya akan mencoba memberikan jawaban terbaik.',
-    isMe: false,
-    timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
-  ),
-  Message(
-    text:
-        'Anda juga bisa mengunggah gambar tanaman untuk mendapatkan informasi lebih lanjut.',
-    isMe: false,
-    timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
-  ),
-  Message(
-    text: 'Saya ingin bertanya mengenai kondisi tumbuhan saya',
-    isMe: true,
-    timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
-  ),
-  Message(
-    text:
-        'Terima kasih atas pertanyaan Anda. Saya akan mencoba memberikan jawaban terbaik.',
-    isMe: false,
-    timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
-  ),
-  Message(
-    text:
-        'Anda juga bisa mengunggah gambar tanaman untuk mendapatkan informasi lebih lanjut.',
-    isMe: false,
-    timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
-  ),
 ];
