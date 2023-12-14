@@ -14,6 +14,7 @@ class TimeMenyiram extends StatefulWidget {
 
 class _TimeMenyiramState extends State<TimeMenyiram> {
   List<Map<String, dynamic>> reminders = [];
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -33,6 +34,12 @@ class _TimeMenyiramState extends State<TimeMenyiram> {
             response.data.map((dynamic reminder) => reminder as Map<String, dynamic>),
           );
         });
+        // Scroll to the bottom after data is fetched
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
       } else {
         print("Failed to fetch reminders. Status code: ${response.statusCode}");
       }
@@ -40,6 +47,23 @@ class _TimeMenyiramState extends State<TimeMenyiram> {
       print("Error fetching reminders: $error");
     }
   }
+
+   Future<void> _deleteReminder(String id) async {
+    try {
+      final response = await Dio().delete(
+        "https://6571fd40d61ba6fcc0142a0c.mockapi.io/agriculture/reminder/$id",
+      );
+
+      if (response.statusCode == 200) {
+        _getRemindersData(); // Refresh the list after deletion
+      } else {
+        print("Failed to delete reminder. Status code: ${response.statusCode}");
+      }
+    } catch (error) {
+      print("Error deleting reminder: $error");
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +75,7 @@ class _TimeMenyiramState extends State<TimeMenyiram> {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: Column(
           children: [
             const SizedBox(height: 12),
             Row(
@@ -199,32 +222,32 @@ class _TimeMenyiramState extends State<TimeMenyiram> {
         ],
       ),
 
-Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 10.0),
-                
-                SizedBox(
-                  height: 150.0, // Adjust the height as needed
-                  child: ListView.builder(
-                    itemCount: reminders.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(reminders[index]["description"]),
-                        subtitle: Text(reminders[index]["time"]),
-                      );
-                    },
+          Expanded(
+            child: ListView.builder(
+              itemCount: reminders.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: ListTile(
+                    title: Text(reminders[index]["description"]),
+                    subtitle: Text(reminders[index]["time"]),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        _deleteReminder(reminders[index]["id"]);
+                      },
+                    ),
                   ),
-                ),
-              ],
-            )
-          ] 
-          // const SizedBox.shrink(),
-        )
-      )
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
+
             // const SizedBox(height: 274),
             // ButtonSaveReminderMenyiram(title: 'Simpan Reminder',onPressed: () {
             //   print('Button pressed!');

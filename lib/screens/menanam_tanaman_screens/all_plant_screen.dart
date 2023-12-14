@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/menanam_tanaman_model/all_plants_model.dart';
+import '../../models/all_plants_model.dart';
 import '../../services/menanam_tanaman/plant_api.dart';
 
 class AllPlantScreen extends StatefulWidget {
