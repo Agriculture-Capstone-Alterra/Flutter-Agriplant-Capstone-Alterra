@@ -1,5 +1,5 @@
 import 'package:capstone_project/widgets/implementasi_ai/button_back_chat_bot.dart';
-import 'package:capstone_project/widgets/implementasi_ai/first_screen_chat_bot/card_first_screen_chat_bot.dart';
+import 'package:capstone_project/widgets/implementasi_ai/chat_bot/first_screen_chat_bot/card_first_screen_chat_bot.dart';
 import 'package:flutter/material.dart';
 
 class FirstScreenRekomendasiPupuk extends StatefulWidget {
