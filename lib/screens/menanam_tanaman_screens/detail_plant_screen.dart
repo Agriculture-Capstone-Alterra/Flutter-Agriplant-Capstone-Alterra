@@ -19,7 +19,7 @@ class _DetailPlantState extends State<DetailPlant> {
       builder: (context, plantProvider, child){
         return Scaffold(
           appBar: AppBar(
-            title: Text(plantProvider.AllPlantScreenAppBarText,style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),),
+            title: Text(plantProvider.detailPlantAppBarText,style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),),
           ),
           body: ListView(
             children: [
