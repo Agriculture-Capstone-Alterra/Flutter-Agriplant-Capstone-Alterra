@@ -9,7 +9,7 @@ PlantByIdModel plantByIdModelFromJson(String str) => PlantByIdModel.fromJson(jso
 String plantByIdModelToJson(PlantByIdModel data) => json.encode(data.toJson());
 
 class PlantByIdModel {
-  Data data;
+  PlantByIdData data;
   String message;
   String status;
 
@@ -20,7 +20,7 @@ class PlantByIdModel {
   });
 
   factory PlantByIdModel.fromJson(Map<String, dynamic> json) => PlantByIdModel(
-    data: Data.fromJson(json["data"]),
+    data: PlantByIdData.fromJson(json["data"]),
     message: json["message"],
     status: json["status"],
   );
@@ -32,7 +32,7 @@ class PlantByIdModel {
   };
 }
 
-class Data {
+class PlantByIdData {
   int id;
   String name;
   int plantTypeId;
@@ -49,16 +49,16 @@ class Data {
   DateTime rainySeasonFinishPlant;
   String plantingSuggestions;
   String plantingMediumSuggestions;
-  String plantingMediumImage;
   String howToMaintain;
   DateTime createdAt;
   DateTime updatedAt;
   dynamic plantImageThumbnail;
+  List<PlantImage> plantingMediumImages;
   List<Planting> plantingGuides;
   List<Planting> plantingTools;
-  dynamic plantImages;
+  List<PlantImage> plantImages;
 
-  Data({
+  PlantByIdData({
     required this.id,
     required this.name,
     required this.plantTypeId,
@@ -75,17 +75,17 @@ class Data {
     required this.rainySeasonFinishPlant,
     required this.plantingSuggestions,
     required this.plantingMediumSuggestions,
-    required this.plantingMediumImage,
     required this.howToMaintain,
     required this.createdAt,
     required this.updatedAt,
     required this.plantImageThumbnail,
+    required this.plantingMediumImages,
     required this.plantingGuides,
     required this.plantingTools,
     required this.plantImages,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory PlantByIdData.fromJson(Map<String, dynamic> json) => PlantByIdData(
     id: json["id"],
     name: json["name"],
     plantTypeId: json["plant_type_id"],
@@ -102,14 +102,14 @@ class Data {
     rainySeasonFinishPlant: DateTime.parse(json["rainy_season_finish_plant"]),
     plantingSuggestions: json["planting_suggestions"],
     plantingMediumSuggestions: json["planting_medium_suggestions"],
-    plantingMediumImage: json["planting_medium_image"],
     howToMaintain: json["how_to_maintain"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
     plantImageThumbnail: json["plant_image_thumbnail"],
+    plantingMediumImages: List<PlantImage>.from(json["planting_medium_images"].map((x) => PlantImage.fromJson(x))),
     plantingGuides: List<Planting>.from(json["planting_guides"].map((x) => Planting.fromJson(x))),
     plantingTools: List<Planting>.from(json["planting_tools"].map((x) => Planting.fromJson(x))),
-    plantImages: json["plant_images"],
+    plantImages: List<PlantImage>.from(json["plant_images"].map((x) => PlantImage.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -129,14 +129,38 @@ class Data {
     "rainy_season_finish_plant": "${rainySeasonFinishPlant.year.toString().padLeft(4, '0')}-${rainySeasonFinishPlant.month.toString().padLeft(2, '0')}-${rainySeasonFinishPlant.day.toString().padLeft(2, '0')}",
     "planting_suggestions": plantingSuggestions,
     "planting_medium_suggestions": plantingMediumSuggestions,
-    "planting_medium_image": plantingMediumImage,
     "how_to_maintain": howToMaintain,
     "created_at": createdAt.toIso8601String(),
     "updated_at": updatedAt.toIso8601String(),
     "plant_image_thumbnail": plantImageThumbnail,
+    "planting_medium_images": List<dynamic>.from(plantingMediumImages.map((x) => x.toJson())),
     "planting_guides": List<dynamic>.from(plantingGuides.map((x) => x.toJson())),
     "planting_tools": List<dynamic>.from(plantingTools.map((x) => x.toJson())),
-    "plant_images": plantImages,
+    "plant_images": List<dynamic>.from(plantImages.map((x) => x.toJson())),
+  };
+}
+
+class PlantImage {
+  int id;
+  String imagePath;
+  DateTime createdAt;
+
+  PlantImage({
+    required this.id,
+    required this.imagePath,
+    required this.createdAt,
+  });
+
+  factory PlantImage.fromJson(Map<String, dynamic> json) => PlantImage(
+    id: json["id"],
+    imagePath: json["image_path"],
+    createdAt: DateTime.parse(json["created_at"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "image_path": imagePath,
+    "created_at": createdAt.toIso8601String(),
   };
 }
 

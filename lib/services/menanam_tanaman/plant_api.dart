@@ -1,7 +1,7 @@
 import 'package:capstone_project/models/menanam_tanaman_model/plant_by_id_model.dart';
 import 'package:capstone_project/models/menanam_tanaman_model/plant_types_model.dart';
 import 'package:dio/dio.dart';
-import '../../models/menanam_tanaman_model/all_plants_model.dart';
+import '../../models/all_plants_model.dart';
 
 class PlantApi{
   Dio dio = Dio();

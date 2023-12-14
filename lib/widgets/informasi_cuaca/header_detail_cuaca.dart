@@ -1,4 +1,5 @@
 import 'package:capstone_project/data/home_text_style.dart';
+import 'package:capstone_project/screens/informasi_cuaca/cari_cuaca.dart';
 import 'package:flutter/material.dart';
 
 class HeaderDetailCuaca extends StatelessWidget {
@@ -32,7 +33,14 @@ class HeaderDetailCuaca extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CariCuaca(),
+              ),
+            );
+          },
           icon: const Icon(
             Icons.format_list_bulleted,
             color: Colors.white,
