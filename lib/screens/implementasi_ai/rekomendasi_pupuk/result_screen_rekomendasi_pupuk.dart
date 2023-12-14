@@ -6,13 +6,8 @@ class ResultScreenRekomendasiPupuk extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
-      child: Scaffold(
-        body: CardResultScreenRekomendasiPupuk(),
-      ),
+    return Scaffold(
+      body: CardResultScreenRekomendasiPupuk(),
     );
   }
 }

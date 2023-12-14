@@ -9,13 +9,8 @@ class ResultScreenRekomendasiTanaman extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
-      child: Scaffold(
-        body: CardResultScreenRekomendasiTanaman(),
-      ),
+    return Scaffold(
+      body: CardResultScreenRekomendasiTanaman(),
     );
   }
 }
