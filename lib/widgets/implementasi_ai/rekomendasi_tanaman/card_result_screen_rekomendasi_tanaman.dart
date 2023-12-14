@@ -2,6 +2,8 @@ import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/fir
 import 'package:flutter/material.dart';
 
 class CardResultScreenRekomendasiTanaman extends StatelessWidget {
+  final String resultText =
+      'datsaasfasfasfasfasfasfasfasfasasdasdasdasdasdasdasdasdasfafsa';
   const CardResultScreenRekomendasiTanaman({super.key});
 
   @override
@@ -25,8 +27,8 @@ class CardResultScreenRekomendasiTanaman extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'datsaasfasfasfasfasfasfasfasfasasdasdasdasdasdasdasdasdasfafsa',
+                  Text(
+                    resultText,
                     textAlign: TextAlign.justify,
                   ),
                   const SizedBox(height: 16.0),
