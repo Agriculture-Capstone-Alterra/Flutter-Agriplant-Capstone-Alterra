@@ -1,4 +1,5 @@
 import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/result_screen_rekomendasi_tanaman.dart';
+import 'package:capstone_project/services/implementasi_ai/implementasi_ai_api.dart';
 import 'package:flutter/material.dart';
 
 class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
@@ -51,16 +52,21 @@ class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   try {
+                    final result = await ImplementasiAiAPI().rekomendasiTanaman(
+                      message: _textFieldController.text,
+                    );
                     Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ResultScreenRekomendasiTanaman(),
-                        ),
-                        (route) => false);
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResultScreenRekomendasiTanaman(
+                            resultText: result.data.response),
+                      ),
+                      (route) => false,
+                    );
                   } catch (e) {
+                    print('Error: $e');
                     rethrow;
                   }
                 },

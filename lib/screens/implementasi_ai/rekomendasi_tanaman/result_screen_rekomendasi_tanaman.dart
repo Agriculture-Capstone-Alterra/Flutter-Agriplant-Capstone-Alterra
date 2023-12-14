@@ -2,14 +2,20 @@ import 'package:capstone_project/widgets/implementasi_ai/rekomendasi_tanaman/car
 import 'package:flutter/material.dart';
 
 class ResultScreenRekomendasiTanaman extends StatelessWidget {
+  final String resultText;
+
   const ResultScreenRekomendasiTanaman({
     Key? key,
+    required this.resultText,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CardResultScreenRekomendasiTanaman(),
+      appBar: AppBar(
+        toolbarHeight: 12,
+      ),
+      body: CardResultScreenRekomendasiTanaman(resultText: resultText),
     );
   }
 }

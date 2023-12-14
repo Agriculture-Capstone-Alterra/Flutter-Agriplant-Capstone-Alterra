@@ -1,10 +1,14 @@
+// card_result_screen_rekomendasi_tanaman.dart
 import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/first_screen_rekomendasi_tanaman.dart';
 import 'package:flutter/material.dart';
 
 class CardResultScreenRekomendasiTanaman extends StatelessWidget {
-  final String resultText =
-      'datsaasfasfasfasfasfasfasfasfasasdasdasdasdasdasdasdasdasfafsa';
-  const CardResultScreenRekomendasiTanaman({super.key});
+  final String resultText;
+
+  const CardResultScreenRekomendasiTanaman({
+    Key? key,
+    required this.resultText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +16,7 @@ class CardResultScreenRekomendasiTanaman extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20.0,
+          vertical: 12.0,
         ),
         child: IntrinsicHeight(
           child: Container(
@@ -27,9 +32,13 @@ class CardResultScreenRekomendasiTanaman extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    resultText,
-                    textAlign: TextAlign.justify,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        resultText,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
