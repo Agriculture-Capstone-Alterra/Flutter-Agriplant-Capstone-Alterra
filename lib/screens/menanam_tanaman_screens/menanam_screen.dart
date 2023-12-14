@@ -3,9 +3,9 @@ import 'package:capstone_project/providers/plant_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/menanam_tanaman_widgets/is_searching_false.dart';
-import '../../widgets/menanam_tanaman_widgets/is_searching_true.dart';
-import '../../widgets/menanam_tanaman_widgets/search_tanaman.dart';
+import '../../widgets/menanam_tanaman_widgets/menanam_screen/is_searching_false.dart';
+import '../../widgets/menanam_tanaman_widgets/menanam_screen/is_searching_true.dart';
+import '../../widgets/menanam_tanaman_widgets/menanam_screen/search_tanaman.dart';
 
 class Menanam extends StatefulWidget {
   const Menanam({Key? key}) : super(key: key);
