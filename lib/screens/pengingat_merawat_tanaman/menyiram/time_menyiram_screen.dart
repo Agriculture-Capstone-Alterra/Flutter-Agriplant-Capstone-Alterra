@@ -48,7 +48,52 @@ class _TimeMenyiramState extends State<TimeMenyiram> {
     }
   }
 
-   Future<void> _deleteReminder(String id) async {
+  //  Future<void> _deleteReminder(String id) async {
+  //   try {
+  //     final response = await Dio().delete(
+  //       "https://6571fd40d61ba6fcc0142a0c.mockapi.io/agriculture/reminder/$id",
+  //     );
+
+  //     if (response.statusCode == 200) {
+  //       _getRemindersData(); // Refresh the list after deletion
+  //     } else {
+  //       print("Failed to delete reminder. Status code: ${response.statusCode}");
+  //     }
+  //   } catch (error) {
+  //     print("Error deleting reminder: $error");
+  //   }
+  // }
+
+  Future<void> _deleteReminder(String id) async {
+  bool confirmDelete = false;
+
+  // Show the confirmation dialog
+  confirmDelete = await showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Konfirmasi"),
+        content: Text("Apakah Anda yakin ingin menghapus pengingat ini?"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(false); // No
+            },
+            child: Text("Tidak"),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(true); // Yes
+            },
+            child: Text("Ya"),
+          ),
+        ],
+      );
+    },
+  ) ?? false;
+
+  // If the user confirmed, proceed with deletion
+  if (confirmDelete) {
     try {
       final response = await Dio().delete(
         "https://6571fd40d61ba6fcc0142a0c.mockapi.io/agriculture/reminder/$id",
@@ -63,12 +108,15 @@ class _TimeMenyiramState extends State<TimeMenyiram> {
       print("Error deleting reminder: $error");
     }
   }
+}
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: Text(
           "REMINDER MENYIRAM",
           style: ThemeTextStyle().font1,
