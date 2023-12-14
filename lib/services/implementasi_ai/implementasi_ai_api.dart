@@ -27,7 +27,6 @@ class ImplementasiAiAPI {
 
     try {
       print('Before Dio API call');
-      dio.options.headers['Authorization'] = token;
       final response = await dio.post(
         '$baseUrl/chatbot',
         data: {
