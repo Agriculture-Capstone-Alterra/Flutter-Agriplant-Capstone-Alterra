@@ -1,11 +1,11 @@
-import 'package:capstone_project/screens/implementasi_ai/rekomendasi_pupuk/result_screen_rekomendasi_pupuk.dart';
-import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/result_screen_rekomendasi_tanaman.dart';
 import 'package:flutter/material.dart';
 
 class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
   final TextEditingController _textFieldController = TextEditingController();
 
-  CardFirstScreenRekomendasiTanaman({Key? key}) : super(key: key);
+  CardFirstScreenRekomendasiTanaman({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,16 +50,7 @@ class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const ResultScreenRekomendasiTanaman(),
-                    ),
-                    (route) => false,
-                  );
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(220, 50),
                   backgroundColor: const Color(0xFF295646),

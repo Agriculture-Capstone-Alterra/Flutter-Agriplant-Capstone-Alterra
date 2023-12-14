@@ -1,5 +1,4 @@
 import 'package:capstone_project/screens/implementasi_ai/rekomendasi_pupuk/first_screen_rekomendasi_pupuk.dart';
-import 'package:capstone_project/widgets/implementasi_ai/rekomendasi_pupuk/card_rekomendasi_pupuk.dart';
 import 'package:flutter/material.dart';
 
 class CardResultScreenRekomendasiPupuk extends StatelessWidget {

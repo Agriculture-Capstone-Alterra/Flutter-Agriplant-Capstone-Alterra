@@ -3,7 +3,9 @@ import 'package:capstone_project/widgets/implementasi_ai/rekomendasi_tanaman/car
 import 'package:flutter/material.dart';
 
 class FirstScreenRekomendasiTanaman extends StatefulWidget {
-  const FirstScreenRekomendasiTanaman({super.key});
+  const FirstScreenRekomendasiTanaman({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<FirstScreenRekomendasiTanaman> createState() =>

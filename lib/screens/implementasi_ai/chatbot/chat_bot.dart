@@ -1,8 +1,8 @@
 import 'package:capstone_project/widgets/implementasi_ai/button_back_chat_bot.dart';
-import 'package:capstone_project/widgets/implementasi_ai/chat_bot/message_bubble_chat_bot.dart';
-import 'package:capstone_project/widgets/implementasi_ai/chat_bot/message_input_field.dart';
-import 'package:capstone_project/widgets/implementasi_ai/chat_bot/pop_menu_chat_bot.dart';
-import 'package:capstone_project/widgets/implementasi_ai/chat_bot/rate_chat_bot.dart';
+import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_bubble_chat_bot.dart';
+import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_input_field.dart';
+import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/pop_menu_chat_bot.dart';
+import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/rate_chat_bot.dart';
 import 'package:flutter/material.dart';
 
 class ChatBot extends StatefulWidget {

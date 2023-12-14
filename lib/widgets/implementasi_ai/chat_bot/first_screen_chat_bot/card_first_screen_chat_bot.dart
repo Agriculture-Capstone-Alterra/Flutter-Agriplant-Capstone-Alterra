@@ -1,4 +1,4 @@
-import 'package:capstone_project/widgets/implementasi_ai/first_screen_chat_bot/button_navigator_chat_bot.dart';
+import 'package:capstone_project/widgets/implementasi_ai/chat_bot/first_screen_chat_bot/button_navigator_chat_bot.dart';
 import 'package:flutter/material.dart';
 
 class CardFirstScreenChatBot extends StatelessWidget {
