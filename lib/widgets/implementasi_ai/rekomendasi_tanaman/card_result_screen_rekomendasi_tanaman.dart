@@ -1,68 +1,63 @@
-import 'package:flutter/material.dart';
 import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/first_screen_rekomendasi_tanaman.dart';
+import 'package:flutter/material.dart';
 
 class CardResultScreenRekomendasiTanaman extends StatelessWidget {
-  final String data;
-
-  const CardResultScreenRekomendasiTanaman({super.key, required this.data});
+  const CardResultScreenRekomendasiTanaman({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.grey,
-              width: 2.0,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+        ),
+        child: IntrinsicHeight(
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.grey,
+                width: 2.0,
+              ),
+              borderRadius: BorderRadius.circular(10),
             ),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          margin: const EdgeInsets.all(12.0),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-            vertical: 8.0,
-          ),
-          child: Column(
-            children: [
-              Text(
-                'Nilai TextField dari screen sebelumnya: $data',
-                textAlign: TextAlign.justify,
-              ),
-              const SizedBox(height: 75),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const FirstScreenRekomendasiTanaman(),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'datsaasfasfasfasfasfasfasfasfasasdasdasdasdasdasdasdasdasfafsa',
+                    textAlign: TextAlign.justify,
+                  ),
+                  const SizedBox(height: 16.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const FirstScreenRekomendasiTanaman(),
+                        ),
+                        (route) => false,
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(220, 50),
+                      backgroundColor: const Color(0xFF295646),
                     ),
-                    (route) => false,
-                  );
-                },
-                style: ButtonStyle(
-                  fixedSize: MaterialStateProperty.all(
-                    const Size(
-                      150.0,
-                      25.0,
+                    child: const Text(
+                      'Selesai',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                  backgroundColor:
-                      MaterialStateProperty.all(const Color(0xFF295646)),
-                ),
-                child: const Text(
-                  "Selesai",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

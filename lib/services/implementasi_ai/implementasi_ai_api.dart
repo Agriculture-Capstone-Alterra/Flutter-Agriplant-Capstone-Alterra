@@ -4,10 +4,12 @@ import 'package:dio/dio.dart';
 class ImplementasiAiAPI {
   Dio dio = Dio();
   String baseUrl = "https://service.api-agriplant.xyz";
+  String token = '';
 
   Future<ImplementasiAiModel> chatbot({
     required String message,
   }) async {
+    dio.options.headers['Authorization'] = token;
     try {
       final response = await dio.post(
         '$baseUrl/chatbot',
@@ -24,6 +26,7 @@ class ImplementasiAiAPI {
   Future<ImplementasiAiModel> rekomendasiPupuk({
     required String tanaman,
   }) async {
+    dio.options.headers['Authorization'] = token;
     try {
       final response = await dio.post(
         '$baseUrl/chatbot',
@@ -41,6 +44,7 @@ class ImplementasiAiAPI {
   Future<ImplementasiAiModel> rekomendasiTanaman({
     required String tanaman,
   }) async {
+    dio.options.headers['Authorization'] = token;
     try {
       final response = await dio.post(
         '$baseUrl/chatbot',
