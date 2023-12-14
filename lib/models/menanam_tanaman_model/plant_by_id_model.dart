@@ -105,7 +105,9 @@ class PlantByIdData {
     howToMaintain: json["how_to_maintain"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
-    plantImageThumbnail: json["plant_image_thumbnail"],
+    plantImageThumbnail: json["plant_image_thumbnail"]==null || json["plant_image_thumbnail"]==''?
+    'https://pertaniansehat.com/v01/wp-content/uploads/2015/08/default-placeholder.png' :
+    json["plant_image_thumbnail"],
     plantingMediumImages: List<PlantImage>.from(json["planting_medium_images"].map((x) => PlantImage.fromJson(x))),
     plantingGuides: List<Planting>.from(json["planting_guides"].map((x) => Planting.fromJson(x))),
     plantingTools: List<Planting>.from(json["planting_tools"].map((x) => Planting.fromJson(x))),
