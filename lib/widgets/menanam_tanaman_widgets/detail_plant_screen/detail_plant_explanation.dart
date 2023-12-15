@@ -59,6 +59,7 @@ class DetailPlantExplanation extends StatelessWidget {
               height: MediaQuery.of(context).size.width/3.5,
               decoration: BoxDecoration(
                 color: aboutPlantColor,
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
                 children: [
@@ -87,6 +88,7 @@ class DetailPlantExplanation extends StatelessWidget {
               height: MediaQuery.of(context).size.width/3.5,
               decoration: BoxDecoration(
                 color: aboutPlantColor,
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
                 children: [
@@ -115,6 +117,7 @@ class DetailPlantExplanation extends StatelessWidget {
               height: MediaQuery.of(context).size.width/3.5,
               decoration: BoxDecoration(
                 color: aboutPlantColor,
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
                 children: [
