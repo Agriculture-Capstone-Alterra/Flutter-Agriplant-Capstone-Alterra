@@ -74,7 +74,7 @@ class PlantProvider extends ChangeNotifier{
 
   //detail plant by id
   String detailPlantAppBarText = 'Detail Halaman';
-  Color aboutPlantColor = Color(0xffDCEEE8);
+
   Future detailPlant() async{
     try{
       await PlantApi().getPlantById(id: this.idPlant);
@@ -82,4 +82,8 @@ class PlantProvider extends ChangeNotifier{
     }catch(e){}
     notifyListeners();
   }
+
+  Color aboutPlantColor = Color(0xffDCEEE8);
+  String toolTextHead = 'Alat yang dibutuhkan';
+  String guideTextHead = 'Langkah Penanaman';
 }
