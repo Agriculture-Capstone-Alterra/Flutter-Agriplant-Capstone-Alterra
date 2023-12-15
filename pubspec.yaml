@@ -76,7 +76,9 @@ flutter:
     - assets/images/menanam tanaman images/tanaman icons/
     - assets/images/app opening images/
     - assets/images/pengingat_merawat_tanaman/
-    - assets/images/implementasi_ai/
+    - assets/images/implementasi_ai/chat_bot/
+    - assets/images/implementasi_ai/rekomendasi_tanaman/
+    - assets/images/implementasi_ai/rekomendasi_pupuk/
     # - assets/images/
   #   - images/a_dot_ham.jpeg
 

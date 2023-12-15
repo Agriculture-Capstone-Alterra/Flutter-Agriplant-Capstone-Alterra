@@ -1,9 +1,13 @@
+import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/result_screen_rekomendasi_tanaman.dart';
+import 'package:capstone_project/services/implementasi_ai/implementasi_ai_api.dart';
 import 'package:flutter/material.dart';
 
 class CardFirstScreenRekomendasiPupuk extends StatelessWidget {
   final TextEditingController _textFieldController = TextEditingController();
 
-  CardFirstScreenRekomendasiPupuk({Key? key}) : super(key: key);
+  CardFirstScreenRekomendasiPupuk({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +33,16 @@ class CardFirstScreenRekomendasiPupuk extends StatelessWidget {
                 child: Image.asset('assets/images/implementasi_ai/Logo.png'),
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Memberikan rekomendasi jenis dan jumlah pupuk yang tepat untuk tanaman',
-                style: TextStyle(
-                  fontSize: 20,
+              const Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                ),
+                child: Text(
+                  'Memberikan rekomendasi jenis dan jumlah pupuk yang tepat untuk tanaman',
+                  style: TextStyle(
+                    fontSize: 18.7,
+                  ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               const SizedBox(height: 16),
@@ -41,14 +51,30 @@ class CardFirstScreenRekomendasiPupuk extends StatelessWidget {
                 child: TextField(
                   controller: _textFieldController,
                   decoration: const InputDecoration(
-                    hintText: 'Masukkan nama Tanaman',
+                    hintText: 'Masukkan nama tanaman',
                     border: OutlineInputBorder(),
                   ),
                 ),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    final result = await ImplementasiAiAPI().rekomendasiPupuk(
+                      message: _textFieldController.text,
+                    );
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResultScreenRekomendasiTanaman(
+                            resultText: result.data.response),
+                      ),
+                      (route) => false,
+                    );
+                  } catch (e) {
+                    rethrow;
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(220, 50),
                   backgroundColor: const Color(0xFF295646),

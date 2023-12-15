@@ -73,12 +73,6 @@ class _ChatBotState extends State<ChatBot> {
     );
   }
 
-  // void sendMessage(String text) {
-  //   setState(() {
-  //     messages.add(Message(text: text, isMe: true, timestamp: DateTime.now()));
-  //   });
-  // }
-
   void sendMessage(String text) async {
     setState(() {
       messages.add(
@@ -98,10 +92,6 @@ class _ChatBotState extends State<ChatBot> {
       print('ChatBot Response: ${response.data.response}');
 
       setState(() {
-        // messages.add(Message(
-        //   text: response.data.response,
-        //   isMe: false,
-        // ));
         messages.add(
           Message(
             text: response.data.response,
