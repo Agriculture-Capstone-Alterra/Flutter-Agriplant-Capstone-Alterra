@@ -2,7 +2,12 @@ import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/fir
 import 'package:flutter/material.dart';
 
 class CardResultScreenRekomendasiTanaman extends StatelessWidget {
-  const CardResultScreenRekomendasiTanaman({super.key});
+  final String resultText;
+
+  const CardResultScreenRekomendasiTanaman({
+    Key? key,
+    required this.resultText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +15,7 @@ class CardResultScreenRekomendasiTanaman extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20.0,
+          vertical: 12.0,
         ),
         child: IntrinsicHeight(
           child: Container(
@@ -25,9 +31,13 @@ class CardResultScreenRekomendasiTanaman extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'datsaasfasfasfasfasfasfasfasfasasdasdasdasdasdasdasdasdasfafsa',
-                    textAlign: TextAlign.justify,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        resultText,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
@@ -43,6 +53,11 @@ class CardResultScreenRekomendasiTanaman extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(220, 50),
                       backgroundColor: const Color(0xFF295646),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          10.0,
+                        ),
+                      ),
                     ),
                     child: const Text(
                       'Selesai',

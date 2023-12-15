@@ -1,4 +1,3 @@
-import 'package:capstone_project/models/autentikasi_model/login_model.dart';
 import 'package:capstone_project/models/implementasi_ai_model/implementasi_ai_model.dart';
 import 'package:dio/dio.dart';
 
@@ -6,24 +5,12 @@ class ImplementasiAiAPI {
   Dio dio = Dio();
   String baseUrl = "https://service.api-agriplant.xyz";
   String token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3MzQwOTIxNTIsInJvbGUiOiJVc2VyIEFQSSIsInVzZXJJZCI6MX0.5NGPQKLQXg78s61uqCNdc8Ol9fChi5sIKILM_EyDzR0';
-
-  String getToken(LoginModel loginModel) {
-    return loginModel.data.token;
-  }
-
-  void setToken(String authToken) {
-    token = authToken;
-    dio.options.headers['Authorization'] = token;
-  }
+      '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3MzQwOTIxNTIsInJvbGUiOiJVc2VyIEFQSSIsInVzZXJJZCI6MX0.5NGPQKLQXg78s61uqCNdc8Ol9fChi5sIKILM_EyDzR0''';
 
   Future<ImplementasiAiModel> chatbot({
     required String message,
-    LoginModel? loginModel,
   }) async {
-    if (loginModel != null) {
-      setToken(getToken(loginModel));
-    }
+    dio.options.headers['Authorization'] = 'Bearer $token';
 
     try {
       print('Before Dio API call');
@@ -43,11 +30,8 @@ class ImplementasiAiAPI {
 
   Future<ImplementasiAiModel> rekomendasiTanaman({
     required String message,
-    LoginModel? loginModel,
   }) async {
-    if (loginModel != null) {
-      setToken(getToken(loginModel));
-    }
+    dio.options.headers['Authorization'] = 'Bearer $token';
 
     try {
       final response = await dio.post(
@@ -65,11 +49,8 @@ class ImplementasiAiAPI {
 
   Future<ImplementasiAiModel> rekomendasiPupuk({
     required String message,
-    LoginModel? loginModel,
   }) async {
-    if (loginModel != null) {
-      setToken(getToken(loginModel));
-    }
+    dio.options.headers['Authorization'] = 'Bearer $token';
 
     try {
       final response = await dio.post(

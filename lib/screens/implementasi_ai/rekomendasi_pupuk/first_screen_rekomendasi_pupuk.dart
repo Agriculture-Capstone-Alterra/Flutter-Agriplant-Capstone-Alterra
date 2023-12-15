@@ -1,9 +1,11 @@
 import 'package:capstone_project/widgets/implementasi_ai/button_back_chat_bot.dart';
-import 'package:capstone_project/widgets/implementasi_ai/chat_bot/first_screen_chat_bot/card_first_screen_chat_bot.dart';
+import 'package:capstone_project/widgets/implementasi_ai/rekomendasi_pupuk/card_first_screen_rekomendasi_pupuk.dart';
 import 'package:flutter/material.dart';
 
 class FirstScreenRekomendasiPupuk extends StatefulWidget {
-  const FirstScreenRekomendasiPupuk({super.key});
+  const FirstScreenRekomendasiPupuk({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<FirstScreenRekomendasiPupuk> createState() =>
@@ -29,8 +31,8 @@ class _FirstScreenRekomendasiPupukState
         title: const Text('Rekomendasi Pupuk'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: CardFirstScreenChatBot(),
+      body: Center(
+        child: CardFirstScreenRekomendasiPupuk(),
       ),
     );
   }

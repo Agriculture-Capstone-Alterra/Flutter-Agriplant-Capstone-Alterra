@@ -1,4 +1,5 @@
 import 'package:capstone_project/data/home_text_style.dart';
+import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +8,10 @@ import '../../widgets/informasi_cuaca/pengingat_home.dart';
 import '../../widgets/informasi_cuaca/tanaman_home.dart';
 import '../../widgets/informasi_cuaca/temprature_home.dart';
 
-
-
 class Home extends StatefulWidget {
-  const Home({super.key,});
+  const Home({
+    super.key,
+  });
 
   @override
   State<Home> createState() => _HomeState();
@@ -25,14 +26,38 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 16, top: 12),
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  top: 12,
+                  right: 16,
+                ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset('assets/images/spa.png'),
-                    const SizedBox(
-                      width: 2,
+                    Row(
+                      children: [
+                        Image.asset('assets/images/spa.png'),
+                        const SizedBox(
+                          width: 2,
+                        ),
+                        BodyLarge(text: 'Agriplant'),
+                      ],
                     ),
-                    BodyLarge(text: 'Agriculture'),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FirstScreenChatBot(),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'assets/images/implementasi_ai/chat_bot/button_chat_bot.png',
+                        width: 138,
+                        height: 32,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -63,7 +88,8 @@ class _HomeState extends State<Home> {
                         children: [
                           TitleSmall(text: '7 Hari Selanjutnya'),
                           const Image(
-                            image: AssetImage('assets/images/navigate_next.png'),
+                            image:
+                                AssetImage('assets/images/navigate_next.png'),
                           )
                         ],
                       ),

@@ -1,3 +1,5 @@
+import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/result_screen_rekomendasi_tanaman.dart';
+import 'package:capstone_project/services/implementasi_ai/implementasi_ai_api.dart';
 import 'package:flutter/material.dart';
 
 class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
@@ -28,7 +30,7 @@ class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Image.asset('assets/images/implementasi_ai/Logo.png'),
+                child: Image.asset('assets/images/implementasi_ai/tanaman.png'),
               ),
               const SizedBox(height: 16),
               const Text(
@@ -50,10 +52,32 @@ class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    final result = await ImplementasiAiAPI().rekomendasiTanaman(
+                      message: _textFieldController.text,
+                    );
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResultScreenRekomendasiTanaman(
+                            resultText: result.data.response),
+                      ),
+                      (route) => false,
+                    );
+                  } catch (e) {
+                    print('Error: $e');
+                    rethrow;
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(220, 50),
                   backgroundColor: const Color(0xFF295646),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10.0,
+                    ),
+                  ),
                 ),
                 child: const Text(
                   'Cari',
