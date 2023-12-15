@@ -1,42 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class TextFieldReminderWidget extends StatelessWidget {
-//   const TextFieldReminderWidget({
-//     super.key, required TextEditingController controller,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const TextField(
-//       decoration: InputDecoration(
-//         hintText: 'Input Nama Pengingat',
-//         labelText: 'Nama Pengingat',
-//         floatingLabelBehavior: FloatingLabelBehavior.always,
-//         border: OutlineInputBorder(
-//           // borderRadius: BorderRadius.circular(10.0),
-//           // borderSide: const BorderSide(
-//           //   color: Colors.black,
-//           //   width: 1.5, 
-//           // ),
-//         ),
-//         // focusedBorder: OutlineInputBorder(
-//         //   borderRadius: BorderRadius.circular(10.0),
-//         //   borderSide: const BorderSide(
-//         //     color: Colors.black,
-//         //     width: 1.5, 
-//         //   ),
-//         // ),
-//         // enabledBorder: OutlineInputBorder(
-//         //   borderRadius: BorderRadius.circular(10.0),
-//         //   borderSide: const BorderSide(
-//         //     color: Colors.black,
-//         //     width: 1.5, 
-//         //   ),
-//     ));
-    
-//   }
-// }
-
 import 'package:flutter/material.dart';
 
 class TextFieldReminderWidget extends StatefulWidget {
@@ -48,6 +9,7 @@ class TextFieldReminderWidget extends StatefulWidget {
   final TextEditingController controller;
 
   @override
+  // ignore: library_private_types_in_public_api
   _TextFieldReminderWidgetState createState() =>
       _TextFieldReminderWidgetState();
 }
@@ -55,14 +17,25 @@ class TextFieldReminderWidget extends StatefulWidget {
 class _TextFieldReminderWidgetState extends State<TextFieldReminderWidget> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: widget.controller,
-      decoration: InputDecoration(
-        hintText: 'Input Nama Pengingat',
-        labelText: 'Nama Pengingat',
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        border: OutlineInputBorder(),
-      ),
-    );
+   return TextField(
+  controller: widget.controller,
+  decoration: const InputDecoration(
+    hintText: 'Input Nama Pengingat',
+    labelText: 'Nama Pengingat',
+    floatingLabelBehavior: FloatingLabelBehavior.always,
+    border: OutlineInputBorder(
+      borderSide: BorderSide(color: Color(0xFF36725D)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Color(0xFF36725D)),
+    ),
+    labelStyle: TextStyle(
+      color: Color(0xFF36725D),
+    ),
+  ),
+);
+
+
+
   }
 }

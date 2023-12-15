@@ -4,7 +4,7 @@ import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:flutter/material.dart';
 
 class PlantReminderProvider extends ChangeNotifier{
-  String appBarText = 'Pilih Jenis Tanaman';
+ String appBarText = 'Pilih Jenis Tanaman';
   Icon searchIcon = Icon(Icons.search, color: Colors.black,);
 
   //search field
@@ -52,17 +52,22 @@ class PlantReminderProvider extends ChangeNotifier{
   //IsSearchingFalse
 
   //see all plant
-  String AllPlantScreenAppBarText = 'Semua Tanaman';
+  // ignore: non_constant_identifier_names
+  String PlantReminderAppBarText = 'Tanaman Anda';
+  // ignore: non_constant_identifier_names
+  String TimeMenyiramAppBarText = 'REMINDER MENYIRAM';
   TextEditingController searchAllPlantController = TextEditingController();
   String searchAllPlantHint = 'Cari tanaman';
   int idPlant = 0;
 
-  void seeDetailPlant({
+  void seeDetaiReminder({
     required BuildContext context,
     int? id,
     // required int idPlant,
   }) async{
+      // ignore: unnecessary_this
       this.idPlant = id!;
+      // ignore: avoid_print
       print('id : $id');
       Navigator.push(
         context,
@@ -72,10 +77,11 @@ class PlantReminderProvider extends ChangeNotifier{
   }
 
   //detail plant by id
-  String detailPlantAppBarText = 'Detail Halaman';
-
+  String detailPlantAppBarText = 'Reminder';
+  Color aboutPlantColor = const Color(0xffDCEEE8);
   Future detailPlant() async{
     try{
+      // ignore: unnecessary_this
       await PlantApi().getPlantById(id: this.idPlant);
       notifyListeners();
     }catch(e){}

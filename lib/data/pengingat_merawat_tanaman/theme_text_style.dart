@@ -1,4 +1,4 @@
-import 'package:capstone_project/data/theme_color.dart';
+import 'package:capstone_project/data/pengingat_merawat_tanaman/theme_color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,7 +60,30 @@ class ThemeTextStyle {
   TextStyle addReminder = GoogleFonts.inter(
     fontSize: 20,
     fontWeight: FontWeight.w600,
+    color: ThemeColor().grayColor,
+  );
+
+  TextStyle batalkan = GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: ThemeColor().redColor,
+  );
+
+  TextStyle selesai = GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
     color: ThemeColor().greenColor,
   );
 
+  TextStyle berhasil = GoogleFonts.inter(
+    fontSize: 32,
+    fontWeight: FontWeight.w800,
+    color: ThemeColor().blackColor,
+  );
+
+  TextStyle berhasil2 = GoogleFonts.inter(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: ThemeColor().blackColor,
+  );
 }
