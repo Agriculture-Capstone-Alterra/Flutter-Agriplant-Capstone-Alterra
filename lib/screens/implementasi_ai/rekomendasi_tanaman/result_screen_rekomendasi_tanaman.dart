@@ -15,7 +15,12 @@ class ResultScreenRekomendasiTanaman extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 12,
       ),
-      body: CardResultScreenRekomendasiTanaman(resultText: resultText),
+      body: WillPopScope(
+        onWillPop: () async {
+          return false;
+        },
+        child: CardResultScreenRekomendasiTanaman(resultText: resultText),
+      ),
     );
   }
 }

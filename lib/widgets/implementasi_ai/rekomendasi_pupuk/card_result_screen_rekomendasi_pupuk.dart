@@ -2,7 +2,12 @@ import 'package:capstone_project/screens/implementasi_ai/rekomendasi_pupuk/first
 import 'package:flutter/material.dart';
 
 class CardResultScreenRekomendasiPupuk extends StatelessWidget {
-  const CardResultScreenRekomendasiPupuk({super.key});
+  final String resultText;
+
+  const CardResultScreenRekomendasiPupuk({
+    Key? key,
+    required this.resultText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +15,7 @@ class CardResultScreenRekomendasiPupuk extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20.0,
+          vertical: 12.0,
         ),
         child: IntrinsicHeight(
           child: Container(
@@ -25,9 +31,13 @@ class CardResultScreenRekomendasiPupuk extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'datsaasfasfasfasfasfasfasfasfasasdasdasdasdasdasdasdasdasfafsa',
-                    textAlign: TextAlign.justify,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        resultText,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
