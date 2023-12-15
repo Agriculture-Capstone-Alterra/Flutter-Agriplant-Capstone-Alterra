@@ -30,7 +30,7 @@ class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Image.asset('assets/images/implementasi_ai/Logo.png'),
+                child: Image.asset('assets/images/implementasi_ai/tanaman.png'),
               ),
               const SizedBox(height: 16),
               const Text(
@@ -73,6 +73,11 @@ class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(220, 50),
                   backgroundColor: const Color(0xFF295646),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10.0,
+                    ),
+                  ),
                 ),
                 child: const Text(
                   'Cari',
