@@ -21,8 +21,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Position? _currentPosition;
 
-  Future<void> _getCurrentPosition() async {
-    final hasPermission = await _handleLocationPermission(context);
+  Future<void> getCurrentPosition() async {
+    final hasPermission = await handleLocationPermission(context);
 
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
     });
   }
 
-  Future<bool> _handleLocationPermission(BuildContext context) async {
+  Future<bool> handleLocationPermission(BuildContext context) async {
     bool serviceEnabled;
     LocationPermission locationPermission;
 
@@ -218,7 +218,7 @@ class _HomeState extends State<Home> {
                       Text('Longitude = ${_currentPosition?.longitude ?? "-"}'),
                       ElevatedButton(
                           onPressed: () {
-                            _getCurrentPosition();
+                            getCurrentPosition();
                             print(_currentPosition?.latitude);
                             print(_currentPosition?.longitude);
                           },
