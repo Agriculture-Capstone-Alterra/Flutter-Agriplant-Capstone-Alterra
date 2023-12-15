@@ -2,9 +2,11 @@ import 'package:capstone_project/models/menanam_tanaman_model/plant_by_id_model.
 import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/detail_plant_image.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/detail_plant_explanation.dart';
+import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/plant_times.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import '../../providers/plant_provider.dart';
 import '../../widgets/menanam_tanaman_widgets/detail_plant_screen/planting_guides.dart';
 import '../../widgets/menanam_tanaman_widgets/detail_plant_screen/planting_tools.dart';
@@ -48,6 +50,11 @@ class _DetailPlantState extends State<DetailPlant> {
                         technology: plantByIdData.technology,
                         variety: plantByIdData.variety,
                         plantingToolsList: plantByIdData.plantingTools,
+                        plantingGuidelsList: plantByIdData.plantingGuides,
+                        drySeasonStartPlant: DateFormat.yMd().format(plantByIdData.drySeasonStartPlant),
+                        drySeasonFinishPlant: DateFormat.yMd().format(plantByIdData.drySeasonFinishPlant),
+                        rainySeasonStartPlant: DateFormat.yMd().format(plantByIdData.rainySeasonStartPlant),
+                        rainySeasonFinishPlant: DateFormat.yMd().format(plantByIdData.rainySeasonFinishPlant),
                       );
                     }else {
                       return Center(child: Text('Data tidak valid.'));
@@ -73,6 +80,11 @@ class _DetailPlantState extends State<DetailPlant> {
     required String technology,
     required String variety,
     required List<Planting> plantingToolsList,
+    required List<Planting> plantingGuidelsList,
+    required String drySeasonStartPlant,
+    required String drySeasonFinishPlant,
+    required String rainySeasonStartPlant,
+    required String rainySeasonFinishPlant,
   }){
     return Column(
       children: [
@@ -87,13 +99,15 @@ class _DetailPlantState extends State<DetailPlant> {
           plantType: plantType,
           technology: technology,
           variety: variety,
+          jenisTanamanIcon: provider.jenisTanamanIcon,
+          techIcon: provider.techIcon,
+          varietyIcon: provider.varietyIcon,
         ),
 
         const SizedBox(height: 46,),
 
         PlantingTools(
           toolTextHead: provider.toolTextHead,
-          plantingToolsImage: 'plantingToolsList.imagePath',
           plantingToolsList: plantingToolsList,
         ),
 
@@ -101,8 +115,22 @@ class _DetailPlantState extends State<DetailPlant> {
 
         PlantingGuides(
           guideTextHead: provider.guideTextHead,
+          plantingGuidesList: plantingGuidelsList,
         ),
 
+        const SizedBox(height: 16,),
+
+        PlantTimes(
+          headText: provider.musimTextHead,
+          subHeadKemarau: provider.subHeadKemarau,
+          subHeadHujan: provider.subHeadHujan,
+          drySeasonStartPlant: drySeasonStartPlant,
+          drySeasonFinishPlant: drySeasonFinishPlant,
+          rainySeasonStartPlant: rainySeasonStartPlant,
+          rainySeasonFinishPlant: rainySeasonFinishPlant,
+        ),
+
+        const SizedBox(height: 16,),
       ],
     );
   }

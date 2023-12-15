@@ -84,6 +84,12 @@ class PlantProvider extends ChangeNotifier{
   }
 
   Color aboutPlantColor = Color(0xffDCEEE8);
+  String jenisTanamanIcon = 'assets/images/menanam tanaman images/icons in plant detail/Jenis.png';
+  String techIcon = 'assets/images/menanam tanaman images/icons in plant detail/Teknologi.png';
+  String varietyIcon = 'assets/images/menanam tanaman images/icons in plant detail/Varietas.png';
   String toolTextHead = 'Alat yang dibutuhkan';
   String guideTextHead = 'Langkah Penanaman';
+  String musimTextHead = 'Kelender Bercocok Tanam';
+  String subHeadKemarau = 'Musim Kemarau';
+  String subHeadHujan = 'Musim Hujan';
 }

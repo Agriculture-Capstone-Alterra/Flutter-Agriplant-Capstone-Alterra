@@ -187,7 +187,9 @@ class Planting {
     id: json["id"],
     name: json["name"],
     description: json["description"],
-    imagePath: json["image_path"],
+    imagePath: json["image_path"]==null || json["image_path"]=="" || json["image_path"]==''?
+    'https://pertaniansehat.com/v01/wp-content/uploads/2015/08/default-placeholder.png':
+    json["image_path"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
   );
