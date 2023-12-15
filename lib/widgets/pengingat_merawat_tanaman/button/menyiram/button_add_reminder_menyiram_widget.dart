@@ -65,6 +65,8 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
                   await _postReminderData(textFieldData, timePickerData);
 
                   Navigator.pop(context);
+
+                   _showSuccessMenyiram(context);
                 },
                 child: const Text("Selesai"),
               ),
@@ -91,6 +93,34 @@ class ButtonAddReminderMenyiram extends StatelessWidget {
       ),
     ),
   );
+}
+
+void _showSuccessMenyiram(BuildContext context) async {
+  await showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    builder: (context) => Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ListTile(
+            title: Text("Berhasil Menyimpan!"),
+          ),
+         ListTile(
+            title: Text("Selamat kamu sudah berhasil menyimpan pengingat, “dari tanah kami menghidupkan Dunia!!”"),
+            
+           
+          
+          )
+        
+         
+        ])
+        
+    )
+  );
+            
 }
 
 Future<void> _postReminderData(String textFieldData, String timePickerData) async {
