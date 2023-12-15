@@ -1,5 +1,3 @@
-// message_bubble_chat_bot.dart
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -85,6 +83,7 @@ class _MessageBubbleChatBotState extends State<MessageBubbleChatBot> {
                     style: TextStyle(
                       color: widget.message.isMe ? Colors.white : Colors.black,
                     ),
+                    textAlign: TextAlign.justify,
                   ),
                 ),
                 if (widget.message.isMe)

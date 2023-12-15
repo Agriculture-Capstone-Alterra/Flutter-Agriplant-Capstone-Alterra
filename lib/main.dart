@@ -3,6 +3,7 @@ import 'package:capstone_project/providers/auth_provider.dart';
 import 'package:capstone_project/providers/plant_provider.dart';
 import 'package:capstone_project/providers/pengingat_merawat_tanaman/plant_reminder_provider.dart';
 import 'package:capstone_project/screens/app_opening_screens/app_desc_screen.dart';
+import 'package:capstone_project/screens/implementasi_ai/rekomendasi_pupuk/first_screen_rekomendasi_pupuk.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
