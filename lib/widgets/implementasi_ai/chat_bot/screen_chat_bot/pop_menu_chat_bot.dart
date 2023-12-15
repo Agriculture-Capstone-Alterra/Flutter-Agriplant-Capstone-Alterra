@@ -66,15 +66,13 @@ class PopMenuButtonChatBot extends StatelessWidget {
               ),
               actions: [
                 TextButton(
-                  onPressed: () {
-                    Navigator.pop(context); // Tutup AlertDialog
-                  },
+                  onPressed: () {},
                   child: const Text("Tidak"),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.popUntil(context, (route) => route.isFirst);
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const FirstScreenChatBot(),
