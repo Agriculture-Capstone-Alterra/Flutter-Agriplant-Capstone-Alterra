@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../providers/plant_provider.dart';
+import '../../widgets/menanam_tanaman_widgets/detail_plant_screen/planting_guides.dart';
+import '../../widgets/menanam_tanaman_widgets/detail_plant_screen/planting_tools.dart';
 
 class DetailPlant extends StatefulWidget {
   const DetailPlant({Key? key}) : super(key: key);
@@ -36,18 +38,16 @@ class _DetailPlantState extends State<DetailPlant> {
                     // Memeriksa apakah data yang diterima memiliki struktur yang sesuai
                     if (snapshot.data != null){
                       PlantByIdModel plantByIdModel = snapshot.data! as PlantByIdModel;
-                      // PlantImage plantImage = plantByIdModel.
-
                       PlantByIdData plantByIdData = plantByIdModel.data;
                       return buildItem(
                         provider: plantProvider,
                         image: plantByIdData.plantImageThumbnail,
                         plantName: plantByIdData.name,
                         aboutPlant: plantByIdData.description,
-                        plantingTools: plantByIdData.plantingTools,
                         plantType: plantByIdData.plantType,
                         technology: plantByIdData.technology,
                         variety: plantByIdData.variety,
+                        plantingToolsList: plantByIdData.plantingTools,
                       );
                     }else {
                       return Center(child: Text('Data tidak valid.'));
@@ -72,7 +72,7 @@ class _DetailPlantState extends State<DetailPlant> {
     required String plantType,
     required String technology,
     required String variety,
-    required List plantingTools,
+    required List<Planting> plantingToolsList,
   }){
     return Column(
       children: [
@@ -91,6 +91,17 @@ class _DetailPlantState extends State<DetailPlant> {
 
         const SizedBox(height: 46,),
 
+        PlantingTools(
+          toolTextHead: provider.toolTextHead,
+          plantingToolsImage: 'plantingToolsList.imagePath',
+          plantingToolsList: plantingToolsList,
+        ),
+
+        const SizedBox(height: 16,),
+
+        PlantingGuides(
+          guideTextHead: provider.guideTextHead,
+        ),
 
       ],
     );
