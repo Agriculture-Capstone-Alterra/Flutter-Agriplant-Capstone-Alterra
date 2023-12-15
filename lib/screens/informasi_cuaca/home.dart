@@ -2,6 +2,7 @@ import 'package:capstone_project/data/home_text_style.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../../widgets/informasi_cuaca/header_home.dart';
 import '../../widgets/informasi_cuaca/pengingat_home.dart';
@@ -18,6 +19,72 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Position? _currentPosition;
+
+  Future<void> _getCurrentPosition() async {
+    final hasPermission = await _handleLocationPermission(context);
+
+    if (!hasPermission) return;
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+    });
+  }
+
+  Future<bool> _handleLocationPermission(BuildContext context) async {
+    bool serviceEnabled;
+    LocationPermission locationPermission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    print(serviceEnabled);
+
+    if (!serviceEnabled) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'GPS Tidak Aktif, Silahkan Aktifkan GPS Anda',
+            ),
+          ),
+        );
+      }
+      return false;
+    }
+
+    locationPermission = await Geolocator.checkPermission();
+    print(locationPermission);
+
+    if (locationPermission == LocationPermission.denied) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Anda belum mengaktifkan izin lokasi di aplikasi anda',
+            ),
+          ),
+        );
+      }
+      await Geolocator.openAppSettings();
+      // await Geolocator.openLocationSettings();
+    }
+
+    if (locationPermission == LocationPermission.deniedForever) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Anda perlu mengaktifkan izin lewat pengaturan hp anda',
+            ),
+          ),
+        );
+      }
+    }
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,10 +207,25 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.only(left: 16),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: SizedBox(
-                    child: TitleMedium(
-                      text: 'Informasi Hama & Cara Menanganinya',
-                    ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        child: TitleMedium(
+                          text: 'Informasi Hama & Cara Menanganinya',
+                        ),
+                      ),
+                      Text('Latitude = ${_currentPosition?.latitude ?? "-"}'),
+                      Text('Longitude = ${_currentPosition?.longitude ?? "-"}'),
+                      ElevatedButton(
+                          onPressed: () {
+                            _getCurrentPosition();
+                            print(_currentPosition?.latitude);
+                            print(_currentPosition?.longitude);
+                          },
+                          child: const Text(
+                            'Test',
+                          )),
+                    ],
                   ),
                 ),
               ),
