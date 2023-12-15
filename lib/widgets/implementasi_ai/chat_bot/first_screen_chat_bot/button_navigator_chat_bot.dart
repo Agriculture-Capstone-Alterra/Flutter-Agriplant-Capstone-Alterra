@@ -8,10 +8,9 @@ class ButtonNavigationChatBot extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushAndRemoveUntil(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const ChatBot()),
-          (route) => false,
         );
       },
       style: ButtonStyle(

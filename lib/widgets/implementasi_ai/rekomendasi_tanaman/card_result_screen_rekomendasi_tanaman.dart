@@ -1,4 +1,3 @@
-// card_result_screen_rekomendasi_tanaman.dart
 import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/first_screen_rekomendasi_tanaman.dart';
 import 'package:flutter/material.dart';
 
@@ -54,6 +53,11 @@ class CardResultScreenRekomendasiTanaman extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(220, 50),
                       backgroundColor: const Color(0xFF295646),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          10.0,
+                        ),
+                      ),
                     ),
                     child: const Text(
                       'Selesai',

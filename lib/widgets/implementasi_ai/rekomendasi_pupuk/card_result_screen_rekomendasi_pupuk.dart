@@ -54,6 +54,11 @@ class CardResultScreenRekomendasiPupuk extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(220, 50),
                       backgroundColor: const Color(0xFF295646),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          10.0,
+                        ),
+                      ),
                     ),
                     child: const Text(
                       'Selesai',
