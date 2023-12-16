@@ -1,11 +1,11 @@
-import 'package:capstone_project/screens/menanam_tanaman_screens/all_plant_screen.dart';
-import 'package:capstone_project/screens/pengingat_merawat_tanaman/menyiram/time_menyiram_screen.dart';
-import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
+import 'package:capstone_project/screens/pengingat_merawat_tanaman/plant_reminder_screen.dart';
+import 'package:capstone_project/screens/pengingat_merawat_tanaman/time_reminder_screen.dart';
+import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/material.dart';
 
 class PlantReminderProvider extends ChangeNotifier{
  String appBarText = 'Pilih Jenis Tanaman';
-  Icon searchIcon = Icon(Icons.search, color: Colors.black,);
+  Icon searchIcon = const Icon(Icons.search, color: Colors.black,);
 
   //search field
   bool isSearching = false;
@@ -24,7 +24,7 @@ class PlantReminderProvider extends ChangeNotifier{
     // seeAllPlantType = true;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => AllPlantScreen()),
+      MaterialPageRoute(builder: (context) => const PlantReminder()),
     );
     notifyListeners();
   }
@@ -55,7 +55,8 @@ class PlantReminderProvider extends ChangeNotifier{
   // ignore: non_constant_identifier_names
   String PlantReminderAppBarText = 'Tanaman Anda';
   // ignore: non_constant_identifier_names
-  String TimeMenyiramAppBarText = 'REMINDER MENYIRAM';
+  String TimeMenyiramAppBarText = 'REMINDER';
+  
   TextEditingController searchAllPlantController = TextEditingController();
   String searchAllPlantHint = 'Cari tanaman';
   int idPlant = 0;
@@ -71,7 +72,7 @@ class PlantReminderProvider extends ChangeNotifier{
       print('id : $id');
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => TimeMenyiram()),
+        MaterialPageRoute(builder: (context) => const TimeReminder()),
       );
     notifyListeners();
   }
