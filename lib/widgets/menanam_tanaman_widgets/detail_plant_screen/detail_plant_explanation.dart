@@ -8,6 +8,9 @@ class DetailPlantExplanation extends StatelessWidget {
   String plantType;
   String technology;
   String variety;
+  String jenisTanamanIcon;
+  String techIcon;
+  String varietyIcon;
 
   DetailPlantExplanation({
     Key? key,
@@ -17,6 +20,9 @@ class DetailPlantExplanation extends StatelessWidget {
     required this.plantType,
     required this.technology,
     required this.variety,
+    required this.jenisTanamanIcon,
+    required this.techIcon,
+    required this.varietyIcon,
   }) : super(key: key);
 
   @override
@@ -62,7 +68,9 @@ class DetailPlantExplanation extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset(jenisTanamanIcon),
                   Text(
                     'Jenis Tanaman',
                     style: GoogleFonts.inter(
@@ -91,7 +99,9 @@ class DetailPlantExplanation extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset(techIcon),
                   Text(
                     'Teknologi',
                     style: GoogleFonts.inter(
@@ -120,7 +130,9 @@ class DetailPlantExplanation extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset(varietyIcon),
                   Text(
                     'Varietas',
                     style: GoogleFonts.inter(
