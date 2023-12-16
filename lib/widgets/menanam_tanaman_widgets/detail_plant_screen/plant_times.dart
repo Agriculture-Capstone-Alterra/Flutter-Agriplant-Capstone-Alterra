@@ -35,54 +35,57 @@ class PlantTimes extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    subHeadKemarau,
-                    style: GoogleFonts.inter(
-                      fontSize: 12, fontWeight: FontWeight.w700
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      subHeadKemarau,
+                      style: GoogleFonts.inter(
+                        fontSize: 12, fontWeight: FontWeight.w700
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.calendar_month),
-                      Text(
-                        '$drySeasonStartPlant - $drySeasonFinishPlant',
-                        style: GoogleFonts.inter(
-                          fontSize: 12, fontWeight: FontWeight.w400,
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    subHeadHujan,
-                    style: GoogleFonts.inter(
-                      fontSize: 12, fontWeight: FontWeight.w700,
+                    Row(
+                      children: [
+                        Icon(Icons.calendar_month),
+                        Text(
+                          '$drySeasonStartPlant - $drySeasonFinishPlant',
+                          style: GoogleFonts.inter(
+                            fontSize: 12, fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.calendar_month),
-                      Text(
-                        '$rainySeasonStartPlant - $rainySeasonFinishPlant',
-                        style: GoogleFonts.inter(
-                          fontSize: 12, fontWeight: FontWeight.w400,
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              )
-            ],
+                  ],
+                ),
+                const SizedBox(width: 12,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      subHeadHujan,
+                      style: GoogleFonts.inter(
+                        fontSize: 12, fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.calendar_month),
+                        Text(
+                          '$rainySeasonStartPlant - $rainySeasonFinishPlant',
+                          style: GoogleFonts.inter(
+                            fontSize: 12, fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                )
+              ],
+            ),
           )
         ],
       ),

@@ -85,6 +85,7 @@ class PlantingGuides extends StatelessWidget {
                     );
                   }),
                 ),
+                const SizedBox(width: 8,),
               ],
             ),
           ),

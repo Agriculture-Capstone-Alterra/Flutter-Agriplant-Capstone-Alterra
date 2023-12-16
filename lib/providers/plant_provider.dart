@@ -104,4 +104,6 @@ class PlantProvider extends ChangeNotifier{
     this.customExpandedIconPest = expanded;
     notifyListeners();
   }
+  Color buttonColorMulaiMenanamButton = Color(0xff36725D);
+  String mulaiMenanamButton = 'Menanam';
 }
