@@ -3,6 +3,7 @@ import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/detail_plant_image.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/detail_plant_explanation.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/informations.dart';
+import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/mulai_menanam_button.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/plant_times.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -147,6 +148,13 @@ class _DetailPlantState extends State<DetailPlant> {
           customExpandedIconPest: provider.customExpandedIconPest,
           onExpansionChangedPest: (bool expanded){provider.onExpansionChangedPest(expanded);},
         ),
+        const SizedBox(height: 28,),
+        MulaiMenanamButton(
+          mulaiMenanamButton: provider.mulaiMenanamButton,
+          buttonColorMulaiMenanamButton: provider.buttonColorMulaiMenanamButton,
+          onTap: (){},
+        ),
+        const SizedBox(height: 28,),
       ],
     );
   }
