@@ -1,17 +1,21 @@
+import 'package:capstone_project/models/menanam_tanaman_model/plant_by_id_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PlantingGuides extends StatelessWidget {
   String guideTextHead;
+  List plantingGuidesList;
 
   PlantingGuides({
     Key? key,
-    required this.guideTextHead
+    required this.guideTextHead,
+    required this.plantingGuidesList,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           width: double.infinity,
@@ -34,28 +38,45 @@ class PlantingGuides extends StatelessWidget {
               children: [
                 const SizedBox(width: 8,),
                 Wrap(
-                  children: List<Widget>.generate(3, (index){
+                  children: List<Widget>.generate(plantingGuidesList.length, (index){
+                    Planting plantingGuide = plantingGuidesList[index];
                     return Container(
                       margin: EdgeInsets.symmetric(horizontal: 4),
-                      padding: EdgeInsets.only(top: 8, left: 0, right: 8, bottom: 8,),
                       width: MediaQuery.of(context).size.width*8/10,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(color: Colors.grey, width: 1)
                       ),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('image'),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.width/6,
+                            width: MediaQuery.of(context).size.width/6,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.network(
+                                plantingGuide.imagePath,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Tahap 1',
-                                style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                'penjelasan tahap 1',
-                                style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    plantingGuide.name,
+                                    style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
+                                  ),
+                                  Text(
+                                    plantingGuide.description,
+                                    style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -64,6 +85,7 @@ class PlantingGuides extends StatelessWidget {
                     );
                   }),
                 ),
+                const SizedBox(width: 8,),
               ],
             ),
           ),
