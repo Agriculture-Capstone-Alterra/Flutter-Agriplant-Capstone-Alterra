@@ -92,4 +92,16 @@ class PlantProvider extends ChangeNotifier{
   String musimTextHead = 'Kelender Bercocok Tanam';
   String subHeadKemarau = 'Musim Kemarau';
   String subHeadHujan = 'Musim Hujan';
+  String aboutFertilizerTextHead = 'Informasi Nutrisi dan Pupuk';
+  String aboutPestTextHead = 'Informasi Penanganan Hama';
+  bool customExpandedIconFertilizer = false;
+  void onExpansionChangedFertilizer(bool expanded){
+    this.customExpandedIconFertilizer = expanded;
+    notifyListeners();
+  }
+  bool customExpandedIconPest = false;
+  void onExpansionChangedPest(bool expanded){
+    this.customExpandedIconPest = expanded;
+    notifyListeners();
+  }
 }
