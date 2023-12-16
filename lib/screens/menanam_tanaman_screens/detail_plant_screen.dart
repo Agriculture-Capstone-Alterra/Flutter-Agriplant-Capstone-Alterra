@@ -1,5 +1,5 @@
-import 'package:capstone_project/models/menanam_tanaman_model/plant_by_id_model.dart';
-import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
+import 'package:capstone_project/models/plant_by_id_model.dart';
+import 'package:capstone_project/services/plant_api.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/detail_plant_image.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/detail_plant_screen/detail_plant_explanation.dart';
 import 'package:flutter/material.dart';

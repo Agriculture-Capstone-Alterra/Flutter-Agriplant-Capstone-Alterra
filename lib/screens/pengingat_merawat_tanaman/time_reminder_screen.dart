@@ -1,23 +1,25 @@
 import 'package:capstone_project/data/pengingat_merawat_tanaman/theme_text_style.dart';
-import 'package:capstone_project/models/menanam_tanaman_model/plant_by_id_model.dart';
-import 'package:capstone_project/providers/pengingat_merawat_tanaman/plant_reminder_provider.dart';
-import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
-import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/menyiram/button_add_reminder_menyiram_widget.dart';
-import 'package:capstone_project/widgets/pengingat_merawat_tanaman/card/menyiram/card_time_menyiram_widget.dart';
+import 'package:capstone_project/models/plant_by_id_model.dart';
+import 'package:capstone_project/providers/plant_reminder_provider.dart';
+import 'package:capstone_project/services/pengingat_merawat_tanaman/reminder_time_api.dart';
+import 'package:capstone_project/services/plant_api.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_add_reminder_widget.dart';
+
+
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/card/card_time_menyiram_widget.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/detail_reminder_widget.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class TimeMenyiram extends StatefulWidget {
-   const TimeMenyiram({Key? key}) : super(key: key);
+class TimeReminder extends StatefulWidget {
+   const TimeReminder({Key? key}) : super(key: key);
 
   @override
-  State<TimeMenyiram> createState() => _TimeMenyiramState();
+  State<TimeReminder> createState() => _TimeReminderState();
 }
 
-class _TimeMenyiramState extends State<TimeMenyiram> {
+class _TimeReminderState extends State<TimeReminder> {
   List<Map<String, dynamic>> reminders = [];
   final ScrollController _scrollController = ScrollController();
 
@@ -27,29 +29,26 @@ class _TimeMenyiramState extends State<TimeMenyiram> {
     _getRemindersData();
   }
 
+  // ignore: unused_field
+  final ReminderTimeAPI _reminderTimeAPI = ReminderTimeAPI();
+
   Future<void> _getRemindersData() async {
     try {
-      final response = await Dio().get(
-        "https://6571fd40d61ba6fcc0142a0c.mockapi.io/agriculture/reminder",
-      );
+      final reminders = await _reminderTimeAPI.getReminders();
 
-      if (response.statusCode == 200) {
-        setState(() {
-          reminders = List<Map<String, dynamic>>.from(
-            response.data.map((dynamic reminder) => reminder as Map<String, dynamic>),
-          );
-        });
-        // Scroll to the bottom after data is fetched
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
-      } else {
-        print("Failed to fetch reminders. Status code: ${response.statusCode}");
-      }
+      setState(() {
+        this.reminders = reminders;
+      });
+
+      // Scroll to the bottom after data is fetched
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
     } catch (error) {
-      print("Error fetching reminders: $error");
+    // ignore: avoid_print
+    print("Error fetching reminders: $error");
     }
   }
 
@@ -102,23 +101,12 @@ class _TimeMenyiramState extends State<TimeMenyiram> {
 ) ?? false;
 
   // If the user confirmed, proceed with deletion
-  if (confirmDelete) {
-    try {
-      final response = await Dio().delete(
-        "https://6571fd40d61ba6fcc0142a0c.mockapi.io/agriculture/reminder/$id",
-      );
-
-      if (response.statusCode == 200) {
-        _getRemindersData(); // Refresh the list after deletion
-      } else {
-        print("Failed to delete reminder. Status code: ${response.statusCode}");
-      }
-    } catch (error) {
-      print("Error deleting reminder: $error");
+   if (confirmDelete) {
+      await _reminderTimeAPI.deleteReminder(id);
+      _getRemindersData(); // Refresh the list after deletion
     }
   }
-}
-
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<PlantReminderProvider>(
