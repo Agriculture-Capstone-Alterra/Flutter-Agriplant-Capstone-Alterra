@@ -27,6 +27,7 @@ class _HomeState extends State<Home> {
       position.latitude,
       position.longitude,
     ).then((value) {
+      if (!mounted) return;
       setState(() {
         Placemark placemark = value.first;
         _currentAddress =
@@ -41,6 +42,7 @@ class _HomeState extends State<Home> {
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
+      if (!mounted) return;
       setState(() {
         _currentPosition = position;
       });
@@ -54,19 +56,6 @@ class _HomeState extends State<Home> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     print(serviceEnabled);
-
-    // if (!serviceEnabled) {
-    //   if (context.mounted) {
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //       const SnackBar(
-    //         content: Text(
-    //           'GPS Tidak Aktif, Silahkan Aktifkan GPS Anda',
-    //         ),
-    //       ),
-    //     );
-    //   }
-    //   return false;
-    // }
 
     locationPermission = await Geolocator.checkPermission();
     print(locationPermission);
@@ -82,8 +71,6 @@ class _HomeState extends State<Home> {
         );
       }
       await Geolocator.requestPermission();
-      // await Geolocator.openAppSettings();
-      // await Geolocator.openLocationSettings();
     }
 
     if (locationPermission == LocationPermission.deniedForever) {
