@@ -1,7 +1,7 @@
 import 'package:capstone_project/providers/app_opening_provider.dart';
 import 'package:capstone_project/providers/auth_provider.dart';
 import 'package:capstone_project/providers/plant_provider.dart';
-import 'package:capstone_project/providers/pengingat_merawat_tanaman/plant_reminder_provider.dart';
+import 'package:capstone_project/providers/plant_reminder_provider.dart';
 import 'package:capstone_project/screens/app_opening_screens/app_desc_screen.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/menanam_screen.dart';
 import 'package:capstone_project/screens/navigation_bar.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Menanam(),
+        home: const AppDescScreen(),
       ),
     );
   }

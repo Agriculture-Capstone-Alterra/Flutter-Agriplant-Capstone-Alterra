@@ -1,6 +1,6 @@
 import 'package:capstone_project/models/all_plants_model.dart';
-import 'package:capstone_project/providers/pengingat_merawat_tanaman/plant_reminder_provider.dart';
-import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
+import 'package:capstone_project/providers/plant_reminder_provider.dart';
+import 'package:capstone_project/services/plant_api.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/all_plant_screen/search_all_plants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -75,7 +75,7 @@ class _PlantReminderState extends State<PlantReminder> {
                                           ),
                                           footer:
                                           Container(
-                                            padding: EdgeInsets.symmetric(vertical: 5),
+                                            padding: const EdgeInsets.symmetric(vertical: 5),
                                             color: Colors.white,
                                             child: Center(
                                               child: Text(
