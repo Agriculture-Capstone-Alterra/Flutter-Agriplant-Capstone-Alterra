@@ -3,7 +3,6 @@ import 'package:capstone_project/providers/auth_provider.dart';
 import 'package:capstone_project/providers/plant_provider.dart';
 import 'package:capstone_project/providers/plant_reminder_provider.dart';
 import 'package:capstone_project/screens/app_opening_screens/app_desc_screen.dart';
-import 'package:capstone_project/screens/pengingat_merawat_tanaman/pengingat_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +41,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Pengingat(),
+        home: const AppDescScreen(),
       ),
     );
   }
