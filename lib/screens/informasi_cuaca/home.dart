@@ -1,11 +1,9 @@
 import 'package:capstone_project/data/home_text_style.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
-import 'package:capstone_project/services/informasi_cuaca/location_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:intl/intl.dart';
-
 import '../../widgets/informasi_cuaca/header_home.dart';
 import '../../widgets/informasi_cuaca/pengingat_home.dart';
 import '../../widgets/informasi_cuaca/tanaman_home.dart';
@@ -21,50 +19,73 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  LocationManager locationManager = LocationManager();
   Position? _currentPosition;
   String? _currentAddress;
 
-  Future<void> _getCurrentPosition() async {
-    await locationManager.getCurrentPosition(
-      context,
-      (Position position) {
-        setState(() {
-          _currentPosition = position;
-        });
-      },
-      (String address) {
-        setState(() {
-          _currentAddress = address;
-        });
-      },
-    );
-  }
-
-  Future<void> getCurrentLocation() async {
-    locationManager.getCurrentPosition(
-      context,
-      (Position position) {
-        setState(() {
-          _currentPosition = position;
-        });
-      },
-      (String address) {
-        setState(() {
-          _currentAddress = address;
-        });
-      },
-    );
-  }
-
-  Future<void> getCurrentAddress() async {
-    if (_currentPosition != null) {
-      await locationManager.getAddress(_currentPosition!, (String address) {
-        setState(() {
-          _currentAddress = address;
-        });
+  Future<void> _getAddress(Position position) async {
+    await placemarkFromCoordinates(
+      position.latitude,
+      position.longitude,
+    ).then((value) {
+      if (!mounted) return;
+      setState(() {
+        Placemark placemark = value.first;
+        _currentAddress =
+            '${placemark.subAdministrativeArea}, ${placemark.isoCountryCode}';
       });
+    });
+  }
+
+  Future<void> _getCurrentPosition() async {
+    final hasPermission = await _handleLocationPermission(context);
+
+    if (!hasPermission) return;
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
+      if (!mounted) return;
+      setState(() {
+        _currentPosition = position;
+      });
+      _getAddress(position);
+    });
+  }
+
+  Future<bool> _handleLocationPermission(BuildContext context) async {
+    bool serviceEnabled;
+    LocationPermission locationPermission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    print(serviceEnabled);
+
+    locationPermission = await Geolocator.checkPermission();
+    print(locationPermission);
+
+    if (locationPermission == LocationPermission.denied) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Anda belum mengaktifkan izin lokasi di aplikasi anda',
+            ),
+          ),
+        );
+      }
+      await Geolocator.requestPermission();
     }
+
+    if (locationPermission == LocationPermission.deniedForever) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Anda perlu mengaktifkan izin lewat pengaturan hp anda',
+            ),
+          ),
+        );
+      }
+    }
+
+    return true;
   }
 
   @override
@@ -77,8 +98,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     double latitudeValue = _currentPosition?.latitude ?? 0.0;
     double longitudeValue = _currentPosition?.longitude ?? 0.0;
-    DateTime dateTime = _currentPosition?.timestamp ?? DateTime.now();
-    String hourNow = DateFormat('HH:mm a').format(dateTime);
+    // String hourNow = DateFormat('HH:mm a').format(DateTime.now());
     String currentPlace = _currentAddress ?? "-";
 
     return Scaffold(
@@ -125,7 +145,11 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 16,
               ),
-              const HeaderHome(),
+              HeaderHome(
+                latitude: latitudeValue,
+                longitude: longitudeValue,
+                currentPlace: currentPlace,
+              ),
               const SizedBox(
                 height: 16,
               ),
@@ -210,7 +234,7 @@ class _HomeState extends State<Home> {
                       ),
                       Text('Latitude = $latitudeValue'),
                       Text('Longitude = $longitudeValue'),
-                      Text('Jam = $hourNow'),
+                      // Text('Jam = $hourNow'),
                       Text('Address = $currentPlace'),
                     ],
                   ),
