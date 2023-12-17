@@ -1,8 +1,10 @@
 import 'package:capstone_project/data/pengingat_merawat_tanaman/theme_text_style.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_back_widget.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_project/data/pengingat_merawat_tanaman/theme_color.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/text_field/text_field_reminder_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ButtonAddReminderMenyiram extends StatelessWidget {
   final Function()? onPressed;
@@ -134,11 +136,21 @@ void _showAddReminderMenyiram(BuildContext context) async {
 void _showErrorDialog(BuildContext context, String message) {
   showDialog(
     context: context,
-    builder: (context) => const AlertDialog(
-      title: Text("Tidak boleh kosong"),
+    builder: (context) => AlertDialog(
+      title: Text(
+        "Tidak Boleh Kosong!",
+        textAlign: TextAlign.center, // Center the text
+        style: GoogleFonts.inter(
+          fontSize: 20, // Set your desired font size
+          fontWeight: FontWeight.w600, // Set your desired font weight
+          color: Color(0xFF646E82),
+          // You can also add backgroundColor if needed
+        ),
+      ),
     ),
   );
 }
+
 
 void _showSuccessMenyiram(BuildContext context) async {
   await showModalBottomSheet(
@@ -184,12 +196,12 @@ void _showSuccessMenyiram(BuildContext context) async {
               ),
             ),
           ),
-         const SizedBox(height: 10.0), 
-          ElevatedButton(
+         const SizedBox(height: 20.0), 
+          ButtonBackWidget(
             onPressed: () {
               Navigator.pop(context); // Menutup modal bottom sheet
             },
-            child: const Text("Kembali Ke Pengingat"),
+            title: 'Kembali Ke Pengingat',
           ),
            const SizedBox(height: 40.0), 
         ],

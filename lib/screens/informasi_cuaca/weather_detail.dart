@@ -1,14 +1,9 @@
-import 'package:capstone_project/data/home_text_style.dart';
-import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
-import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
+
 import 'package:capstone_project/widgets/informasi_cuaca/lokasi_detail_cuaca.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import '../../widgets/informasi_cuaca/header_home.dart';
-import '../../widgets/informasi_cuaca/pengingat_home.dart';
-import '../../widgets/informasi_cuaca/tanaman_home.dart';
-import '../../widgets/informasi_cuaca/temprature_home.dart';
+
 
 class WeatherDetail extends StatefulWidget {
   const WeatherDetail({
