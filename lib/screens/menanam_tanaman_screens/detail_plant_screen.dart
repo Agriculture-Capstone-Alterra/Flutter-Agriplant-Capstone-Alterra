@@ -43,6 +43,7 @@ class _DetailPlantState extends State<DetailPlant> {
                   PlantByIdData plantByIdData = plantByIdModel.data;
                   return buildItem(
                     provider: plantProvider,
+                    id: plantByIdData.id,
                     image: plantByIdData.plantImageThumbnail,
                     plantName: plantByIdData.name,
                     aboutPlant: plantByIdData.description,
@@ -75,6 +76,7 @@ class _DetailPlantState extends State<DetailPlant> {
 
   Widget buildItem({
     required dynamic provider,
+    required int id,
     required String image,
     required String plantName,
     required String aboutPlant,
@@ -152,7 +154,13 @@ class _DetailPlantState extends State<DetailPlant> {
         MulaiMenanamButton(
           mulaiMenanamButton: provider.mulaiMenanamButton,
           buttonColorMulaiMenanamButton: provider.buttonColorMulaiMenanamButton,
-          onTap: (){},
+          onTap: (){
+            provider.goToPlantingForm(
+              context: context,
+              // plantImagePlantingForm: image,
+              // plantName = plantName,
+            );
+          },
         ),
         const SizedBox(height: 28,),
       ],
