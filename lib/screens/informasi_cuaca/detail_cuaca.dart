@@ -43,7 +43,7 @@ class DetailCuaca extends StatelessWidget {
                     SizedBox(
                       height: 16,
                     ),
-                    LokasiDetailCuaca(),
+                    // LokasiDetailCuaca(),
                     SizedBox(
                       height: 16,
                     ),
