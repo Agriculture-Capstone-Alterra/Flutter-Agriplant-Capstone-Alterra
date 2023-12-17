@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         title: 'Agriculture Capstone Project Alterra SIB 5',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
         home: const AppDescScreen(),
