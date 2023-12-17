@@ -130,4 +130,14 @@ class PlantProvider extends ChangeNotifier{
   //planting form
   String appBarPlantingFormText = 'Formulir Menanam';
   String plantImagePlantingForm = 'code anjing';
+  String formTextHead = 'Mohon isi data terlebih dahulu';
+  Color inputLabelTextColor = Color(0xff36725D);
+  Color inputLabelSubtitleTextColor = Color(0xff36725D);
+  TextEditingController jumlahBibitController = TextEditingController();
+  String jumlahBibitHint = 'input';
+  Color jumlahBibitHintColor = Color(0xff295646);
+  String jumlahBibitLabel = 'Jumlah Bibit';
+  Color jumlahBibitLabelColor = Color(0xff36725D);
+  String inputBibitWarntext = 'Masukan jumlah bibit yang akan ditanam';
+  Color textFieldColor = Color(0xff6EB99F);
 }
