@@ -1,6 +1,7 @@
 import 'package:capstone_project/data/home_text_style.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
+import 'package:capstone_project/screens/informasi_cuaca/weather_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -165,7 +166,7 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const DetailCuaca(),
+                            builder: (context) => const WeatherDetail(),
                           ),
                         );
                       },
