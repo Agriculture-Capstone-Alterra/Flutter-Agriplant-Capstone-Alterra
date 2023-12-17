@@ -4,6 +4,8 @@ import 'package:capstone_project/providers/plant_reminder_provider.dart';
 import 'package:capstone_project/services/pengingat_merawat_tanaman/reminder_time_api.dart';
 import 'package:capstone_project/services/plant_api.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_add_reminder_widget.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_tidak_widget.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_ya_widget.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/card/card_time_menyiram_widget.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/detail_reminder_widget.dart';
 import 'package:flutter/material.dart';
@@ -79,18 +81,32 @@ class _TimeReminderState extends State<TimeReminder> {
         content: ButtonBar(
           alignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
+             ButtonYaWidget(
+              title: 'Ya',
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
-              child: const Text("Ya"),
-            ),
-            ElevatedButton(
+             ),
+             ButtonTidakWidget(
+              title: 'Tidak',
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
-              child: const Text("Tidak"),
-            ),
+             ),
+              
+              
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.of(context).pop(true);
+            //   },
+            //   child: const Text("Ya"),
+            // ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.of(context).pop(false);
+            //   },
+            //   child: const Text("Tidak"),
+            // ),
           ],
         ),
       ),
@@ -286,13 +302,28 @@ class _TimeReminderState extends State<TimeReminder> {
           contentPadding: const EdgeInsets.symmetric(horizontal: 25.0),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(reminders[index]["time"]),
-              Text(
-                reminders[index]["description"],
-                textAlign: TextAlign.right,
-              ),
-            ],
+          children: [
+  Text(
+    reminders[index]["time"],
+    style: GoogleFonts.inter(
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+      color: Color(0xFF646E82),
+
+    ),
+  ),
+  Text(
+    reminders[index]["description"],
+    textAlign: TextAlign.center,
+    style: GoogleFonts.inter(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: Color(0xFF646E82),
+    ),
+  ),
+],
+
+
           ),
           trailing: IconButton(
             icon: const Icon(Icons.delete),

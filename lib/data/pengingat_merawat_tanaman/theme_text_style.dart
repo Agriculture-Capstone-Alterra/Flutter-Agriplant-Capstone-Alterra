@@ -86,4 +86,22 @@ class ThemeTextStyle {
     fontWeight: FontWeight.w400,
     color: ThemeColor().blackColor,
   );
+
+  TextStyle buttonYa = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: ThemeColor().whiteColor,
+  );
+
+  TextStyle buttonTidak = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: ThemeColor().greenColor,
+  );
+
+  TextStyle buttonBack = GoogleFonts.inter(
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    color: ThemeColor().whiteColor,
+  );
 }
