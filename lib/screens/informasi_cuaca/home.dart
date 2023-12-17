@@ -4,7 +4,6 @@ import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:intl/intl.dart';
 import '../../widgets/informasi_cuaca/header_home.dart';
 import '../../widgets/informasi_cuaca/pengingat_home.dart';
 import '../../widgets/informasi_cuaca/tanaman_home.dart';
@@ -56,18 +55,18 @@ class _HomeState extends State<Home> {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     print(serviceEnabled);
 
-    if (!serviceEnabled) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'GPS Tidak Aktif, Silahkan Aktifkan GPS Anda',
-            ),
-          ),
-        );
-      }
-      return false;
-    }
+    // if (!serviceEnabled) {
+    //   if (context.mounted) {
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       const SnackBar(
+    //         content: Text(
+    //           'GPS Tidak Aktif, Silahkan Aktifkan GPS Anda',
+    //         ),
+    //       ),
+    //     );
+    //   }
+    //   return false;
+    // }
 
     locationPermission = await Geolocator.checkPermission();
     print(locationPermission);
