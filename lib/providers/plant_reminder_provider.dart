@@ -4,6 +4,16 @@ import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/material.dart';
 
 class PlantReminderProvider extends ChangeNotifier{
+  //SEARCH
+  String _searchQuery = '';
+
+  String get searchQuery => _searchQuery;
+
+  void updateSearchQuery(String query) {
+    _searchQuery = query;
+    notifyListeners();
+  }
+
  String appBarText = 'Pilih Jenis Tanaman';
   Icon searchIcon = const Icon(Icons.search, color: Colors.black,);
 

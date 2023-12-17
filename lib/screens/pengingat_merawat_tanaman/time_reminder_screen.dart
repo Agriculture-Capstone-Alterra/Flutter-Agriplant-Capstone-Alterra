@@ -4,8 +4,6 @@ import 'package:capstone_project/providers/plant_reminder_provider.dart';
 import 'package:capstone_project/services/pengingat_merawat_tanaman/reminder_time_api.dart';
 import 'package:capstone_project/services/plant_api.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_add_reminder_widget.dart';
-
-
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/card/card_time_menyiram_widget.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/detail_reminder_widget.dart';
 import 'package:flutter/material.dart';
