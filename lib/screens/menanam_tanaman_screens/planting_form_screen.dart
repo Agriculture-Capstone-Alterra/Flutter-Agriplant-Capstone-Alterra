@@ -1,9 +1,11 @@
 import 'package:capstone_project/providers/plant_provider.dart';
-import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_form_screen/plant_image_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../models/menanam_tanaman_model/plant_by_id_model.dart';
+
+import '../../models/plant_by_id_model.dart';
+import '../../services/plant_api.dart';
+
 
 class PlantingFormScreen extends StatefulWidget {
   const PlantingFormScreen({Key? key}) : super(key: key);
