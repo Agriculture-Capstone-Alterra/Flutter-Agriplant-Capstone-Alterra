@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/all_plants_model.dart';
-import '../../services/menanam_tanaman/plant_api.dart';
+import '../../services/plant_api.dart';
 
 class AllPlantScreen extends StatefulWidget {
   const  AllPlantScreen({Key? key,}) : super(key: key);

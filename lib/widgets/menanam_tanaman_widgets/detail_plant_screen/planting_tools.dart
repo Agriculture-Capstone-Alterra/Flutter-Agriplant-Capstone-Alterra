@@ -1,22 +1,21 @@
-import 'package:capstone_project/models/menanam_tanaman_model/plant_by_id_model.dart';
+import 'package:capstone_project/models/plant_by_id_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PlantingTools extends StatelessWidget {
   String toolTextHead;
   List plantingToolsList;
-  String plantingToolsImage;
 
   PlantingTools({
     Key? key,
     required this.toolTextHead,
     required this.plantingToolsList,
-    required this.plantingToolsImage,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           width: double.infinity,

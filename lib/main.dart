@@ -1,11 +1,9 @@
 import 'package:capstone_project/providers/app_opening_provider.dart';
 import 'package:capstone_project/providers/auth_provider.dart';
 import 'package:capstone_project/providers/plant_provider.dart';
-import 'package:capstone_project/providers/pengingat_merawat_tanaman/plant_reminder_provider.dart';
+import 'package:capstone_project/providers/plant_reminder_provider.dart';
 import 'package:capstone_project/screens/app_opening_screens/app_desc_screen.dart';
-import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
-import 'package:capstone_project/screens/implementasi_ai/rekomendasi_pupuk/first_screen_rekomendasi_pupuk.dart';
-import 'package:capstone_project/screens/informasi_cuaca/home.dart';
+import 'package:capstone_project/screens/menanam_tanaman_screens/menanam_screen.dart';
 import 'package:capstone_project/screens/navigation_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +43,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const NavBar(),
+        home: const AppDescScreen(),
       ),
     );
   }

@@ -13,7 +13,13 @@ class SplashScreen2 extends StatelessWidget {
           color: Colors.white,
           child: Column(mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('iamge'),
+              SizedBox(
+                width: MediaQuery.of(context).size.width/3.7,
+                child: Image.asset(
+                  appOpeningProvider.splashScreen2Image1,
+                  fit: BoxFit.cover,
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

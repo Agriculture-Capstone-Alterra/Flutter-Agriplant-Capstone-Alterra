@@ -1,8 +1,9 @@
 import 'package:capstone_project/screens/menanam_tanaman_screens/all_plant_screen.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/detail_plant_screen.dart';
-import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
+import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../screens/menanam_tanaman_screens/planting_form_screen.dart';
 
 class PlantProvider extends ChangeNotifier{
   String appBarText = 'Pilih Jenis Tanaman';
@@ -72,18 +73,61 @@ class PlantProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+
   //detail plant by id
   String detailPlantAppBarText = 'Detail Halaman';
 
-  Future detailPlant() async{
-    try{
-      await PlantApi().getPlantById(id: this.idPlant);
-      notifyListeners();
-    }catch(e){}
+  // Future detailPlant() async{
+  //   try{
+  //     await PlantApi().getPlantById(id: this.idPlant);
+  //     notifyListeners();
+  //   }catch(e){}
+  //   notifyListeners();
+  // }
+
+  Color aboutPlantColor = Color(0xffDCEEE8);
+  String jenisTanamanIcon = 'assets/images/menanam tanaman images/icons in plant detail/Jenis.png';
+  String techIcon = 'assets/images/menanam tanaman images/icons in plant detail/Teknologi.png';
+  String varietyIcon = 'assets/images/menanam tanaman images/icons in plant detail/Varietas.png';
+  String toolTextHead = 'Alat yang dibutuhkan';
+  String guideTextHead = 'Langkah Penanaman';
+  String musimTextHead = 'Kelender Bercocok Tanam';
+  String subHeadKemarau = 'Musim Kemarau';
+  String subHeadHujan = 'Musim Hujan';
+  String aboutFertilizerTextHead = 'Informasi Nutrisi dan Pupuk';
+  String aboutPestTextHead = 'Informasi Penanganan Hama';
+  bool customExpandedIconFertilizer = false;
+  bool customExpandedIconPest = false;
+
+  void onExpansionChangedFertilizer(bool expanded){
+    this.customExpandedIconFertilizer = expanded;
     notifyListeners();
   }
 
-  Color aboutPlantColor = Color(0xffDCEEE8);
-  String toolTextHead = 'Alat yang dibutuhkan';
-  String guideTextHead = 'Langkah Penanaman';
+  void onExpansionChangedPest(bool expanded){
+    this.customExpandedIconPest = expanded;
+    notifyListeners();
+  }
+
+  Color buttonColorMulaiMenanamButton = Color(0xff36725D);
+  String mulaiMenanamButton = 'Menanam';
+
+  void goToPlantingForm({
+    required BuildContext context,
+    // required String plantImagePlantingForm,
+    // required String plantName,
+  }){
+    plantImagePlantingForm = this.plantImagePlantingForm;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: ((context) => PlantingFormScreen()),
+      ),
+    );
+    notifyListeners();
+  }
+
+  //planting form
+  String appBarPlantingFormText = 'Formulir Menanam';
+  String plantImagePlantingForm = 'code anjing';
 }
