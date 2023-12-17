@@ -1,6 +1,6 @@
-import 'package:capstone_project/models/menanam_tanaman_model/plant_by_id_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../models/plant_by_id_model.dart';
 
 class PlantingGuides extends StatelessWidget {
   String guideTextHead;
