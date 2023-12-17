@@ -80,7 +80,11 @@ class _PlantingFormScreenState extends State<PlantingFormScreen> {
         InputJumlahBibit(
           jumlahBibitController: provider.jumlahBibitController,
           jumlahBibitHint: provider.jumlahBibitHint,
+          jumlahBibitHintColor: provider.jumlahBibitHintColor,
           jumlahBibitLabel: provider.jumlahBibitLabel,
+          jumlahBibitLabelColor: provider.jumlahBibitLabelColor,
+          inputBibitWarntext: provider.inputBibitWarntext,
+          textFieldColor: provider.textFieldColor,
         ),
 
         const SizedBox(height: 18,),

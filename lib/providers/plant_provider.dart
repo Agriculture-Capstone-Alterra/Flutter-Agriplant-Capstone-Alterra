@@ -135,6 +135,9 @@ class PlantProvider extends ChangeNotifier{
   Color inputLabelSubtitleTextColor = Color(0xff36725D);
   TextEditingController jumlahBibitController = TextEditingController();
   String jumlahBibitHint = 'input';
+  Color jumlahBibitHintColor = Color(0xff295646);
   String jumlahBibitLabel = 'Jumlah Bibit';
-
+  Color jumlahBibitLabelColor = Color(0xff36725D);
+  String inputBibitWarntext = 'Masukan jumlah bibit yang akan ditanam';
+  Color textFieldColor = Color(0xff6EB99F);
 }
