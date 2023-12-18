@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class ButtonInputForm extends StatefulWidget {
-  const ButtonInputForm({Key? key}) : super(key: key);
+class ButtonInputForm extends StatelessWidget {
+  Color menanamButtonColor;
+  ButtonInputForm({
+    Key? key,
+    required this.menanamButtonColor
+  }) : super(key: key);
 
-  @override
-  State<ButtonInputForm> createState() => _ButtonInputFormState();
-}
-
-class _ButtonInputFormState extends State<ButtonInputForm> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -16,9 +16,13 @@ class _ButtonInputFormState extends State<ButtonInputForm> {
         width: MediaQuery.of(context).size.width/2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: Colors.deepPurple,
+          color: menanamButtonColor,
         ),
-        child: Center(child: Text('Tanam')),
+        child: Center(
+          child: Text(
+            'Tanam', style: GoogleFonts.roboto(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white),
+          ),
+        ),
       ),
     );
   }

@@ -10,7 +10,16 @@ List<String> imagesLabel = [
 ];
 
 class LokasiDetailCuaca extends StatelessWidget {
-  const LokasiDetailCuaca({super.key});
+  final double latitude;
+  final double longitude;
+  final String currentPlace;
+
+  const LokasiDetailCuaca({
+    super.key,
+    required this.latitude,
+    required this.longitude,
+    required this.currentPlace,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +28,7 @@ class LokasiDetailCuaca extends StatelessWidget {
       height: 190,
       child: Column(
         children: [
-          HeadlineSmall(text: 'Jakarta'),
+          HeadlineSmall(text: currentPlace),
           const SizedBox(
             height: 16,
           ),

@@ -1,7 +1,6 @@
 import 'package:capstone_project/widgets/informasi_cuaca/glassmorph_list_hari_detail_cuaca.dart';
 import 'package:capstone_project/widgets/informasi_cuaca/glassmorph_temprature_detail_cuaca.dart';
 import 'package:capstone_project/widgets/informasi_cuaca/header_detail_cuaca.dart';
-import 'package:capstone_project/widgets/informasi_cuaca/lokasi_detail_cuaca.dart';
 import 'package:flutter/material.dart';
 
 List<String> label = ['9km/h', '85%', '25%', '25%'];
@@ -43,7 +42,7 @@ class DetailCuaca extends StatelessWidget {
                     SizedBox(
                       height: 16,
                     ),
-                    LokasiDetailCuaca(),
+                    // LokasiDetailCuaca(),
                     SizedBox(
                       height: 16,
                     ),

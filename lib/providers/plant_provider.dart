@@ -110,7 +110,7 @@ class PlantProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  Color buttonColorMulaiMenanamButton = Color(0xff36725D);
+  Color menanamButtonColor = Color(0xff36725D);
   String mulaiMenanamButton = 'Menanam';
 
   void goToPlantingForm({
