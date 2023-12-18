@@ -1,4 +1,5 @@
 import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
+import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_bubble_chat_bot.dart';
 import 'package:flutter/material.dart';
 
 class PopMenuButtonChatBot extends StatelessWidget {
@@ -22,18 +23,6 @@ class PopMenuButtonChatBot extends StatelessWidget {
                   width: 10,
                 ),
                 Text('Akhiri Sesi'),
-              ],
-            ),
-          ),
-          const PopupMenuItem(
-            value: 'menu2',
-            child: Row(
-              children: [
-                Icon(Icons.ios_share),
-                SizedBox(
-                  width: 10,
-                ),
-                Text('Bagikan Percakapan'),
               ],
             ),
           ),
@@ -71,6 +60,7 @@ class PopMenuButtonChatBot extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
+                    messages.clear();
                     Navigator.popUntil(context, (route) => route.isFirst);
                     Navigator.push(
                       context,
@@ -85,9 +75,6 @@ class PopMenuButtonChatBot extends StatelessWidget {
             );
           },
         );
-        break;
-      case 'menu2':
-        print('Menu Item 2 tapped');
         break;
     }
   }

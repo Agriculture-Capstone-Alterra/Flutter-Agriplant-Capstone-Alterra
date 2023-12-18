@@ -1,6 +1,8 @@
 import 'package:capstone_project/data/home_text_style.dart';
+import 'package:capstone_project/screens/implementasi_ai/chatbot/chat_bot.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
+import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_bubble_chat_bot.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -27,6 +29,7 @@ class _HomeState extends State<Home> {
       position.latitude,
       position.longitude,
     ).then((value) {
+      if (!mounted) return;
       setState(() {
         Placemark placemark = value.first;
         _currentAddress =
@@ -41,6 +44,7 @@ class _HomeState extends State<Home> {
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
+      if (!mounted) return;
       setState(() {
         _currentPosition = position;
       });
@@ -54,19 +58,6 @@ class _HomeState extends State<Home> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     print(serviceEnabled);
-
-    // if (!serviceEnabled) {
-    //   if (context.mounted) {
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //       const SnackBar(
-    //         content: Text(
-    //           'GPS Tidak Aktif, Silahkan Aktifkan GPS Anda',
-    //         ),
-    //       ),
-    //     );
-    //   }
-    //   return false;
-    // }
 
     locationPermission = await Geolocator.checkPermission();
     print(locationPermission);
@@ -82,8 +73,6 @@ class _HomeState extends State<Home> {
         );
       }
       await Geolocator.requestPermission();
-      // await Geolocator.openAppSettings();
-      // await Geolocator.openLocationSettings();
     }
 
     if (locationPermission == LocationPermission.deniedForever) {
@@ -139,12 +128,21 @@ class _HomeState extends State<Home> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const FirstScreenChatBot(),
-                          ),
-                        );
+                        if (messages.isEmpty) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const FirstScreenChatBot(),
+                            ),
+                          );
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ChatBot(),
+                            ),
+                          );
+                        }
                       },
                       child: Image.asset(
                         'assets/images/implementasi_ai/chat_bot/button_chat_bot.png',

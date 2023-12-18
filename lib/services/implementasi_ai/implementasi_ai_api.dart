@@ -17,7 +17,7 @@ class ImplementasiAiAPI {
       final response = await dio.post(
         '$baseUrl/chatbot',
         data: {
-          "message": message,
+          "message": 'Jawab dalam bahasa indonesia. $message',
         },
       );
       print('After Dio API call');
