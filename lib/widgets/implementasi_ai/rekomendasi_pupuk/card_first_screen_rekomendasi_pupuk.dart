@@ -1,4 +1,4 @@
-import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/result_screen_rekomendasi_tanaman.dart';
+import 'package:capstone_project/screens/implementasi_ai/rekomendasi_pupuk/result_screen_rekomendasi_pupuk.dart';
 import 'package:capstone_project/services/implementasi_ai/implementasi_ai_api.dart';
 import 'package:flutter/material.dart';
 
@@ -30,23 +30,13 @@ class CardFirstScreenRekomendasiPupuk extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Image.asset(
-                  'assets/images/implementasi_ai/tanaman.png',
-                  width: 350.0,
-                  height: 350.0,
-                ),
+                child: Image.asset('assets/images/implementasi_ai/tanaman.png'),
               ),
               const SizedBox(height: 16),
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                ),
-                child: Text(
-                  'Memberikan rekomendasi jenis dan jumlah pupuk yang tepat untuk tanaman',
-                  style: TextStyle(
-                    fontSize: 18.7,
-                  ),
-                  textAlign: TextAlign.justify,
+              const Text(
+                'Cari Pupuk yang ingin diketahui',
+                style: TextStyle(
+                  fontSize: 20,
                 ),
               ),
               const SizedBox(height: 16),
@@ -55,7 +45,7 @@ class CardFirstScreenRekomendasiPupuk extends StatelessWidget {
                 child: TextField(
                   controller: _textFieldController,
                   decoration: const InputDecoration(
-                    hintText: 'Masukkan nama tanaman',
+                    hintText: 'Masukkan nama Pupuk',
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -70,12 +60,13 @@ class CardFirstScreenRekomendasiPupuk extends StatelessWidget {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ResultScreenRekomendasiTanaman(
+                        builder: (context) => ResultScreenRekomendasiPupuk(
                             resultText: result.data.response),
                       ),
                       (route) => false,
                     );
                   } catch (e) {
+                    print('Error: $e');
                     rethrow;
                   }
                 },

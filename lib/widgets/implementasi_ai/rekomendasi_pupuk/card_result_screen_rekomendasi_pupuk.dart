@@ -45,8 +45,7 @@ class CardResultScreenRekomendasiPupuk extends StatelessWidget {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              const FirstScreenRekomendasiPupuk(),
+                          builder: (context) => FirstScreenRekomendasiPupuk(),
                         ),
                         (route) => false,
                       );
