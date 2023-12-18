@@ -1,9 +1,4 @@
-import 'dart:ffi';
-
 import 'package:capstone_project/data/home_text_style.dart';
-import 'package:capstone_project/models/informasi_cuaca/current_weather_model.dart';
-import 'package:capstone_project/services/informasi_cuaca/current_weather_api.dart';
-import 'package:capstone_project/widgets/informasi_cuaca/temprature_home.dart';
 import 'package:flutter/material.dart';
 
 List<String> imgBackground = [
@@ -95,28 +90,28 @@ class HeaderHome extends StatelessWidget {
         //               SizedBox(
         //                 width: 310,
         //                 height: 60,
-        //                 child: ListView.builder(
-        //                   scrollDirection: Axis.horizontal,
-        //                   itemCount: 4,
-        //                   itemBuilder: (BuildContext context, int index) {
-        //                     return Padding(
-        //                       padding: const EdgeInsets.only(right: 54),
-        //                       child: Row(
-        //                         children: [
-        //                           Column(
-        //                             children: [
-        //                               Image(
-        //                                 image: AssetImage(imagesLabel[index]),
-        //                               ),
-        //                               const SizedBox(
-        //                                 height: 4,
-        //                               ),
-        //                               BodySmall(text: label[index])
-        //                             ],
-        //                           )
-        //                         ],
-        //                       ),
-        //                     );
+        // child: ListView.builder(
+        //   scrollDirection: Axis.horizontal,
+        //   itemCount: 4,
+        //   itemBuilder: (BuildContext context, int index) {
+        //     return Padding(
+        //       padding: const EdgeInsets.only(right: 54),
+        //       child: Row(
+        //         children: [
+        //           Column(
+        //             children: [
+        //               Image(
+        //                 image: AssetImage(imagesLabel[index]),
+        //               ),
+        //               const SizedBox(
+        //                 height: 4,
+        //               ),
+        //               BodySmall(text: label[index])
+        //             ],
+        //           )
+        //         ],
+        //       ),
+        //     );
         //                   },
         //                 ),
         //               ),
@@ -189,48 +184,48 @@ class HeaderHome extends StatelessWidget {
                   SizedBox(
                     width: 310,
                     height: 60,
-                    // child: ListView.builder(
-                    //   scrollDirection: Axis.horizontal,
-                    //   itemCount: 4,
-                    //   itemBuilder: (BuildContext context, int index) {
-                    //     return Padding(
-                    //       padding: const EdgeInsets.only(right: 54),
-                    //       child: Row(
-                    //         children: [
-                    //           Column(
-                    //             children: [
-                    //               Image(
-                    //                 image: AssetImage(imagesLabel[index]),
-                    //               ),
-                    //               const SizedBox(
-                    //                 height: 4,
-                    //               ),
-                    //               BodySmall(text: label[index])
-                    //             ],
-                    //           )
-                    //         ],
-                    //       ),
-                    //     );
-                    //   },
-                    // ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 54),
-                      child: Row(
-                        children: [
-                          Column(
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 4,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 54),
+                          child: Row(
                             children: [
-                              Image(
-                                image: AssetImage(imagesLabel[0]),
-                              ),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              BodySmall(text: label[0])
+                              Column(
+                                children: [
+                                  Image(
+                                    image: AssetImage(imagesLabel[index]),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  BodySmall(text: label[index])
+                                ],
+                              )
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        );
+                      },
                     ),
+                    // child: Padding(
+                    //   padding: const EdgeInsets.only(right: 54),
+                    //   child: Row(
+                    //     children: [
+                    //       Column(
+                    //         children: [
+                    //           Image(
+                    //             image: AssetImage(imagesLabel[0]),
+                    //           ),
+                    //           const SizedBox(
+                    //             height: 4,
+                    //           ),
+                    //           BodySmall(text: label[0])
+                    //         ],
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                   ),
                   const SizedBox(
                     height: 12,

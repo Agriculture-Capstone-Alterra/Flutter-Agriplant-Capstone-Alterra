@@ -114,15 +114,4 @@ class Message {
   Message({required this.text, required this.isMe, required this.timestamp});
 }
 
-List<Message> messages = [
-  Message(
-    text:
-        'Selamat datang di Chatbot Pertanian Kami! Bagaimana saya bisa membantu Anda hari ini?',
-    isMe: false,
-    timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
-  ),
-  Message(
-      text: 'Silakan ketik pertanyaan atau kata kunci untuk memulai.',
-      isMe: false,
-      timestamp: DateTime.now().subtract(const Duration(minutes: 5))),
-];
+List<Message> messages = [];

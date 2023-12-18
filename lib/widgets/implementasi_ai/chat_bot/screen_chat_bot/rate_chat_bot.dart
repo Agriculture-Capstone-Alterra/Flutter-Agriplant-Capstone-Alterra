@@ -12,12 +12,12 @@ class _RateChatBotState extends State<RateChatBot> {
       "https://img.id.my-best.com/product_images/e252dc0caddfb4eee8ef54412dcc7466.png?ixlib=rails-4.3.1&q=70&lossless=0&w=800&h=800&fit=clip&s=13bd51345ee9a4cd89ba173628fe451e";
   bool isThumbUpPressed = false;
   bool isThumbDownPressed = false;
-  bool isVisible = true;
+  bool isEnable = true;
 
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: isVisible,
+      visible: isEnable,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
@@ -93,7 +93,7 @@ class _RateChatBotState extends State<RateChatBot> {
                         setState(() {
                           isThumbUpPressed = false;
 
-                          isVisible = false;
+                          isEnable = false;
                         });
                       });
                     },
@@ -117,7 +117,7 @@ class _RateChatBotState extends State<RateChatBot> {
                         setState(() {
                           isThumbDownPressed = false;
 
-                          isVisible = false;
+                          isEnable = false;
                         });
                       });
                     },
