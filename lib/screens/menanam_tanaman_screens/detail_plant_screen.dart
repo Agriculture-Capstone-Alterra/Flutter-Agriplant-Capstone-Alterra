@@ -32,9 +32,10 @@ class _DetailPlantState extends State<DetailPlant> {
           body: StreamBuilder(
             stream: Stream.fromFuture(PlantApi().getPlantById(id: plantProvider.idPlant)),
             builder: (_, snapshot){
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
+              // if (snapshot.connectionState == ConnectionState.waiting) {
+              //   return Center(child: CircularProgressIndicator());
+              // } else
+              if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               }else if (snapshot.hasData) {
                 // Memeriksa apakah data yang diterima memiliki struktur yang sesuai
@@ -65,7 +66,7 @@ class _DetailPlantState extends State<DetailPlant> {
                   return Center(child: Text('Data tidak valid.'));
                 }
               } else {
-                return Center(child: Text('Tidak ada data.'));
+                return Center(child: CircularProgressIndicator(),);
               }
             }
           ),
@@ -97,9 +98,11 @@ class _DetailPlantState extends State<DetailPlant> {
     return ListView(
       children: [
         DetailPlantImage(image: image),
+
         const SizedBox(
           height: 16,
         ),
+
         DetailPlantExplanation(
           aboutPlantColor: provider.aboutPlantColor,
           plantName: plantName,
@@ -111,23 +114,23 @@ class _DetailPlantState extends State<DetailPlant> {
           techIcon: provider.techIcon,
           varietyIcon: provider.varietyIcon,
         ),
-        const SizedBox(
-          height: 46,
-        ),
+
+        const SizedBox(height: 46,),
+
         PlantingTools(
           toolTextHead: provider.toolTextHead,
           plantingToolsList: plantingToolsList,
         ),
-        const SizedBox(
-          height: 16,
-        ),
+
+        const SizedBox(height: 16,),
+
         PlantingGuides(
           guideTextHead: provider.guideTextHead,
           plantingGuidesList: plantingGuidelsList,
         ),
-        const SizedBox(
-          height: 16,
-        ),
+
+        const SizedBox(height: 16,),
+
         PlantTimes(
           headText: provider.musimTextHead,
           subHeadKemarau: provider.subHeadKemarau,
@@ -137,9 +140,9 @@ class _DetailPlantState extends State<DetailPlant> {
           rainySeasonStartPlant: rainySeasonStartPlant,
           rainySeasonFinishPlant: rainySeasonFinishPlant,
         ),
-        const SizedBox(
-          height: 16,
-        ),
+
+        const SizedBox(height: 16,),
+
         Informations(
           aboutFertilizerTextHead: provider.aboutFertilizerTextHead,
           aboutPestTextHead: provider.aboutPestTextHead,
@@ -150,10 +153,12 @@ class _DetailPlantState extends State<DetailPlant> {
           customExpandedIconPest: provider.customExpandedIconPest,
           onExpansionChangedPest: (bool expanded){provider.onExpansionChangedPest(expanded);},
         ),
+
         const SizedBox(height: 28,),
+
         MulaiMenanamButton(
           mulaiMenanamButton: provider.mulaiMenanamButton,
-          buttonColorMulaiMenanamButton: provider.buttonColorMulaiMenanamButton,
+          menanamButtonColor: provider.menanamButtonColor,
           onTap: (){
             provider.goToPlantingForm(
               context: context,
@@ -162,6 +167,7 @@ class _DetailPlantState extends State<DetailPlant> {
             );
           },
         ),
+
         const SizedBox(height: 28,),
       ],
     );

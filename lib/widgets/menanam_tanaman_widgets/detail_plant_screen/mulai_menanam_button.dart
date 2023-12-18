@@ -3,13 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MulaiMenanamButton extends StatelessWidget {
   String mulaiMenanamButton;
-  Color buttonColorMulaiMenanamButton;
+  Color menanamButtonColor;
   Function() onTap;
 
   MulaiMenanamButton({
     Key? key,
     required this.mulaiMenanamButton,
-    required this.buttonColorMulaiMenanamButton,
+    required this.menanamButtonColor,
     required this.onTap,
   }) : super(key: key);
 
@@ -21,7 +21,7 @@ class MulaiMenanamButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: buttonColorMulaiMenanamButton,
+          color: menanamButtonColor,
         ),
         child: Center(
           child: Text(

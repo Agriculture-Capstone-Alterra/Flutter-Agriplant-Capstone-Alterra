@@ -1,7 +1,7 @@
 import 'package:capstone_project/models/all_plants_model.dart';
 import 'package:capstone_project/providers/plant_reminder_provider.dart';
 import 'package:capstone_project/services/plant_api.dart';
-import 'package:capstone_project/widgets/menanam_tanaman_widgets/all_plant_screen/search_all_plants.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/text_field/search_reminder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -25,12 +25,7 @@ class _PlantReminderState extends State<PlantReminder> {
               ),),
             body: ListView(
               children: [
-                SearchAllPlant(
-                  icon: plantReminderProvider.searchIcon,
-                  searchAllPlantController: plantReminderProvider.searchAllPlantController,
-                  searchAllPlantHint: plantReminderProvider.searchAllPlantHint,
-                  onChanged: (){},
-                ),
+                SearchAllPlants(), 
 
                 const SizedBox(height: 46,),
                 StreamBuilder(
@@ -58,6 +53,11 @@ class _PlantReminderState extends State<PlantReminder> {
                             itemCount: plantData.data.length,
                             itemBuilder: (_, index){
                               final datum = plantData.data[index];
+                              final bool matchesSearch = datum.name.toLowerCase().contains(plantReminderProvider.searchQuery.toLowerCase());
+
+                              if (!matchesSearch) {
+                              return Container(); // Return an empty container if it doesn't match the search
+                              }
                               return GestureDetector(
                                 child: Container(
                                   decoration: BoxDecoration(

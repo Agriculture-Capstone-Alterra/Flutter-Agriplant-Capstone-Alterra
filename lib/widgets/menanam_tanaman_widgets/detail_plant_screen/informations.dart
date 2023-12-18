@@ -40,7 +40,13 @@ class Informations extends StatelessWidget {
             Text('+', style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.w600),):
             Text('-', style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.w600),),
             children: [
-              ListTile(title: Text('info pupuk'),)
+              ListTile(
+                leading: Text(
+                  fertilizerInfo,
+                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400),
+                  textAlign: TextAlign.start,
+                ),
+              ),
             ],
             onExpansionChanged: onExpansionChangedFertilizer,
           ),
@@ -53,7 +59,13 @@ class Informations extends StatelessWidget {
             Text('+', style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.w600),):
             Text('-', style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.w600),),
             children: [
-              ListTile(title: Text('tentang hama'),)
+              ListTile(
+                leading: Text(
+                  pestInfo,
+                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400),
+                  textAlign: TextAlign.start,
+                ),
+              ),
             ],
             onExpansionChanged: onExpansionChangedPest,
           ),
