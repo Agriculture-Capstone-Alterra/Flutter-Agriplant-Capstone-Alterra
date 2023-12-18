@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class InputTanggalMenanam extends StatefulWidget {
-  const InputTanggalMenanam({Key? key}) : super(key: key);
+  Color formBorderColor;
+  String date;
+  Function() chooseDate;
+
+  InputTanggalMenanam({
+    Key? key,
+    required this.formBorderColor,
+    required this.date,
+    required this.chooseDate,
+  }) : super(key: key);
 
   @override
   State<InputTanggalMenanam> createState() => _InputTanggalMenanamState();
@@ -15,14 +24,20 @@ class _InputTanggalMenanamState extends State<InputTanggalMenanam> {
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: Colors.black),
+        border: Border.all(color: widget.formBorderColor, width: 1,),
       ),
       child: Row(
         children: [
           Expanded(
-            child: Text('DateTime.noww'),
+            child: Text(widget.date),
           ),
-          Icon(Icons.calendar_today_sharp)
+          GestureDetector(
+            child: Icon(
+              Icons.calendar_today_sharp,
+              color: widget.formBorderColor,
+            ),
+            onTap: widget.chooseDate,
+          )
         ],
       ),
     );

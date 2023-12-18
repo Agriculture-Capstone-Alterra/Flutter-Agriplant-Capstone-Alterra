@@ -1,5 +1,6 @@
 import 'package:capstone_project/providers/plant_provider.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_form_screen/button_input_form.dart';
+import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_form_screen/form_head.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_form_screen/input_jumlah_bibit.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_form_screen/input_tanggal_menanam.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_form_screen/input_ukuran_pertumbuhan.dart';
@@ -30,9 +31,10 @@ class _PlantingFormScreenState extends State<PlantingFormScreen> {
           body: StreamBuilder(
             stream: Stream.fromFuture(PlantApi().getPlantById(id: plantProvider.idPlant)),
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
+              // if (snapshot.connectionState == ConnectionState.waiting) {
+              //   return Center(child: CircularProgressIndicator());
+              // } else
+              if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else if (snapshot.hasData) {
                 // Memeriksa apakah data yang diterima memiliki struktur yang sesuai
@@ -48,7 +50,7 @@ class _PlantingFormScreenState extends State<PlantingFormScreen> {
                   return Center(child: Text('Data tidak valid.'));
                 }
               } else {
-                return Center(child: Text('Tidak ada data.'));
+                return Center(child: CircularProgressIndicator());
               }
             },
           ),
@@ -58,47 +60,66 @@ class _PlantingFormScreenState extends State<PlantingFormScreen> {
   }
 
   Widget buildItem({
-    required dynamic provider,
+    required dynamic provider, //data dari consumer bisa dikirim ke variabel provider tapi tidak efektif
     required String plantImage,
     required String plantName,
   }){
-    return ListView(
-      children: [
-        PlantImageForm(image: plantImage),
+    return Consumer<PlantProvider>(
+      builder: (context, plantProvider, child){
+        return ListView(
+          children: [
+            PlantImageForm(image: plantImage),
 
-        const SizedBox(height: 20,),
+            const SizedBox(height: 20,),
 
-        PlantName(plantName: plantName),
+            PlantName(plantName: plantName),
 
-        const SizedBox(height: 14,),
+            const SizedBox(height: 14,),
 
-        //form input pengukuran
-        Text(provider.formTextHead, style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700),),
+            FormHead(formTextHead: plantProvider.formTextHead),
 
-        const SizedBox(height: 10,),
+            const SizedBox(height: 10,),
 
-        InputJumlahBibit(
-          jumlahBibitController: provider.jumlahBibitController,
-          jumlahBibitHint: provider.jumlahBibitHint,
-          jumlahBibitHintColor: provider.jumlahBibitHintColor,
-          jumlahBibitLabel: provider.jumlahBibitLabel,
-          jumlahBibitLabelColor: provider.jumlahBibitLabelColor,
-          inputBibitWarntext: provider.inputBibitWarntext,
-          textFieldColor: provider.textFieldColor,
-        ),
+            InputJumlahBibit(
+              jumlahBibitController: plantProvider.jumlahBibitController,
+              jumlahBibitHint: plantProvider.jumlahBibitHint,
+              jumlahBibitHintColor: plantProvider.jumlahBibitHintColor,
+              jumlahBibitLabel: plantProvider.jumlahBibitLabel,
+              jumlahBibitLabelColor: plantProvider.formTextColor,
+              inputBibitWarntext: plantProvider.inputBibitWarntext,
+              textFieldColor: plantProvider.formBorderColor,
+            ),
 
-        const SizedBox(height: 18,),
+            const SizedBox(height: 18,),
 
-        InputUkuranPertumbuhan(),
+            InputUkuranPertumbuhan(
+              inputUkuranPertumbuhanTextHead: plantProvider.inputUkuranPertumbuhanTextHead,
+              formTextColor: plantProvider.formTextColor,
+              formBorderColor: plantProvider.formBorderColor,
+              radio1TitleText: plantProvider.radio1TitleText,
+              radio2TitleText: plantProvider.radio2TitleText,
+              radio3TitleText: plantProvider.radio3TitleText,
+              radioValue: plantProvider.radioValue,
+              inputUkuranPertumbuhanWarntext: plantProvider.inputUkuranPertumbuhanWarntext,
+              onChangedRadioValue: (dynamic value){plantProvider.onChangedRadioValue(value);},
+            ),
 
-        const SizedBox(height: 18,),
+            const SizedBox(height: 18,),
 
-        InputTanggalMenanam(),
+            InputTanggalMenanam(
+              formBorderColor: plantProvider.formBorderColor,
+              date: plantProvider.formattedDate,
+              chooseDate: (){return plantProvider.chooseDate(context);},
+            ),
 
-        const SizedBox(height: 25,),
+            const SizedBox(height: 25,),
 
-        ButtonInputForm(),
-      ],
+            ButtonInputForm(
+              menanamButtonColor: plantProvider.menanamButtonColor,
+            ),
+          ],
+        );
+      },
     );
   }
 }

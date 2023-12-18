@@ -3,6 +3,7 @@ import 'package:capstone_project/screens/menanam_tanaman_screens/detail_plant_sc
 import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../screens/menanam_tanaman_screens/planting_form_screen.dart';
 
 class PlantProvider extends ChangeNotifier{
@@ -109,7 +110,7 @@ class PlantProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  Color buttonColorMulaiMenanamButton = Color(0xff36725D);
+  Color menanamButtonColor = Color(0xff36725D);
   String mulaiMenanamButton = 'Menanam';
 
   void goToPlantingForm({
@@ -128,16 +129,46 @@ class PlantProvider extends ChangeNotifier{
   }
 
   //planting form
+  Color formBorderColor = Color(0xff6EB99F);
+  Color formTextColor = Color(0xff36725D);
+
   String appBarPlantingFormText = 'Formulir Menanam';
   String plantImagePlantingForm = 'code anjing';
   String formTextHead = 'Mohon isi data terlebih dahulu';
-  Color inputLabelTextColor = Color(0xff36725D);
-  Color inputLabelSubtitleTextColor = Color(0xff36725D);
   TextEditingController jumlahBibitController = TextEditingController();
   String jumlahBibitHint = 'input';
   Color jumlahBibitHintColor = Color(0xff295646);
   String jumlahBibitLabel = 'Jumlah Bibit';
-  Color jumlahBibitLabelColor = Color(0xff36725D);
   String inputBibitWarntext = 'Masukan jumlah bibit yang akan ditanam';
-  Color textFieldColor = Color(0xff6EB99F);
+  String inputUkuranPertumbuhanTextHead = 'Mengukur Pertumbuhan';
+  String radioValue = '';
+  String inputUkuranPertumbuhanWarntext = 'Pilih pengukuran yang sesuai untuk tanaman.';
+
+  void onChangedRadioValue(String value){
+    this.radioValue = value;
+    print('radioValue : $radioValue');
+    notifyListeners();
+  }
+
+  String radio1TitleText = 'Berat';
+  String radio2TitleText = 'Tinggi';
+  String radio3TitleText = 'Jumlah';
+  DateTime date = DateTime.now();
+  String formattedDate = DateFormat.yMMMd().format(DateTime.now());
+
+  Future chooseDate(BuildContext context) async{
+    DateTime? setDate = await showDatePicker(
+      context: context,
+      initialDate: date,
+      firstDate: DateTime(2022),
+      lastDate: DateTime(2050),
+    );
+
+    if(setDate !=null && setDate != date){
+      date = setDate;
+      formattedDate = DateFormat.yMMMd().format(date);
+      notifyListeners();
+    }
+    notifyListeners();
+  }
 }
