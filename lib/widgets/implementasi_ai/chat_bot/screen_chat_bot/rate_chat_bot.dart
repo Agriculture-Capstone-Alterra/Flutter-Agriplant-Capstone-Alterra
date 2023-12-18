@@ -9,7 +9,7 @@ class RateChatBot extends StatefulWidget {
 
 class _RateChatBotState extends State<RateChatBot> {
   final String profileChatBot =
-      "https://img.id.my-best.com/product_images/e252dc0caddfb4eee8ef54412dcc7466.png?ixlib=rails-4.3.1&q=70&lossless=0&w=800&h=800&fit=clip&s=13bd51345ee9a4cd89ba173628fe451e";
+      "assets/images/implementasi_ai/chat_bot/profile_chat_bot.png";
   bool isThumbUpPressed = false;
   bool isThumbDownPressed = false;
   bool isEnable = true;
@@ -30,13 +30,16 @@ class _RateChatBotState extends State<RateChatBot> {
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(126.0),
-                        child: Image.network(
-                          profileChatBot,
-                          width: 126,
-                          height: 126,
-                          fit: BoxFit.fill,
+                      Transform.scale(
+                        scale: 0.7,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(126.0),
+                          child: Image.asset(
+                            profileChatBot,
+                            width: 120,
+                            height: 120,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                       Align(

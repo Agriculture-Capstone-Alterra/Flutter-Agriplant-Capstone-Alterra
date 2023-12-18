@@ -117,6 +117,8 @@ class _PlantingFormScreenState extends State<PlantingFormScreen> {
             ButtonInputForm(
               menanamButtonColor: plantProvider.menanamButtonColor,
             ),
+            
+            const SizedBox(height: 25,),
           ],
         );
       },

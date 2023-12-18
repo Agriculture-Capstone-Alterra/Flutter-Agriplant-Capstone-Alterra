@@ -49,7 +49,7 @@ class CardFirstScreenChatBot extends StatelessWidget {
                       )),
                 ),
                 Align(
-                  alignment: Alignment.topCenter,
+                  alignment: const Alignment(0, -1.13),
                   child: Padding(
                     padding: const EdgeInsets.only(
                       top: 215,
@@ -61,10 +61,10 @@ class CardFirstScreenChatBot extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: Color(0xFF295646),
                       ),
-                      child: const Icon(
-                        Icons.message,
-                        color: Colors.white,
-                        size: 32,
+                      child: Transform.scale(
+                        scale: 0.5,
+                        child: Image.asset(
+                            'assets/images/implementasi_ai/chat_bot/message.png'),
                       ),
                     ),
                   ),

@@ -56,8 +56,8 @@ class _ChatBotState extends State<ChatBot> {
                 itemBuilder: (context, index) {
                   return MessageBubbleChatBot(
                     message: messages[index],
-                    profileImageUrl: !messages[index].isMe
-                        ? 'https://img.id.my-best.com/product_images/e252dc0caddfb4eee8ef54412dcc7466.png?ixlib=rails-4.3.1&q=70&lossless=0&w=800&h=800&fit=clip&s=13bd51345ee9a4cd89ba173628fe451e'
+                    profileImageAsset: !messages[index].isMe
+                        ? 'assets/images/implementasi_ai/chat_bot/profile_chat_bot.png'
                         : '',
                   );
                 },
@@ -103,6 +103,6 @@ class _ChatBotState extends State<ChatBot> {
     } catch (e) {
       print('Error during API call: $e');
       rethrow;
-    }
-  }
+      }
+      }
 }

@@ -7,6 +7,7 @@ import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_tidak_widget.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_ya_widget.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/card/card_time_menyiram_widget.dart';
+import 'package:capstone_project/widgets/pengingat_merawat_tanaman/card/card_timeee_menyiram_widget.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/detail_reminder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -219,7 +220,7 @@ class _TimeReminderState extends State<TimeReminder> {
                         style: ThemeTextStyle().font3,
                       ),
                       const SizedBox(width: 16),
-                      const CardTimeMenyiramWidget(),
+                      const CardTimeeeeMenyiramWidget(),
                       const SizedBox(width: 7),
                       Text(
                         "AM",
@@ -251,7 +252,7 @@ class _TimeReminderState extends State<TimeReminder> {
                         style: ThemeTextStyle().font3,
                       ),
                       const SizedBox(width: 16),
-                      const CardTimeMenyiramWidget(),
+                      const CardTimeeeeMenyiramWidget(),
                       const SizedBox(width: 7),
                       Text(
                         "PM",
@@ -326,11 +327,15 @@ class _TimeReminderState extends State<TimeReminder> {
 
           ),
           trailing: IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () {
-              _deleteReminder(reminders[index]["id"]);
-            },
-          ),
+          icon: Icon(
+        Icons.delete,
+        color: Colors.red, // Change the color to your desired color
+      ),
+  onPressed: () {
+    _deleteReminder(reminders[index]["id"]);
+  },
+),
+
         ),
       );
     },
