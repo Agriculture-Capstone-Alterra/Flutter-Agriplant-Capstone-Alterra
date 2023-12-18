@@ -3,12 +3,12 @@ import 'package:intl/intl.dart';
 
 class MessageBubbleChatBot extends StatefulWidget {
   final Message message;
-  final String profileImageUrl;
+  final String profileImageAsset;
 
   const MessageBubbleChatBot({
     Key? key,
     required this.message,
-    required this.profileImageUrl,
+    required this.profileImageAsset,
   }) : super(key: key);
 
   @override
@@ -36,9 +36,12 @@ class _MessageBubbleChatBotState extends State<MessageBubbleChatBot> {
                   padding: const EdgeInsets.only(
                     right: 8.0,
                   ),
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(widget.profileImageUrl),
-                    radius: 14,
+                  child: Transform.scale(
+                    scale: 0.9,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage(widget.profileImageAsset),
+                      radius: 10,
+                    ),
                   ),
                 ),
               Container(
@@ -111,7 +114,11 @@ class Message {
   final bool isMe;
   final DateTime timestamp;
 
-  Message({required this.text, required this.isMe, required this.timestamp});
+  Message({
+    required this.text,
+    required this.isMe,
+    required this.timestamp,
+  });
 }
 
 List<Message> messages = [];
