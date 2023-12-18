@@ -33,7 +33,7 @@ class _FirstScreenChatBotState extends State<FirstScreenChatBot> {
       ),
       body: const Center(
         child: CardFirstScreenChatBot(),
-      ),
-    );
-  }
+     ),
+);
+}
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CardTimeMenyiramWidget extends StatelessWidget {
-  const CardTimeMenyiramWidget({
+class CardTimeeeeMenyiramWidget extends StatelessWidget {
+  const CardTimeeeeMenyiramWidget({
     Key? key,
   }) : super(key: key);
 
@@ -23,7 +23,7 @@ class CardTimeMenyiramWidget extends StatelessWidget {
         height: 30,
         child: Center(
           child: Text(
-            '05.00',
+            '06.00',
             style: GoogleFonts.inter(
               fontSize: 15,
               fontWeight: FontWeight.w400,

@@ -1,4 +1,7 @@
 
+import 'package:capstone_project/widgets/informasi_cuaca/glassmorph_list_hari_detail_cuaca.dart';
+import 'package:capstone_project/widgets/informasi_cuaca/glassmorph_temprature_detail_cuaca.dart';
+import 'package:capstone_project/widgets/informasi_cuaca/header_detail_cuaca.dart';
 import 'package:capstone_project/widgets/informasi_cuaca/lokasi_detail_cuaca.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -112,8 +115,18 @@ class _WeatherDetailState extends State<WeatherDetail> {
                   fit: BoxFit.cover),
             ),
         child: SingleChildScrollView(
+          child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  top: 2,
+                  right: 16,
+                ),
           child: Column(
             children: [
+              const HeaderDetailCuaca(),
+                    const SizedBox(
+                      height: 16,
+                    ),
               
               
               LokasiDetailCuaca(
@@ -121,7 +134,17 @@ class _WeatherDetailState extends State<WeatherDetail> {
                 longitude: longitudeValue,
                 currentPlace: currentPlace,
               ),
-             
+              const SizedBox(
+                      height: 16,
+                    ),
+             const TempratureDetailCuaca(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ListHariDetailCuaca(),
+                    const SizedBox(
+                      height: 14,
+                    ),
               
               
              
@@ -131,6 +154,7 @@ class _WeatherDetailState extends State<WeatherDetail> {
       ),
         )
         )
+      )
     );
   }
 }
