@@ -32,9 +32,10 @@ class _DetailPlantState extends State<DetailPlant> {
           body: StreamBuilder(
             stream: Stream.fromFuture(PlantApi().getPlantById(id: plantProvider.idPlant)),
             builder: (_, snapshot){
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
+              // if (snapshot.connectionState == ConnectionState.waiting) {
+              //   return Center(child: CircularProgressIndicator());
+              // } else
+              if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               }else if (snapshot.hasData) {
                 // Memeriksa apakah data yang diterima memiliki struktur yang sesuai
@@ -65,7 +66,7 @@ class _DetailPlantState extends State<DetailPlant> {
                   return Center(child: Text('Data tidak valid.'));
                 }
               } else {
-                return Center(child: Text('Tidak ada data.'));
+                return Center(child: CircularProgressIndicator(),);
               }
             }
           ),
