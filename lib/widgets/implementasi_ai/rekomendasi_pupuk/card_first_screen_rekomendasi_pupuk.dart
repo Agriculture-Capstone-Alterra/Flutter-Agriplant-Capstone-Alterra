@@ -41,10 +41,11 @@ class _CardFirstScreenRekomendasiPupukState
               ),
               const SizedBox(height: 16),
               const Text(
-                'Cari Pupuk yang ingin diketahui',
+                'Saran jenis dan jumlah Pupuk untuk tanaman',
                 style: TextStyle(
                   fontSize: 20,
                 ),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
               Padding(
@@ -52,7 +53,7 @@ class _CardFirstScreenRekomendasiPupukState
                 child: TextField(
                   controller: _textFieldController,
                   decoration: const InputDecoration(
-                    hintText: 'Masukkan nama Pupuk',
+                    hintText: 'Masukkan nama Tanaman',
                     border: OutlineInputBorder(),
                   ),
                 ),
