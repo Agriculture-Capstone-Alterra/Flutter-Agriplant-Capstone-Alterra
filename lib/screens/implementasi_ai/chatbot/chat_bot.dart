@@ -103,6 +103,6 @@ class _ChatBotState extends State<ChatBot> {
     } catch (e) {
       print('Error during API call: $e');
       rethrow;
-    }
-  }
+      }
+      }
 }

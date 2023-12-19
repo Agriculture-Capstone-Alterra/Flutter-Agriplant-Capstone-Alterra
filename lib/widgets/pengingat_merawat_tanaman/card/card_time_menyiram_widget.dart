@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CardTimeMenyiramWidget extends StatelessWidget {
   const CardTimeMenyiramWidget({
@@ -12,14 +13,24 @@ class CardTimeMenyiramWidget extends StatelessWidget {
       elevation: 7,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
-        side: const BorderSide( 
-          color: Colors.black, 
-          width: 1.0, 
+        side: const BorderSide(
+          color: Colors.black,
+          width: 1.0,
         ),
       ),
-      child: const SizedBox(
+      child: Container(
         width: 60,
         height: 30,
+        child: Center(
+          child: Text(
+            '05.00',
+            style: GoogleFonts.inter(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            ),
+          ),
+        ),
       ),
     );
   }
