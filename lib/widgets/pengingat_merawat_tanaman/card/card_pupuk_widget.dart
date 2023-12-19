@@ -17,25 +17,25 @@ class CardPupukWidget extends StatelessWidget {
       child: SizedBox(
         width: 275,
         height: 170,
-      child: Padding(
-        padding: const EdgeInsets.all(0.0),
-        child: Column(
-          children: [
-            Image.asset(
+        child: Padding(
+          padding: const EdgeInsets.all(0.0),
+          child: Column(
+            children: [
+             Image.asset(
               'assets/images/pengingat_merawat_tanaman/pengingat_pupuk.png',
               width: 275, 
               height: 126, 
             ),
-          const SizedBox(height: 7), 
-          Text(
-            "Pengingat Memberi Pupuk",
-            style: ThemeTextStyle().reminder2,
+
+              const SizedBox(height: 7), 
+              Text(
+                "Pengingat Memberi Pupuk",
+                style: ThemeTextStyle().reminder2,
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
+        ),
       ),
     );
   }
 }
-

@@ -19,7 +19,7 @@ class ButtonYaWidget extends StatelessWidget {
         backgroundColor: ThemeColor().greenColor,
         padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 13.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0), // Adjust the radius as needed
+          borderRadius: BorderRadius.circular(30.0), 
         ),
       ),
       onPressed: onPressed,

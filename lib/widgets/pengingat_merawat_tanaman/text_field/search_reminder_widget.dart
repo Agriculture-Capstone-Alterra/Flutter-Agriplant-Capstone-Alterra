@@ -12,7 +12,6 @@ class SearchAllPlants extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: TextField(
             onChanged: (query) {
-              // Update the search query in the provider
               plantReminderProvider.updateSearchQuery(query);
             },
             decoration: InputDecoration(
@@ -21,22 +20,22 @@ class SearchAllPlants extends StatelessWidget {
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25.0),
                 borderSide: const BorderSide(
-                  color: Colors.black, // Set the border color to black
-                  width: 1.5,           // Set the border width
+                  color: Colors.black, 
+                  width: 1.5,           
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25.0),
                 borderSide: const BorderSide(
-                  color: Colors.black, // Set the border color to black
-                  width: 1.5,           // Set the border width
+                  color: Colors.black, 
+                  width: 1.5,           
                 ),
               ),
               disabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25.0),
                 borderSide: const BorderSide(
-                  color: Color.fromARGB(255, 0, 0, 0), // Set the border color for disabled state
-                  width: 1.5,           // Set the border width for disabled state
+                  color: Color.fromARGB(255, 0, 0, 0), 
+                  width: 1.5,       
                 ),
               ),
             ),

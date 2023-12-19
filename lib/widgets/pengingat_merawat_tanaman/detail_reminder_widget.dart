@@ -16,17 +16,17 @@ class DetailReminder extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 44.0),
-                  child: Text(
-                    plantName,
-                    style: ThemeTextStyle().font1,
-                  ),
-                ),
-              ],
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 44.0),
+              child: Text(
+                plantName,
+                style: ThemeTextStyle().font1,
+              ),
             ),
+          ],
+        ),
       ],
     );
   }
