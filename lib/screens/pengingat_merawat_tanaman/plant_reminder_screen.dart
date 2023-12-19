@@ -36,7 +36,6 @@ class _PlantReminderState extends State<PlantReminder> {
                     } else if (snapshot.hasError) {
                       return Center(child: Text('Error: ${snapshot.error}'));
                     } else if (snapshot.hasData) {
-                      // Memeriksa apakah data yang diterima memiliki struktur yang sesuai
                       if (snapshot.data != null) {
                         AllPlantsModel plantData = snapshot.data!;
                         return Container(
@@ -56,7 +55,7 @@ class _PlantReminderState extends State<PlantReminder> {
                               final bool matchesSearch = datum.name.toLowerCase().contains(plantReminderProvider.searchQuery.toLowerCase());
 
                               if (!matchesSearch) {
-                              return Container(); // Return an empty container if it doesn't match the search
+                              return Container(); 
                               }
                               return GestureDetector(
                                 child: Container(

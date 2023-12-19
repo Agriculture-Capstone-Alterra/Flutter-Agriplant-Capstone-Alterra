@@ -36,12 +36,11 @@ class _TimeReminderState extends State<TimeReminder> {
   Future<void> _getRemindersData() async {
     try {
       final reminders = await _reminderTimeAPI.getReminders();
-
+    
       setState(() {
         this.reminders = reminders;
       });
 
-      // Scroll to the bottom after data is fetched
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 300),
@@ -56,7 +55,7 @@ class _TimeReminderState extends State<TimeReminder> {
   Future<void> _deleteReminder(String id) async {
   bool confirmDelete = false;
 
-  // Show the confirmation dialog
+  //Alert Dialog Delete
   confirmDelete = await showDialog<bool>(
   context: context,
   builder: (BuildContext context) {
@@ -69,19 +68,19 @@ class _TimeReminderState extends State<TimeReminder> {
           ),
         ),
       ),
-      child: AlertDialog(
-       title: Text(
-          "Yakin ingin menghapus pengingat?",
-          textAlign: TextAlign.center,
-          style: GoogleFonts.inter(
-            fontSize: 20.0, 
-            fontWeight: FontWeight.w600, 
-            color: Colors.black, 
+        child: AlertDialog(
+          title: Text(
+            "Yakin ingin menghapus pengingat?",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.inter(
+              fontSize: 20.0, 
+              fontWeight: FontWeight.w600, 
+              color: Colors.black, 
+            ),
           ),
-        ),
-        content: ButtonBar(
-          alignment: MainAxisAlignment.center,
-          children: [
+          content: ButtonBar(
+            alignment: MainAxisAlignment.center,
+            children: [
              ButtonYaWidget(
               title: 'Ya',
               onPressed: () {
@@ -94,31 +93,16 @@ class _TimeReminderState extends State<TimeReminder> {
                 Navigator.of(context).pop(false);
               },
              ),
-              
-              
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.of(context).pop(true);
-            //   },
-            //   child: const Text("Ya"),
-            // ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.of(context).pop(false);
-            //   },
-            //   child: const Text("Tidak"),
-            // ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
-  },
-) ?? false;
+      );
+    },
+  ) ?? false;
 
-  // If the user confirmed, proceed with deletion
    if (confirmDelete) {
       await _reminderTimeAPI.deleteReminder(id);
-      _getRemindersData(); // Refresh the list after deletion
+      _getRemindersData(); 
     }
   }
   
@@ -126,14 +110,14 @@ class _TimeReminderState extends State<TimeReminder> {
   Widget build(BuildContext context) {
     return Consumer<PlantReminderProvider>(
       builder: (context, plantReminderProvider, child){
-      return Scaffold(
-      appBar: AppBar(
+        return Scaffold(
+          appBar: AppBar(
             title: Text(plantReminderProvider.TimeMenyiramAppBarText,style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w600),),
-          centerTitle: true,
+            centerTitle: true,
           ),
-      body: Column(
-          children: [
-             StreamBuilder(
+          body: Column(
+            children: [
+              StreamBuilder(
                 stream: Stream.fromFuture(PlantApi().getPlantById(id: plantReminderProvider.idPlant)),
                 builder: (_, snapshot){
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -145,14 +129,10 @@ class _TimeReminderState extends State<TimeReminder> {
                     if (snapshot.data != null){
                       // ignore: unnecessary_cast
                       PlantByIdModel plantByIdModel = snapshot.data! as PlantByIdModel;
-                      // PlantImage plantImage = plantByIdModel.
-
                       PlantByIdData plantByIdData = plantByIdModel.data;
                       return buildItem(
                         provider: plantReminderProvider,
-                       
                         plantName: plantByIdData.name);
-                    
                     }else {
                       return const Center(child: Text('Data tidak valid.'));
                     }
@@ -266,92 +246,90 @@ class _TimeReminderState extends State<TimeReminder> {
 
             const SizedBox(height: 25),
             Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 22.0),
-            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  "Tambahan Pengingat",
-                  style: ThemeTextStyle().addReminder,
-                ),
-                const SizedBox(width: 49),
-                ButtonAddReminderMenyiram(
-                  onPressed: () {
-                    print('Button pressed!');
-                  },
+                Padding(
+                  padding: const EdgeInsets.only(left: 22.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Tambahan Pengingat",
+                        style: ThemeTextStyle().addReminder,
+                      ),
+                
+                      const SizedBox(width: 49),
+                      ButtonAddReminderMenyiram(
+                        onPressed: () {
+                          // ignore: avoid_print
+                          print('Button pressed!');
+                        },
+                        ) ,
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
 
-          Expanded(
-  child: ListView.builder(
-    itemCount: reminders.length,
-    itemBuilder: (context, index) {
-      return Card(
-        color: const Color(0xFFFFFFFF), 
-        elevation: 10,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        margin: const EdgeInsets.symmetric(horizontal: 35.0, vertical: 13.0),
-        child: ListTile(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 25.0),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-  Text(
-    reminders[index]["time"],
-    style: GoogleFonts.inter(
-      fontSize: 24,
-      fontWeight: FontWeight.w600,
-      color: Color(0xFF646E82),
+            Expanded(
+              child: ListView.builder(
+                itemCount: reminders.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: const Color(0xFFFFFFFF), 
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    margin: const EdgeInsets.symmetric(horizontal: 35.0, vertical: 13.0),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            reminders[index]["time"],
+                            style: GoogleFonts.inter(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF646E82),
+                            ),
+                          ),
+                          Text(
+                            reminders[index]["description"],
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: const Color(0xFF646E82),
+                            ),
+                          ),
+                        ],
+                      ),
 
-    ),
-  ),
-  Text(
-    reminders[index]["description"],
-    textAlign: TextAlign.center,
-    style: GoogleFonts.inter(
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      color: Color(0xFF646E82),
-    ),
-  ),
-],
-
-
-          ),
-          trailing: IconButton(
-          icon: Icon(
-        Icons.delete,
-        color: Colors.red, // Change the color to your desired color
-      ),
-  onPressed: () {
-    _deleteReminder(reminders[index]["id"]);
-  },
-),
-
+                      trailing: IconButton(
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Colors.red, 
+                        ),
+                        onPressed: () {
+                          _deleteReminder(reminders[index]["id"]);
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       );
-    },
-  ),
-),
-        ],
-      ),
-    );
-  });
-  }
-  }
+    }
+  );
+}}
   
 Widget buildItem({
     required dynamic provider,
     required String plantName,
-    
   }){
     return Column(
       children: [
