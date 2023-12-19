@@ -42,12 +42,18 @@ class CardResultScreenRekomendasiTanaman extends StatelessWidget {
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil(
+                      // Navigator.pushAndRemoveUntil(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => FirstScreenRekomendasiTanaman(),
+                      //   ),
+                      //   (route) => false,
+                      // );
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => FirstScreenRekomendasiTanaman(),
                         ),
-                        (route) => false,
                       );
                     },
                     style: ElevatedButton.styleFrom(

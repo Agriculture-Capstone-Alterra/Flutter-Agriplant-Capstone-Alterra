@@ -42,12 +42,18 @@ class CardResultScreenRekomendasiPupuk extends StatelessWidget {
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil(
+                      // Navigator.pushAndRemoveUntil(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => FirstScreenRekomendasiPupuk(),
+                      //   ),
+                      //   (route) => false,
+                      // );
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => FirstScreenRekomendasiPupuk(),
                         ),
-                        (route) => false,
                       );
                     },
                     style: ElevatedButton.styleFrom(

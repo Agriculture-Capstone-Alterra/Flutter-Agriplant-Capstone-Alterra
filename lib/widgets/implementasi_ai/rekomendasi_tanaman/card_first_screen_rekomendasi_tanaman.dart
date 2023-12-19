@@ -2,12 +2,19 @@ import 'package:capstone_project/screens/implementasi_ai/rekomendasi_tanaman/res
 import 'package:capstone_project/services/implementasi_ai/implementasi_ai_api.dart';
 import 'package:flutter/material.dart';
 
-class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
-  final TextEditingController _textFieldController = TextEditingController();
-
+class CardFirstScreenRekomendasiTanaman extends StatefulWidget {
   CardFirstScreenRekomendasiTanaman({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<CardFirstScreenRekomendasiTanaman> createState() =>
+      _CardFirstScreenRekomendasiTanamanState();
+}
+
+class _CardFirstScreenRekomendasiTanamanState
+    extends State<CardFirstScreenRekomendasiTanaman> {
+  final TextEditingController _textFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,17 +61,20 @@ class CardFirstScreenRekomendasiTanaman extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   try {
-                    final result = await ImplementasiAiAPI().rekomendasiTanaman(
-                      message: _textFieldController.text,
-                    );
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ResultScreenRekomendasiTanaman(
-                            resultText: result.data.response),
-                      ),
-                      (route) => false,
-                    );
+                    if (mounted) {
+                      final result =
+                          await ImplementasiAiAPI().rekomendasiTanaman(
+                        message: _textFieldController.text,
+                      );
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResultScreenRekomendasiTanaman(
+                            resultText: result.data.response,
+                          ),
+                        ),
+                      );
+                    }
                   } catch (e) {
                     print('Error: $e');
                     rethrow;

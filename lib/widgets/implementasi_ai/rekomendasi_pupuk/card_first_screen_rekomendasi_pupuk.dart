@@ -2,12 +2,19 @@ import 'package:capstone_project/screens/implementasi_ai/rekomendasi_pupuk/resul
 import 'package:capstone_project/services/implementasi_ai/implementasi_ai_api.dart';
 import 'package:flutter/material.dart';
 
-class CardFirstScreenRekomendasiPupuk extends StatelessWidget {
-  final TextEditingController _textFieldController = TextEditingController();
-
+class CardFirstScreenRekomendasiPupuk extends StatefulWidget {
   CardFirstScreenRekomendasiPupuk({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<CardFirstScreenRekomendasiPupuk> createState() =>
+      _CardFirstScreenRekomendasiPupukState();
+}
+
+class _CardFirstScreenRekomendasiPupukState
+    extends State<CardFirstScreenRekomendasiPupuk> {
+  final TextEditingController _textFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,17 +61,19 @@ class CardFirstScreenRekomendasiPupuk extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   try {
-                    final result = await ImplementasiAiAPI().rekomendasiPupuk(
-                      message: _textFieldController.text,
-                    );
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ResultScreenRekomendasiPupuk(
-                            resultText: result.data.response),
-                      ),
-                      (route) => false,
-                    );
+                    if (mounted) {
+                      final result = await ImplementasiAiAPI().rekomendasiPupuk(
+                        message: _textFieldController.text,
+                      );
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResultScreenRekomendasiPupuk(
+                            resultText: result.data.response,
+                          ),
+                        ),
+                      );
+                    }
                   } catch (e) {
                     print('Error: $e');
                     rethrow;

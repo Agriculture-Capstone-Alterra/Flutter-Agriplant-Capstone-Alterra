@@ -101,7 +101,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     double latitudeValue = _currentPosition?.latitude ?? 0.0;
     double longitudeValue = _currentPosition?.longitude ?? 0.0;
-    // String hourNow = DateFormat('HH:mm a').format(DateTime.now());
     String currentPlace = _currentAddress ?? "-";
 
     return Scaffold(
