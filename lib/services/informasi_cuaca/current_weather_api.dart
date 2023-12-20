@@ -12,7 +12,7 @@ class CurrentWeatherAPI {
     dio.options.headers['Authorization'] = 'Bearer $token';
     try {
       final response = await dio.get(
-          '$baseUrl/weather/current?latitude=$latitude&longtitude=$longitude');
+          '$baseUrl/weather/current?latitude=$latitude&longitude=$longitude');
       return CurrentWeatherModel.fromJson(response.data);
     } catch (e) {
       rethrow;
