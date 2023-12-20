@@ -116,6 +116,8 @@ class _PlantingFormScreenState extends State<PlantingFormScreen> {
 
             ButtonInputForm(
               menanamButtonColor: plantProvider.menanamButtonColor,
+              menanamButtonText: plantProvider.menanamButtonText,
+              onTap: ()=>plantProvider.goToPlantingPreparationScreen1(context: context),
             ),
             
             const SizedBox(height: 25,),

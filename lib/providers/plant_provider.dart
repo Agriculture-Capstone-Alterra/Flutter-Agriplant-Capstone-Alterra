@@ -1,5 +1,6 @@
 import 'package:capstone_project/screens/menanam_tanaman_screens/all_plant_screen.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/detail_plant_screen.dart';
+import 'package:capstone_project/screens/menanam_tanaman_screens/planting_preparation_screen1.dart';
 import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +119,6 @@ class PlantProvider extends ChangeNotifier{
     // required String plantImagePlantingForm,
     // required String plantName,
   }){
-    plantImagePlantingForm = this.plantImagePlantingForm;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -133,7 +133,6 @@ class PlantProvider extends ChangeNotifier{
   Color formTextColor = Color(0xff36725D);
 
   String appBarPlantingFormText = 'Formulir Menanam';
-  String plantImagePlantingForm = 'code anjing';
   String formTextHead = 'Mohon isi data terlebih dahulu';
   TextEditingController jumlahBibitController = TextEditingController();
   String jumlahBibitHint = 'input';
@@ -171,4 +170,33 @@ class PlantProvider extends ChangeNotifier{
     }
     notifyListeners();
   }
+  String menanamButtonText = 'Tanam';
+
+  void goToPlantingPreparationScreen1({
+    required BuildContext context,
+  }){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PlantingPreparationScreen1(),),
+    );
+    notifyListeners();
+  }
+
+  String appBarPreparationText = 'Menanam';
+  //planting preparation screen1
+  String indicatorNumber1 = '1';
+  String indicatorNumber2 = '2';
+  String indicatorNumber3 = '3';
+  String indicatorNumber4 = '4';
+  String indicatorNumber5 = '5';
+  String indicatorNumber1Text = 'Peralatan';
+  String indicatorNumber2Text = 'Menentukan Tempat';
+  String indicatorNumber3Text = 'Menanam Tanaman';
+  String indicatorNumber4Text = 'Merawat Tanaman';
+  String indicatorNumber5Text = 'Hasil/Panen';
+  String plantingPreparationTextHead = 'Alat yang Dibutuhkan';
+  Color toolItemColor = Color(0xff8BC7B2);
+  String skipButtonText = 'Skip';
+  String lanjutButtonText = 'Lanjut';
+  Color skipButtonColor = Color(0xffA8D5C5);
 }
