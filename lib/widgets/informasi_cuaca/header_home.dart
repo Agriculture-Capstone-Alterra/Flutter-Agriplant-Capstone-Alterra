@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 //   'assets/images/sky.jpg',
 // ];
 
-// List<String> kota = ['',
+// List<String> kota = [
+//   'Jakarta, ID',
 //   'Bogor, ID',
 // ];
 
