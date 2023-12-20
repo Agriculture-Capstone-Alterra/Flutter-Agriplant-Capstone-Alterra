@@ -1,7 +1,9 @@
 import 'package:capstone_project/data/home_text_style.dart';
+import 'package:capstone_project/models/informasi_cuaca/current_weather_model.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/chat_bot.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
+import 'package:capstone_project/services/informasi_cuaca/current_weather_api.dart';
 import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_bubble_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/weather_detail.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final CurrentWeatherAPI currentWeatherAPI = CurrentWeatherAPI();
+  double? currentWindSpeeds;
+  double? currentTemperatures;
   Position? _currentPosition;
   String? _currentAddress;
 
@@ -91,18 +96,41 @@ class _HomeState extends State<Home> {
     return true;
   }
 
+  Future<void> getCurrentWeatherAPI() async {
+    print('masuk getcurrent');
+    try {
+      CurrentWeatherModel response = await currentWeatherAPI.getCurrentWeather(
+        _currentPosition?.latitude ?? 0,
+        _currentPosition?.longitude ?? 0,
+      );
+      currentWindSpeeds = response.data.current.windSpeed10M;
+      currentTemperatures = response.data.current.temperature2M;
+      // setState(() {
+      //   widget.label[0] = '${windSpeed ?? '0'} Km/h';
+      //   widget.temperature[0] = '${temperature2M ?? '0'} °C';
+      // });
+
+      print('dapat getcurrent');
+    } catch (e) {
+      rethrow;
+    }
+    print('dapat getcurrent');
+  }
+
   @override
   void initState() {
     _getCurrentPosition();
+    getCurrentWeatherAPI();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    double latitudeValue = _currentPosition?.latitude ?? 0.0;
-    double longitudeValue = _currentPosition?.longitude ?? 0.0;
-    // String hourNow = DateFormat('HH:mm a').format(DateTime.now());
+    double latitudeValue = _currentPosition?.latitude ?? 0;
+    double longitudeValue = _currentPosition?.longitude ?? 0;
     String currentPlace = _currentAddress ?? "-";
+    double currentWindSpeed = currentWindSpeeds ?? 0;
+    double currentTemperature = currentTemperatures ?? 0;
 
     return Scaffold(
       body: SafeArea(
@@ -161,6 +189,8 @@ class _HomeState extends State<Home> {
                 latitude: latitudeValue,
                 longitude: longitudeValue,
                 currentPlace: currentPlace,
+                currentWindSpeed: currentWindSpeed,
+                currentTemperature: currentTemperature,
               ),
               const SizedBox(
                 height: 16,
