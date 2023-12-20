@@ -18,7 +18,7 @@ class CardTimeMenyiramWidget extends StatelessWidget {
           width: 1.0,
         ),
       ),
-      child: Container(
+      child: SizedBox(
         width: 60,
         height: 30,
         child: Center(

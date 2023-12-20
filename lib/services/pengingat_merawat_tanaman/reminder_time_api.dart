@@ -1,18 +1,3 @@
-// import 'package:capstone_project/models/pengingat_merawat_tanaman/reminder_time_model.dart';
-// import 'package:dio/dio.dart';
-
-// class ReminderTimeAPI{
-//   Dio dio = Dio();
-//   String baseUrl = 'https://6571fd40d61ba6fcc0142a0c.mockapi.io/agriculture';
- 
-//   Future<ReminderTime> getAllPlants() async{
-//     try{
-//       final response  = await dio.get('$baseUrl/reminder');
-//       return ReminderTime.fromJson(response.data);
-//     } catch(e){rethrow;}
-//   }
-// }
-
 import 'package:dio/dio.dart';
 
 class ReminderTimeAPI {
@@ -53,6 +38,28 @@ class ReminderTimeAPI {
     } catch (error) {
       // ignore: avoid_print
       print("Error deleting reminder: $error");
+    }
+  }
+
+  Future<void> postReminderData(String textFieldData, String timePickerData) async {
+    try {
+      final response = await _dio.post(
+        "https://6571fd40d61ba6fcc0142a0c.mockapi.io/agriculture/reminder",
+        data: {
+          "description": textFieldData,
+          "time": timePickerData,
+        },
+      );
+
+      print("Reminder data post response: $response");
+
+      if (response.statusCode == 200) {
+        print("Reminder data posted successfully");
+      } else {
+        print("Failed to post Reminder data. Status code: ${response.statusCode}");
+      }
+    } catch (error) {
+      print("Error posting Reminder data: $error");
     }
   }
 }

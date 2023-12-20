@@ -20,15 +20,14 @@ class ButtonTidakWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 13.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
-          side: BorderSide(color: Color(0xFF36725D), 
-), // Add white border
+          side: const BorderSide(color: Color(0xFF36725D)), 
         ),
       ),
-      onPressed: onPressed,
-      child: Text(
-        'Tidak',
-        style: ThemeTextStyle().buttonTidak,
-      ),
-    );
+        onPressed: onPressed,
+          child: Text(
+          'Tidak',
+          style: ThemeTextStyle().buttonTidak,
+        ),
+      );
+    }
   }
-}
