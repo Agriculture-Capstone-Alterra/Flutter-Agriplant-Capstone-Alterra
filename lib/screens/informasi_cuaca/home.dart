@@ -207,7 +207,10 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const WeatherDetail(),
+                            builder: (context) => WeatherDetail(
+                              currentWindSpeed: currentWindSpeed,
+                              currentTemperature: currentTemperature,
+                            ),
                           ),
                         );
                       },

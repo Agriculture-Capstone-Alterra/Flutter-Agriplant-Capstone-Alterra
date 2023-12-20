@@ -1,25 +1,48 @@
 import 'package:capstone_project/data/home_text_style.dart';
 import 'package:flutter/material.dart';
 
-List<String> label = ['9km/h', '85%', '25%', '25%'];
-List<String> imagesLabel = [
-  'assets/images/wind.png',
-  'assets/images/drop_water.png',
-  'assets/images/drop_water.png',
-  'assets/images/drop_water.png'
-];
+// List<String> label = [
+// '9km/h',
+// '85%',
+// '25%',
+// '25%',
+// ];
+
+// List<String> imagesLabel = [
+// 'assets/images/wind.png',
+// 'assets/images/drop_water.png',
+// 'assets/images/drop_water.png',
+// 'assets/images/drop_water.png'
+// ];
 
 class LokasiDetailCuaca extends StatelessWidget {
   final double latitude;
   final double longitude;
   final String currentPlace;
+  final double currentTemperature;
+  final double currentWindSpeed;
+  List<String> label;
+  List<String> imagesLabel;
 
-  const LokasiDetailCuaca({
+  LokasiDetailCuaca({
     super.key,
     required this.latitude,
     required this.longitude,
     required this.currentPlace,
-  });
+    required this.currentTemperature,
+    required this.currentWindSpeed,
+  })  : label = [
+          '$currentWindSpeed Km/h',
+          '85%',
+          '25%',
+          '25%',
+        ],
+        imagesLabel = [
+          'assets/images/wind.png',
+          'assets/images/drop_water.png',
+          'assets/images/drop_water.png',
+          'assets/images/drop_water.png',
+        ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +55,7 @@ class LokasiDetailCuaca extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          DisplayMedium(text: '27°C'),
+          DisplayMedium(text: "$currentTemperature"),
           const SizedBox(
             height: 12,
           ),

@@ -1,4 +1,3 @@
-
 import 'package:capstone_project/widgets/informasi_cuaca/glassmorph_list_hari_detail_cuaca.dart';
 import 'package:capstone_project/widgets/informasi_cuaca/glassmorph_temprature_detail_cuaca.dart';
 import 'package:capstone_project/widgets/informasi_cuaca/header_detail_cuaca.dart';
@@ -7,10 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
-
 class WeatherDetail extends StatefulWidget {
+  final double currentTemperature;
+  final double currentWindSpeed;
   const WeatherDetail({
     super.key,
+    required this.currentTemperature,
+    required this.currentWindSpeed,
   });
 
   @override
@@ -101,60 +103,53 @@ class _WeatherDetailState extends State<WeatherDetail> {
     String currentPlace = _currentAddress ?? "-";
 
     return Scaffold(
-      body: SafeArea(
-
-        child: SizedBox(
-          height: double.maxFinite,
-          width: double.maxFinite,
-          child: DecoratedBox(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    'assets/images/rain.jpg',
+        body: SafeArea(
+            child: SizedBox(
+                height: double.maxFinite,
+                width: double.maxFinite,
+                child: DecoratedBox(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                          'assets/images/rain.jpg',
+                        ),
+                        fit: BoxFit.cover),
                   ),
-                  fit: BoxFit.cover),
-            ),
-        child: SingleChildScrollView(
-          child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  top: 2,
-                  right: 16,
-                ),
-          child: Column(
-            children: [
-              const HeaderDetailCuaca(),
-                    const SizedBox(
-                      height: 16,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        top: 2,
+                        right: 16,
+                      ),
+                      child: Column(
+                        children: [
+                          const HeaderDetailCuaca(),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          LokasiDetailCuaca(
+                            latitude: latitudeValue,
+                            longitude: longitudeValue,
+                            currentPlace: currentPlace,
+                            currentTemperature: widget.currentTemperature,
+                            currentWindSpeed: widget.currentWindSpeed,
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          const TempratureDetailCuaca(),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const ListHariDetailCuaca(),
+                          const SizedBox(
+                            height: 14,
+                          ),
+                        ],
+                      ),
                     ),
-              
-              
-              LokasiDetailCuaca(
-                latitude: latitudeValue,
-                longitude: longitudeValue,
-                currentPlace: currentPlace,
-              ),
-              const SizedBox(
-                      height: 16,
-                    ),
-             const TempratureDetailCuaca(),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const ListHariDetailCuaca(),
-                    const SizedBox(
-                      height: 14,
-                    ),
-              
-              
-             
-            ],
-          ),
-        ),
-      ),
-        )
-        )
-      )
-    );
+                  ),
+                ))));
   }
 }
