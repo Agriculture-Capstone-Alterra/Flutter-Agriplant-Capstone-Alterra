@@ -23,7 +23,6 @@ class _CariCuacaState extends State<CariCuaca> {
             ),
             Padding(
               padding: EdgeInsets.only(left: 16, right: 14),
-             
             ),
             SizedBox(
               height: 10,

@@ -35,25 +35,29 @@ import 'package:flutter/material.dart';
 class HeaderHome extends StatefulWidget {
   final double latitude;
   final double longitude;
+  final double currentTemperature;
+  final double currentWindSpeed;
   String? currentPlace;
   List<String> imgBackground = [];
   List<String> kota = [];
   List<String> keterangan = [];
   List<String> label = [];
   List<String> imagesLabel = [];
-  List<String> temperature = [];
+  List<String> temperatureLabel = [];
 
   HeaderHome({
     super.key,
     required this.latitude,
     required this.longitude,
     required this.currentPlace,
+    required this.currentWindSpeed,
+    required this.currentTemperature,
   })  : kota = [
-          (currentPlace ?? '-'),
+          '$currentPlace',
           "Bogor, ID",
         ],
         label = [
-          '-',
+          '$currentWindSpeed Km/h',
           '85%',
           '25%',
           '25%',
@@ -72,8 +76,8 @@ class HeaderHome extends StatefulWidget {
           'assets/images/drop_water.png',
           'assets/images/drop_water.png',
         ],
-        temperature = [
-          '-',
+        temperatureLabel = [
+          '$currentTemperature °C',
           '27°C',
         ];
 
@@ -82,47 +86,45 @@ class HeaderHome extends StatefulWidget {
 }
 
 class _HeaderHomeState extends State<HeaderHome> {
-  final CurrentWeatherAPI currentWeatherAPI = CurrentWeatherAPI();
-  double? windSpeed;
-  double? temperature2M;
+  // final CurrentWeatherAPI currentWeatherAPI = CurrentWeatherAPI();
+  // double? windSpeed;
+  // double? temperature2M;
 
-  Future<void> getCurrentWeatherAPI() async {
-    print('masuk getcurrent');
-    try {
-      CurrentWeatherModel response = await currentWeatherAPI.getCurrentWeather(
-        widget.latitude,
-        widget.longitude,
-      );
-      windSpeed = response.data.current.windSpeed10M;
-      temperature2M = response.data.current.temperature2M;
-      if (mounted) {
-        setState(() {
-          widget.label[0] = '${windSpeed ?? '0'} Km/h';
-          widget.temperature[0] = '${temperature2M ?? '0'} °C';
-        });
-      }
-      // setState(() {
-      //   widget.label[0] = '${windSpeed ?? '0'} Km/h';
-      //   widget.temperature[0] = '${temperature2M ?? '0'} °C';
-      // });
+  // Future<void> getCurrentWeatherAPI() async {
+  //   print('masuk getcurrent');
+  //   try {
+  //     CurrentWeatherModel response = await currentWeatherAPI.getCurrentWeather(
+  //       widget.latitude,
+  //       widget.longitude,
+  //     );
+  //     windSpeed = response.data.current.windSpeed10M;
+  //     temperature2M = response.data.current.temperature2M;
+  //     if (mounted) {
+  //       setState(() {
+  //         widget.label[0] = '${windSpeed ?? '0'} Km/h';
+  //         widget.temperature[0] = '${temperature2M ?? '0'} °C';
+  //       });
+  //     }
+  //     // setState(() {
+  //     //   widget.label[0] = '${windSpeed ?? '0'} Km/h';
+  //     //   widget.temperature[0] = '${temperature2M ?? '0'} °C';
+  //     // });
 
-      print('dapat getcurrent');
-    } catch (e) {
-      rethrow;
-    }
-    print('dapat getcurrent');
-  }
+  //     print('dapat getcurrent');
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  //   print('dapat getcurrent');
+  // }
 
-  @override
-  void initState() {
-    getCurrentWeatherAPI();
-    print('init state lagi jalan');
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   print('init state lagi jalan');
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    // getCurrentWeatherAPI();
     return Padding(
       padding: const EdgeInsets.only(left: 12, top: 10, right: 14),
       child: SizedBox(
@@ -167,7 +169,7 @@ class _HeaderHomeState extends State<HeaderHome> {
                                 const SizedBox(
                                   width: 8,
                                 ),
-                                BodyNormal(text: widget.temperature[index])
+                                BodyNormal(text: widget.temperatureLabel[index])
                               ],
                             ),
                           ],

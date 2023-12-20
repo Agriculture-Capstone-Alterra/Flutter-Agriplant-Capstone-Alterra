@@ -17,69 +17,120 @@ class KotaCuaca extends StatefulWidget {
 }
 
 class _KotaCuacaState extends State<KotaCuaca> {
+  String result = '';
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 242,
-      width: 360,
-      child: ListView.builder(
-          itemCount: 2,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const NavBar(),
+    return Column(
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: 50.0,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 12,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 12,
+              ),
+              decoration: BoxDecoration(
+                color: const Color(0xFF2B2930),
+                borderRadius: BorderRadius.circular(55.0),
+              ),
+              child: Expanded(
+                child: TextField(
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        result = value;
+                      },
+                    );
+                  },
+                  style: const TextStyle(color: Colors.white),
+                  textAlign: TextAlign.justify,
+                  decoration: const InputDecoration(
+                    labelText: 'Kota',
+                    labelStyle: TextStyle(
+                      color: Color(0xFF938F96),
                     ),
-                  );
-                },
-                child: SizedBox(
-                  width: 360,
-                  height: 108,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(imgBackground[index]),
-                            fit: BoxFit.cover),
-                        borderRadius: BorderRadius.circular(16)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 16, top: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                BodyLarge(
-                                  text: kota[index],
-                                  color: Colors.black,
-                                ),
-                                BodyLarge(
-                                  text: '27°C',
-                                  color: Colors.black,
-                                  size: 32,
-                                ),
-                              ],
-                            ),
-                          ),
-                          BodyNormal(text: '13.10'),
-                          const SizedBox(
-                            height: 14,
-                          ),
-                          BodySmall(text: 'Hujan Deras')
-                        ],
-                      ),
-                    ),
+                    border: InputBorder.none,
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ),
               ),
-            );
-          }),
+            ),
+            const SizedBox(height: 20.0),
+            Text('Result: $result'),
+          ],
+        ),
+        Expanded(
+          child: SizedBox(
+            height: 242,
+            width: 360,
+            child: ListView.builder(
+                itemCount: 2,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NavBar(),
+                          ),
+                        );
+                      },
+                      child: SizedBox(
+                        width: 360,
+                        height: 108,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(imgBackground[index]),
+                                  fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 16, top: 8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      BodyLarge(
+                                        text: kota[index],
+                                        color: Colors.black,
+                                      ),
+                                      BodyLarge(
+                                        text: '27°C',
+                                        color: Colors.black,
+                                        size: 32,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                BodyNormal(text: '13.10'),
+                                const SizedBox(
+                                  height: 14,
+                                ),
+                                BodySmall(text: 'Hujan Deras')
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+          ),
+        ),
+      ],
     );
   }
 }
