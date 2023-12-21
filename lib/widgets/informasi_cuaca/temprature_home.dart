@@ -1,42 +1,38 @@
 import 'package:capstone_project/data/home_text_style.dart';
 import 'package:flutter/material.dart';
 
-// List<String> time = [
-//   'Now',
-//   '04:00',
-//   '05:00',
-//   '06:00',
-//   '07:00',
-//   '08:00',
-//   '09:00',
-//   '10:00',
-//   '11:00',
-//   '12:00',
-// ];
-// List<String> temprature = [
-//   '27°',
-//   '26°',
-//   '26°',
-//   '25°',
-//   '22°',
-//   '25°',
-//   '25°',
-//   '27°',
-//   '27°',
-//   '28°',
-// ];
+List<String> time = [
+  'Now',
+  '04:00',
+  '05:00',
+  '06:00',
+  '07:00',
+  '08:00',
+  '09:00',
+  '10:00',
+  '11:00',
+  '12:00',
+];
+List<String> temprature = [
+  '27°',
+  '26°',
+  '26°',
+  '25°',
+  '22°',
+  '25°',
+  '25°',
+  '27°',
+  '27°',
+  '28°',
+];
 
 class TempratureHome extends StatefulWidget {
   final Color colorText;
   final double leftPadding;
-  final List<double> hourlyTemp;
-  final List<String> hourlyTime;
   TempratureHome({
     super.key,
     this.colorText = Colors.black,
     this.leftPadding = 16,
-    required this.hourlyTemp,
-    required this.hourlyTime,
   });
 
   @override
@@ -53,7 +49,7 @@ class _TempratureHomeState extends State<TempratureHome> {
         width: double.maxFinite,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: widget.hourlyTime.length,
+          itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.only(
@@ -64,7 +60,7 @@ class _TempratureHomeState extends State<TempratureHome> {
                   Column(
                     children: [
                       BodySmall(
-                        text: widget.hourlyTime[index],
+                        text: time[index],
                         color: widget.colorText,
                       ),
                       const SizedBox(
@@ -79,7 +75,7 @@ class _TempratureHomeState extends State<TempratureHome> {
                         height: 4,
                       ),
                       BodySmall(
-                        text: "${widget.hourlyTemp[index]}",
+                        text: temprature[index],
                         color: widget.colorText,
                       )
                     ],

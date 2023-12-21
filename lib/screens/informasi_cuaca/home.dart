@@ -53,14 +53,25 @@ class _HomeState extends State<Home> {
     final hasPermission = await _handleLocationPermission(context);
 
     if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((Position position) {
-      if (!mounted) return;
-      setState(() {
-        _currentPosition = position;
-      });
-      _getAddress(position);
-    });
+
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+
+      if (position != null) {
+        if (!mounted) return;
+        setState(() {
+          _currentPosition = position;
+        });
+        _getAddress(position);
+      } else {
+        // Handle case when position is null
+        print('Posisi tidak ditemukan');
+      }
+    } catch (e) {
+      // Handle any errors that might occur during obtaining position
+      print('Error saat mendapatkan posisi: $e');
+    }
   }
 
   Future<bool> _handleLocationPermission(BuildContext context) async {
@@ -102,52 +113,53 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> getCurrentWeatherAPI() async {
-    print('masuk getcurrent');
-    try {
-      CurrentWeatherModel response = await currentWeatherAPI.getCurrentWeather(
-        _currentPosition?.latitude ?? 0,
-        _currentPosition?.longitude ?? 0,
-      );
-      if (mounted) {
-        setState(
-          () {
+    if (_currentPosition != null) {
+      try {
+        CurrentWeatherModel response =
+            await currentWeatherAPI.getCurrentWeather(
+          _currentPosition!.latitude,
+          _currentPosition!.longitude,
+        );
+        if (mounted) {
+          setState(() {
             currentWindSpeeds = response.data.current.windSpeed10M;
             currentTemperatures = response.data.current.temperature2M;
-          },
-        );
+          });
+        }
+        print('dapat getcurrent');
+      } catch (e) {
+        rethrow;
       }
-      // setState(() {
-      //   widget.label[0] = '${windSpeed ?? '0'} Km/h';
-      //   widget.temperature[0] = '${temperature2M ?? '0'} °C';
-      // });
-
-      print('dapat getcurrent');
-    } catch (e) {
-      rethrow;
     }
     print('dapat getcurrent');
   }
 
-  Future<void> getHourlyForecast() async {
-    try {
-      print('masuk tuh bang hourlynya');
-      HourlyForecastModel response = await hourlyForecastAPI.getHourlyForecast(
-        _currentPosition?.latitude ?? 0,
-        _currentPosition?.longitude ?? 0,
-      );
-      print('hourlynya jalan bang');
-      if (mounted) {
-        hourlyTemp?.addAll(response.data.hourly.temperature2M);
-        hourlyTime?.addAll(response.data.hourly.time);
-        print('mounted kok bang');
-      }
-      print('udah kesimpan tuh bang di listnya');
-      print(hourlyTemp);
-      print(hourlyTime);
-    } catch (e) {
-      rethrow;
-    }
-  }
+  // Future<void> getHourlyForecast() async {
+  //   if (_currentPosition != null) {
+  //     try {
+  //       print('masuk tuh bang hourlynya');
+  //       HourlyForecastModel response =
+  //           await hourlyForecastAPI.getHourlyForecast(
+  //         _currentPosition!.latitude,
+  //         _currentPosition!.longitude,
+  //       );
+  //       print('hourlynya jalan bang');
+  //       print(
+  //           response.data); // Tambahkan baris ini untuk mencetak response.data
+  //       if (mounted) {
+  //         hourlyTemp = response.data.hourly.temperature2M ?? [];
+  //         hourlyTime = response.data.hourly.time ?? [];
+  //         print('mounted kok bang');
+  //       }
+  //       print('udah kesimpan tuh bang di listnya');
+  //       print(hourlyTemp);
+  //       print(hourlyTime);
+  //     } catch (e) {
+  //       print('Error in getHourlyForecast: $e');
+  //       rethrow;
+  //     }
+  //   }
+  // }
 
   // Future<void> getHourlyForecastAPI() async {
   //   try {
@@ -188,13 +200,14 @@ class _HomeState extends State<Home> {
   void initState() {
     _getCurrentPosition().then((value) {
       getCurrentWeatherAPI();
-      hourlyTemp = [];
-      hourlyTime = [];
-      getHourlyForecast().then(
-        (value) {
-          isAvailabe = true;
-        },
-      );
+      // hourlyTemp = <double>[];
+      // hourlyTime = <String>[];
+
+      // getHourlyForecast().then(
+      //   (value) {
+      //     isAvailabe = true;
+      //   },
+      // );
     });
     super.initState();
   }
@@ -206,8 +219,8 @@ class _HomeState extends State<Home> {
     String currentPlace = _currentAddress ?? "-";
     double currentWindSpeed = currentWindSpeeds ?? 0;
     double currentTemperature = currentTemperatures ?? 0;
-    List<double> hourlyTempList = hourlyTemp ?? [];
-    List<String> hourlyTimeList = hourlyTime ?? [];
+    // List<double> hourlyTempList = hourlyTemp ?? [];
+    // List<String> hourlyTimeList = hourlyTime ?? [];
 
     return Scaffold(
       body: SafeArea(
@@ -290,8 +303,6 @@ class _HomeState extends State<Home> {
                               currentPlace: currentPlace,
                               currentWindSpeed: currentWindSpeed,
                               currentTemperature: currentTemperature,
-                              hourlyTemp: hourlyTempList,
-                              hourlyTime: hourlyTimeList,
                             ),
                           ),
                         );
@@ -312,11 +323,8 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 12,
               ),
-              if (isAvailabe)
-                TempratureHome(
-                  hourlyTemp: hourlyTempList,
-                  hourlyTime: hourlyTimeList,
-                ),
+              TempratureHome(),
+
               const SizedBox(
                 height: 16,
               ),
