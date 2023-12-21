@@ -3,10 +3,7 @@ import 'package:capstone_project/screens/menanam_tanaman_screens/detail_plant_sc
 import 'package:capstone_project/screens/menanam_tanaman_screens/menanam_screen.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/planting_preparation_screen1.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/planting_preparation_screen2.dart';
-<<<<<<< HEAD
 import 'package:flutter/cupertino.dart';
-=======
->>>>>>> 381be7e846bb6923324bd5d8c5ac1431743712df
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../screens/menanam_tanaman_screens/planting_form_screen.dart';
