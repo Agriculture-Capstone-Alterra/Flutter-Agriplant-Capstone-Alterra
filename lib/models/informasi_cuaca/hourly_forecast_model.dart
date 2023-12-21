@@ -4,35 +4,32 @@
 
 import 'dart:convert';
 
-HourlyForecastModel hourlyForecastModelFromJson(String str) =>
-    HourlyForecastModel.fromJson(json.decode(str));
+HourlyForecastModel hourlyForecastModelFromJson(String str) => HourlyForecastModel.fromJson(json.decode(str));
 
-String hourlyForecastModelToJson(HourlyForecastModel data) =>
-    json.encode(data.toJson());
+String hourlyForecastModelToJson(HourlyForecastModel data) => json.encode(data.toJson());
 
 class HourlyForecastModel {
-  Data data;
-  String message;
-  String status;
+    Data data;
+    String message;
+    String status;
 
-  HourlyForecastModel({
-    required this.data,
-    required this.message,
-    required this.status,
-  });
+    HourlyForecastModel({
+        required this.data,
+        required this.message,
+        required this.status,
+    });
 
-  factory HourlyForecastModel.fromJson(Map<String, dynamic> json) =>
-      HourlyForecastModel(
+    factory HourlyForecastModel.fromJson(Map<String, dynamic> json) => HourlyForecastModel(
         data: Data.fromJson(json["data"]),
         message: json["message"],
         status: json["status"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "data": data.toJson(),
         "message": message,
         "status": status,
-      };
+    };
 }
 
 class Data {
@@ -70,7 +67,7 @@ class Data {
         hourly: Hourly.fromJson(json["hourly"]),
       );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "latitude": latitude,
         "longitude": longitude,
         "generationtime_ms": generationtimeMs,
@@ -136,7 +133,7 @@ class HourlyUnits {
         weatherCode: json["weather_code"],
       );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "time": time,
         "temperature_2m": temperature2M,
         "weather_code": weatherCode,
