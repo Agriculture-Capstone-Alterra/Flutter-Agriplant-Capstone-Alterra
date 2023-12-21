@@ -2,7 +2,6 @@ import 'package:capstone_project/data/home_text_style.dart';
 import 'package:capstone_project/models/informasi_cuaca/current_weather_model.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/chat_bot.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
-import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
 import 'package:capstone_project/services/informasi_cuaca/current_weather_api.dart';
 import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_bubble_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/weather_detail.dart';
@@ -69,15 +68,15 @@ class _HomeState extends State<Home> {
     print(locationPermission);
 
     if (locationPermission == LocationPermission.denied) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Anda belum mengaktifkan izin lokasi di aplikasi anda',
-            ),
-          ),
-        );
-      }
+      // if (context.mounted) {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     const SnackBar(
+      //       content: Text(
+      //         'Anda belum mengaktifkan izin lokasi di aplikasi anda',
+      //       ),
+      //     ),
+      //   );
+      // }
       await Geolocator.requestPermission();
     }
 
@@ -103,8 +102,14 @@ class _HomeState extends State<Home> {
         _currentPosition?.latitude ?? 0,
         _currentPosition?.longitude ?? 0,
       );
-      currentWindSpeeds = response.data.current.windSpeed10M;
-      currentTemperatures = response.data.current.temperature2M;
+      if (mounted) {
+        setState(
+          () {
+            currentWindSpeeds = response.data.current.windSpeed10M;
+            currentTemperatures = response.data.current.temperature2M;
+          },
+        );
+      }
       // setState(() {
       //   widget.label[0] = '${windSpeed ?? '0'} Km/h';
       //   widget.temperature[0] = '${temperature2M ?? '0'} °C';
@@ -117,10 +122,46 @@ class _HomeState extends State<Home> {
     print('dapat getcurrent');
   }
 
+  // Future<void> getHourlyForecastAPI() async {
+  //   try {
+  //     if (_currentPosition != null) {
+  //       HourlyForecastModel response =
+  //           await hourlyForecastAPI.getHourlyForecast(
+  //         _currentPosition?.latitude ?? 0,
+  //         _currentPosition?.longitude ?? 0,
+  //       );
+
+  //       print('Hourly Forecast Data: ${response.data}');
+  // if (!mounted) return;
+  // setState(() {
+  //   hourlyForecastDataList = response.data.hourly.time;
+  //   hourlyForecastTemperature = response.data.hourly.temperature2M;
+  // });
+  //     }
+  //   } catch (e) {
+  //     print('Error in getHourlyForecastAPI: $e');
+  //     // Handle the error or rethrow it based on your application's requirements
+  //   }
+  // }
+
+  // Future<void> getHourlyForecastAPI() async {
+  //   await hourlyForecastAPI.getHourlyForecast(
+  //         _currentPosition?.latitude ?? 0,
+  //         _currentPosition?.longitude ?? 0,
+  //       )then((value) {
+  //         if (!mounted) return;
+  //       setState(() {
+  //         hourlyForecastDataList = response.data.hourly.time;
+  //         hourlyForecastTemperature = response.data.hourly.temperature2M;
+  //       },);
+  //       },);
+  // }
+
   @override
   void initState() {
-    _getCurrentPosition();
-    getCurrentWeatherAPI();
+    _getCurrentPosition().then((value) {
+      getCurrentWeatherAPI();
+    });
     super.initState();
   }
 
@@ -208,6 +249,9 @@ class _HomeState extends State<Home> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => WeatherDetail(
+                              latitude: latitudeValue,
+                              longitude: longitudeValue,
+                              currentPlace: currentPlace,
                               currentWindSpeed: currentWindSpeed,
                               currentTemperature: currentTemperature,
                             ),

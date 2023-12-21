@@ -1,22 +1,22 @@
-import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_preparation_screen1/indicator1.dart';
-import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_preparation_screen1/preparation1_text_head.dart';
+import 'package:capstone_project/providers/plant_provider.dart';
+import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_preparation_screen2/image_suggestion.dart';
+import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_preparation_screen2/indicator2.dart';
+import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_preparation_screen2/suggestions.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/skip_and_next_button.dart';
-import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_preparation_screen1/tool_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../models/plant_by_id_model.dart';
-import '../../providers/plant_provider.dart';
 import '../../services/plant_api.dart';
 
-class PlantingPreparationScreen1 extends StatefulWidget {
-  const PlantingPreparationScreen1({Key? key}) : super(key: key);
+class PlantingPreparationScreen2 extends StatefulWidget {
+  const PlantingPreparationScreen2({Key? key}) : super(key: key);
 
   @override
-  State<PlantingPreparationScreen1> createState() => _PlantingPreparationScreen1State();
+  State<PlantingPreparationScreen2> createState() => _PlantingPreparationScreen2State();
 }
 
-class _PlantingPreparationScreen1State extends State<PlantingPreparationScreen1> {
+class _PlantingPreparationScreen2State extends State<PlantingPreparationScreen2> {
   @override
   Widget build(BuildContext context) {
     return Consumer<PlantProvider>(
@@ -33,26 +33,19 @@ class _PlantingPreparationScreen1State extends State<PlantingPreparationScreen1>
               ListView(
                 children: [
                   const SizedBox(height: 24,),
-
-                  Indicator1(
+                  Indicator2(
                     indicatorNumber1: plantProvider.indicatorNumber1,
                     indicatorNumber2: plantProvider.indicatorNumber2,
                     indicatorNumber3: plantProvider.indicatorNumber3,
                     indicatorNumber4: plantProvider.indicatorNumber4,
                     indicatorNumber5: plantProvider.indicatorNumber5,
-                    indicatorNumber1Text: plantProvider.indicatorNumber1Text,
+                    indicatorNumber2Text: plantProvider.indicatorNumber2Text,
                     textColor: plantProvider.formTextColor,
+                    indicatorBlock: plantProvider.indicatorBlock,
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  PreparationTextHead1(
-                    plantingPreparationTextHead:
-                        plantProvider.plantingPreparationTextHead,
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
+
+                  const SizedBox(height: 21,),
+
                   StreamBuilder(
                     stream: Stream.fromFuture(
                         PlantApi().getPlantById(id: plantProvider.idPlant)),
@@ -68,21 +61,20 @@ class _PlantingPreparationScreen1State extends State<PlantingPreparationScreen1>
                           PlantByIdModel plantByIdModel = snapshot.data! as PlantByIdModel;
                           PlantByIdData plantByIdData = plantByIdModel.data;
                           return buildItem(
-                            plantingToolsList: plantByIdData.plantingTools,
-                            toolItemColor: plantProvider.toolItemColor,
+                            textHead: plantProvider.textHeadPreparationScreen2,
+                            plantingMediumSuggestions: plantByIdData.plantingMediumSuggestions,
+                            plantingMediumImages: plantByIdData.plantingMediumImages,
                           );
                         } else {
                           return Center(child: Text('Data tidak valid.'));
                         }
                       } else {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return Center(child: CircularProgressIndicator(),);
                       }
                     },
                   ),
                 ],
-              ),
+            ),
 
               SkipAndNextButton(
                 skipButtonText: plantProvider.skipButtonText,
@@ -90,7 +82,7 @@ class _PlantingPreparationScreen1State extends State<PlantingPreparationScreen1>
                 skipButtonColor: plantProvider.skipButtonColor,
                 lanjutButtonColor: plantProvider.menanamButtonColor,
                 onTapSkip: (){plantProvider.onTapSkip(context: context);},
-                onTapLanjut: (){plantProvider.goToPlantingPreparationScreen2(context: context);},
+                onTapLanjut: (){},
               )
             ],
           ),
@@ -100,28 +92,24 @@ class _PlantingPreparationScreen1State extends State<PlantingPreparationScreen1>
   }
 
   Widget buildItem({
-    required List<Planting> plantingToolsList,
-    required Color toolItemColor
+    required String textHead,
+    required String plantingMediumSuggestions,
+    required List<PlantImage> plantingMediumImages,
   }){
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: plantingToolsList.length,
-      itemBuilder: (_, index) {
-        Planting plantingTool = plantingToolsList[index];
-        return Column(
-          children: [
-            ToolItem(
-              toolItemColor: toolItemColor,
-              toolImage: plantingTool.imagePath,
-              toolName: plantingTool.name,
-              toolDesc: plantingTool.description,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Suggestions(
+          textHead: textHead,
+          textBody: plantingMediumSuggestions,
+        ),
 
-            const SizedBox(height: 12,),
-          ],
-        );
-      },
+        const SizedBox(height: 42,),
+
+        ImageSuggestion(
+          plantingMediumImages: plantingMediumImages,
+        ),
+      ],
     );
   }
 }

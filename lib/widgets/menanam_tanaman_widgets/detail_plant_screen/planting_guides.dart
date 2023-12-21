@@ -31,38 +31,37 @@ class PlantingGuides extends StatelessWidget {
 
         const SizedBox(height: 6,),
 
-        IntrinsicHeight(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                const SizedBox(width: 8,),
-                Wrap(
-                  children: List<Widget>.generate(plantingGuidesList.length, (index){
-                    Planting plantingGuide = plantingGuidesList[index];
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 4),
-                      width: MediaQuery.of(context).size.width*8/10,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: Colors.grey, width: 1)
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.width/6,
-                            width: MediaQuery.of(context).size.width/6,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image.network(
-                                plantingGuide.imagePath,
-                                fit: BoxFit.cover,
-                              ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              const SizedBox(width: 8,),
+              Wrap(
+                children: List<Widget>.generate(plantingGuidesList.length, (index){
+                  Planting plantingGuide = plantingGuidesList[index];
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 4),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.grey, width: 1)
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width/6,
+                          width: MediaQuery.of(context).size.width/6,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.network(
+                              plantingGuide.imagePath,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          const SizedBox(width: 10,),
-                          Column(
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, left: 10, right: 8, bottom: 8),
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Column(
@@ -80,14 +79,14 @@ class PlantingGuides extends StatelessWidget {
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                    );
-                  }),
-                ),
-                const SizedBox(width: 8,),
-              ],
-            ),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+              ),
+              const SizedBox(width: 8,),
+            ],
           ),
         ),
       ],

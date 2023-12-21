@@ -55,7 +55,7 @@ class LokasiDetailCuaca extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          DisplayMedium(text: "$currentTemperature"),
+          DisplayMedium(text: "$currentTemperature °C"),
           const SizedBox(
             height: 12,
           ),

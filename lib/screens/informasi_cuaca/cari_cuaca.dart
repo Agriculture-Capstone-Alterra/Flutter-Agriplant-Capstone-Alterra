@@ -3,7 +3,13 @@ import 'package:capstone_project/widgets/informasi_cuaca/kota.dart';
 import 'package:flutter/material.dart';
 
 class CariCuaca extends StatefulWidget {
-  const CariCuaca({super.key});
+  final String currentPlace;
+  final double currentTemperature;
+  const CariCuaca({
+    super.key,
+    required this.currentPlace,
+    required this.currentTemperature,
+  });
 
   @override
   State<CariCuaca> createState() => _CariCuacaState();
@@ -12,22 +18,25 @@ class CariCuaca extends StatefulWidget {
 class _CariCuacaState extends State<CariCuaca> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            HeaderCari(),
-            SizedBox(
+            const HeaderCari(),
+            const SizedBox(
               height: 10,
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(left: 16, right: 14),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            KotaCuaca()
+            KotaCuaca(
+              currentPlace: widget.currentPlace,
+              currentTemperature: widget.currentTemperature,
+            )
           ],
         ),
       ),
