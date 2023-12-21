@@ -122,6 +122,41 @@ class _HomeState extends State<Home> {
     print('dapat getcurrent');
   }
 
+  // Future<void> getHourlyForecastAPI() async {
+  //   try {
+  //     if (_currentPosition != null) {
+  //       HourlyForecastModel response =
+  //           await hourlyForecastAPI.getHourlyForecast(
+  //         _currentPosition?.latitude ?? 0,
+  //         _currentPosition?.longitude ?? 0,
+  //       );
+
+  //       print('Hourly Forecast Data: ${response.data}');
+  // if (!mounted) return;
+  // setState(() {
+  //   hourlyForecastDataList = response.data.hourly.time;
+  //   hourlyForecastTemperature = response.data.hourly.temperature2M;
+  // });
+  //     }
+  //   } catch (e) {
+  //     print('Error in getHourlyForecastAPI: $e');
+  //     // Handle the error or rethrow it based on your application's requirements
+  //   }
+  // }
+
+  // Future<void> getHourlyForecastAPI() async {
+  //   await hourlyForecastAPI.getHourlyForecast(
+  //         _currentPosition?.latitude ?? 0,
+  //         _currentPosition?.longitude ?? 0,
+  //       )then((value) {
+  //         if (!mounted) return;
+  //       setState(() {
+  //         hourlyForecastDataList = response.data.hourly.time;
+  //         hourlyForecastTemperature = response.data.hourly.temperature2M;
+  //       },);
+  //       },);
+  // }
+
   @override
   void initState() {
     _getCurrentPosition().then((value) {
@@ -214,6 +249,9 @@ class _HomeState extends State<Home> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => WeatherDetail(
+                              latitude: latitudeValue,
+                              longitude: longitudeValue,
+                              currentPlace: currentPlace,
                               currentWindSpeed: currentWindSpeed,
                               currentTemperature: currentTemperature,
                             ),

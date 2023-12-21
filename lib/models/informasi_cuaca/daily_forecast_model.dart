@@ -1,28 +1,28 @@
 // To parse this JSON data, do
 //
-//     final dailyForecastModel = dailyForecastModelFromJson(jsonString);
+//     final daillyForecastModel = daillyForecastModelFromJson(jsonString);
 
 import 'dart:convert';
 
-DailyForecastModel dailyForecastModelFromJson(String str) =>
-    DailyForecastModel.fromJson(json.decode(str));
+DaillyForecastModel daillyForecastModelFromJson(String str) =>
+    DaillyForecastModel.fromJson(json.decode(str));
 
-String dailyForecastModelToJson(DailyForecastModel data) =>
+String daillyForecastModelToJson(DaillyForecastModel data) =>
     json.encode(data.toJson());
 
-class DailyForecastModel {
+class DaillyForecastModel {
   Data data;
   String message;
   String status;
 
-  DailyForecastModel({
+  DaillyForecastModel({
     required this.data,
     required this.message,
     required this.status,
   });
 
-  factory DailyForecastModel.fromJson(Map<String, dynamic> json) =>
-      DailyForecastModel(
+  factory DaillyForecastModel.fromJson(Map<String, dynamic> json) =>
+      DaillyForecastModel(
         data: Data.fromJson(json["data"]),
         message: json["message"],
         status: json["status"],
@@ -36,7 +36,7 @@ class DailyForecastModel {
 }
 
 class Data {
-  double latitude;
+  int latitude;
   double longitude;
   double generationtimeMs;
   int utcOffsetSeconds;
@@ -59,7 +59,7 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        latitude: json["latitude"]?.toDouble(),
+        latitude: json["latitude"],
         longitude: json["longitude"]?.toDouble(),
         generationtimeMs: json["generationtime_ms"]?.toDouble(),
         utcOffsetSeconds: json["utc_offset_seconds"],
