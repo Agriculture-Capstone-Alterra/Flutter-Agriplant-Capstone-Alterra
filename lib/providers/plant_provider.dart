@@ -192,7 +192,7 @@ class PlantProvider extends ChangeNotifier{
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) {
-        return Menanam();
+        return MenanamScreen();
       },),
           (_) => false,);
     notifyListeners();

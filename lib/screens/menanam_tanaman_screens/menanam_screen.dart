@@ -7,14 +7,14 @@ import '../../widgets/menanam_tanaman_widgets/menanam_screen/is_searching_false.
 import '../../widgets/menanam_tanaman_widgets/menanam_screen/is_searching_true.dart';
 import '../../widgets/menanam_tanaman_widgets/menanam_screen/search_tanaman.dart';
 
-class Menanam extends StatefulWidget {
-  const Menanam({Key? key}) : super(key: key);
+class MenanamScreen extends StatefulWidget {
+  const MenanamScreen({Key? key}) : super(key: key);
 
   @override
-  State<Menanam> createState() => _MenanamState();
+  State<MenanamScreen> createState() => _MenanamScreenState();
 }
 
-class _MenanamState extends State<Menanam> {
+class _MenanamScreenState extends State<MenanamScreen> {
   @override
   Widget build(BuildContext context) {
     // final searchProvider = Provider.of<SearchPageProvider>(context);
