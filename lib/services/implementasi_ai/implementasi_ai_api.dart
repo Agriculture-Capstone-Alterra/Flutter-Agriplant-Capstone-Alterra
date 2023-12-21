@@ -38,7 +38,7 @@ class ImplementasiAiAPI {
         '$baseUrl/chatbot',
         data: {
           "message":
-              "Berikan saya deskripsi tentang tanaman $message serta berikan langkah-langkah dalam menanam dan merawat tanamannya",
+              "Kamu adalah petani professional yang mengetahui semua ilmu pengetahuan tentang penanaman dan perkebunan. Berikan saya deskripsi tentang tanaman $message serta berikan langkah-langkah dalam menanam dan merawat tanamannya",
         },
       );
       return ImplementasiAiModel.fromJson(response.data);
@@ -57,7 +57,7 @@ class ImplementasiAiAPI {
         '$baseUrl/chatbot',
         data: {
           "message":
-              "Berikan saya saran mengenai jenis dan jumlah pupuk yang tepat untuk tanaman $message",
+              "Kamu adalah petani professional yang mengetahui semua ilmu pengetahuan tentang penanaman dan perkebunan. Berikan saya saran mengenai jenis dan jumlah pupuk yang tepat untuk tanaman $message",
         },
       );
       return ImplementasiAiModel.fromJson(response.data);
