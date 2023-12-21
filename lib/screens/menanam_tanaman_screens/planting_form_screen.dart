@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/plant_by_id_model.dart';
-import '../../services/plant_api.dart';
+import '../../services/menanam_tanaman/plant_api.dart';
 
 
 class PlantingFormScreen extends StatefulWidget {

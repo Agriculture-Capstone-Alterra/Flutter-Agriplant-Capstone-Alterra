@@ -1,8 +1,8 @@
 import 'package:capstone_project/models/autentikasi_model/login_model.dart';
 import 'package:dio/dio.dart';
-import '../models/autentikasi_model/response_resend_otp_model.dart';
-import '../models/autentikasi_model/register_model.dart';
-import '../models/autentikasi_model/verify_otp_model.dart';
+import '../../models/autentikasi_model/response_resend_otp_model.dart';
+import '../../models/autentikasi_model/register_model.dart';
+import '../../models/autentikasi_model/verify_otp_model.dart';
 
 
 

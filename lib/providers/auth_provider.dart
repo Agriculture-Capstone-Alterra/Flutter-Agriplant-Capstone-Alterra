@@ -1,7 +1,7 @@
 import 'package:capstone_project/screens/autentikasi_screens/send_otp_screen.dart';
 import 'package:capstone_project/screens/autentikasi_screens/regist_screen.dart';
 import 'package:capstone_project/screens/navigation_bar.dart';
-import 'package:capstone_project/services/auth_api.dart';
+import 'package:capstone_project/services/menanam_tanaman/auth_api.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import '../screens/autentikasi_screens/login_screen.dart';

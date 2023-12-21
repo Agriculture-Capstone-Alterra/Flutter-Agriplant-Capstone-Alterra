@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../data/menanam_tanaman/menanam_tanaman_icon.dart';
 import '../../../models/menanam_tanaman_model/plant_types_model.dart';
-import '../../../services/plant_api.dart';
+import '../../../services/menanam_tanaman/plant_api.dart';
 
 // ignore: must_be_immutable
 class IsSearchingFalse extends StatefulWidget {
