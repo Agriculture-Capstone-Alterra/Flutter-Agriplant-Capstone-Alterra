@@ -1,8 +1,10 @@
 import 'package:capstone_project/data/home_text_style.dart';
 import 'package:capstone_project/models/informasi_cuaca/current_weather_model.dart';
+import 'package:capstone_project/models/informasi_cuaca/hourly_forecast_model.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/chat_bot.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
 import 'package:capstone_project/services/informasi_cuaca/current_weather_api.dart';
+import 'package:capstone_project/services/informasi_cuaca/hourly_forecast_api.dart';
 import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_bubble_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/weather_detail.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +26,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final CurrentWeatherAPI currentWeatherAPI = CurrentWeatherAPI();
+  final HourlyForecastAPI hourlyForecastAPI = HourlyForecastAPI();
   double? currentWindSpeeds;
   double? currentTemperatures;
   Position? _currentPosition;
   String? _currentAddress;
+  List<double>? hourlyTemp;
+  List<String>? hourlyTime;
+  bool isAvailabe = false;
 
   Future<void> _getAddress(Position position) async {
     await placemarkFromCoordinates(
@@ -122,6 +128,27 @@ class _HomeState extends State<Home> {
     print('dapat getcurrent');
   }
 
+  Future<void> getHourlyForecast() async {
+    try {
+      print('masuk tuh bang hourlynya');
+      HourlyForecastModel response = await hourlyForecastAPI.getHourlyForecast(
+        _currentPosition?.latitude ?? 0,
+        _currentPosition?.longitude ?? 0,
+      );
+      print('hourlynya jalan bang');
+      if (mounted) {
+        hourlyTemp?.addAll(response.data.hourly.temperature2M);
+        hourlyTime?.addAll(response.data.hourly.time);
+        print('mounted kok bang');
+      }
+      print('udah kesimpan tuh bang di listnya');
+      print(hourlyTemp);
+      print(hourlyTime);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   // Future<void> getHourlyForecastAPI() async {
   //   try {
   //     if (_currentPosition != null) {
@@ -161,6 +188,13 @@ class _HomeState extends State<Home> {
   void initState() {
     _getCurrentPosition().then((value) {
       getCurrentWeatherAPI();
+      hourlyTemp = [];
+      hourlyTime = [];
+      getHourlyForecast().then(
+        (value) {
+          isAvailabe = true;
+        },
+      );
     });
     super.initState();
   }
@@ -172,6 +206,8 @@ class _HomeState extends State<Home> {
     String currentPlace = _currentAddress ?? "-";
     double currentWindSpeed = currentWindSpeeds ?? 0;
     double currentTemperature = currentTemperatures ?? 0;
+    List<double> hourlyTempList = hourlyTemp ?? [];
+    List<String> hourlyTimeList = hourlyTime ?? [];
 
     return Scaffold(
       body: SafeArea(
@@ -254,6 +290,8 @@ class _HomeState extends State<Home> {
                               currentPlace: currentPlace,
                               currentWindSpeed: currentWindSpeed,
                               currentTemperature: currentTemperature,
+                              hourlyTemp: hourlyTempList,
+                              hourlyTime: hourlyTimeList,
                             ),
                           ),
                         );
@@ -274,7 +312,11 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 12,
               ),
-              const TempratureHome(),
+              if (isAvailabe)
+                TempratureHome(
+                  hourlyTemp: hourlyTempList,
+                  hourlyTime: hourlyTimeList,
+                ),
               const SizedBox(
                 height: 16,
               ),

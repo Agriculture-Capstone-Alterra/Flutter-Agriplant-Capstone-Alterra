@@ -10,6 +10,8 @@ class WeatherDetail extends StatefulWidget {
   final double latitude;
   final double longitude;
   final String currentPlace;
+  final List<double> hourlyTemp;
+  final List<String> hourlyTime;
   const WeatherDetail({
     super.key,
     required this.currentTemperature,
@@ -17,6 +19,8 @@ class WeatherDetail extends StatefulWidget {
     required this.latitude,
     required this.longitude,
     required this.currentPlace,
+    required this.hourlyTemp,
+    required this.hourlyTime,
   });
 
   @override
@@ -65,7 +69,10 @@ class _WeatherDetailState extends State<WeatherDetail> {
                           const SizedBox(
                             height: 16,
                           ),
-                          const TempratureDetailCuaca(),
+                          TempratureDetailCuaca(
+                            hourlyTemp: widget.hourlyTemp,
+                            hourlyTime: widget.hourlyTime,
+                          ),
                           const SizedBox(
                             height: 10,
                           ),
