@@ -58,8 +58,8 @@ class TempratureDetailCuaca extends StatelessWidget {
             TempratureHome(
               colorText: Colors.white,
               leftPadding: 0,
-              hourlyTemp: hourlyTemp,
-              hourlyTime: hourlyTime,
+              // hourlyTemp: hourlyTemp,
+              // hourlyTime: hourlyTime,
             ),
           ],
         ),
