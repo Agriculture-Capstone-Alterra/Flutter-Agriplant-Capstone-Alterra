@@ -46,7 +46,7 @@ class Indicator1 extends StatelessWidget {
               const SizedBox(height: 11,),
               Text(
                 indicatorNumber1Text,
-                style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w400, color: textColor),
+                style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: textColor),
               )
             ],
           ),

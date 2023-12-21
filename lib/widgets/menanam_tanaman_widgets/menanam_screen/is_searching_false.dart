@@ -9,14 +9,14 @@ class IsSearchingFalse extends StatefulWidget {
   String headPlantTypeText;
   String allPlantNavigatorText;
   Function() allPlantNavigatorOnTap;
-  String headLastPlantText;
+  String recomendPlantHeadText;
 
   IsSearchingFalse({
     Key? key,
     required this.headPlantTypeText,
     required this.allPlantNavigatorText,
     required this.allPlantNavigatorOnTap,
-    required this.headLastPlantText,
+    required this.recomendPlantHeadText,
   }) : super(key: key);
 
   @override
@@ -87,7 +87,7 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
             margin: EdgeInsets.symmetric(horizontal: 16),
             width: double.infinity,
             child: Text(
-              widget.headLastPlantText,
+              widget.recomendPlantHeadText,
               style: GoogleFonts.inter(
                 textStyle: TextStyle(
                   fontSize: 16, fontWeight: FontWeight.w600,

@@ -73,7 +73,7 @@ class _MenanamState extends State<Menanam> {
                         headPlantTypeText: plantProvider.headPlantTypeText,
                         allPlantNavigatorText: plantProvider.allPlantNavigatorText,
                         allPlantNavigatorOnTap: (){plantProvider.allPlantNavigatorOnTap(context);},
-                        headLastPlantText: plantProvider.headLastPlantText,
+                        recomendPlantHeadText: plantProvider.recomendPlantHeadText,
                       ) :
                       // plantProvider.isSearching==false && plantProvider.seeAllPlantType==true?
                       // AllPlantScreen(appBarText: 'Tanaman',) :

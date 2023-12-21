@@ -43,16 +43,13 @@ class _PlantingPreparationScreen1State extends State<PlantingPreparationScreen1>
                     indicatorNumber1Text: plantProvider.indicatorNumber1Text,
                     textColor: plantProvider.formTextColor,
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  PreparationTextHead1(
-                    plantingPreparationTextHead:
-                        plantProvider.plantingPreparationTextHead,
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
+
+                  const SizedBox(height: 24,),
+
+                  PreparationTextHead1(plantingPreparation1TextHead: plantProvider.plantingPreparation1TextHead,),
+
+                  const SizedBox(height: 12,),
+
                   StreamBuilder(
                     stream: Stream.fromFuture(
                         PlantApi().getPlantById(id: plantProvider.idPlant)),
@@ -69,7 +66,7 @@ class _PlantingPreparationScreen1State extends State<PlantingPreparationScreen1>
                           PlantByIdData plantByIdData = plantByIdModel.data;
                           return buildItem(
                             plantingToolsList: plantByIdData.plantingTools,
-                            toolItemColor: plantProvider.toolItemColor,
+                            toolItemColor: plantProvider.itemColor,
                           );
                         } else {
                           return Center(child: Text('Data tidak valid.'));
