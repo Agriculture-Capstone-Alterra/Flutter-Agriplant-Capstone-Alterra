@@ -7,7 +7,6 @@ import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_form_s
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_form_screen/plant_image_form.dart';
 import 'package:capstone_project/widgets/menanam_tanaman_widgets/planting_form_screen/plant_name.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/plant_by_id_model.dart';

@@ -1,6 +1,8 @@
 import 'package:capstone_project/screens/menanam_tanaman_screens/all_plant_screen.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/detail_plant_screen.dart';
+import 'package:capstone_project/screens/menanam_tanaman_screens/menanam_screen.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/planting_preparation_screen1.dart';
+import 'package:capstone_project/screens/menanam_tanaman_screens/planting_preparation_screen2.dart';
 import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -183,7 +185,21 @@ class PlantProvider extends ChangeNotifier{
   }
 
   String appBarPreparationText = 'Menanam';
-  //planting preparation screen1
+  String skipButtonText = 'Skip';
+  String lanjutButtonText = 'Lanjut';
+  Color skipButtonColor = Color(0xffA8D5C5);
+
+  void onTapSkip({required BuildContext context}){
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return Menanam();
+      },),
+          (_) => false,);
+    notifyListeners();
+  }
+
+  Color indicatorBlock = Color(0xff1B392F);
   String indicatorNumber1 = '1';
   String indicatorNumber2 = '2';
   String indicatorNumber3 = '3';
@@ -196,7 +212,22 @@ class PlantProvider extends ChangeNotifier{
   String indicatorNumber5Text = 'Hasil/Panen';
   String plantingPreparationTextHead = 'Alat yang Dibutuhkan';
   Color toolItemColor = Color(0xff8BC7B2);
-  String skipButtonText = 'Skip';
-  String lanjutButtonText = 'Lanjut';
-  Color skipButtonColor = Color(0xffA8D5C5);
+
+  void goToPlantingPreparationScreen2({required BuildContext context}){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PlantingPreparationScreen2(),),
+    );
+    notifyListeners();
+  }
+
+  String textHeadPreparationScreen2 = 'Saran Untuk Tempat Penanaman';
+
+  void goToPlantingPreparationScreen3({required BuildContext context}){
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => PlantingPreparationScreen3(),),
+    // );
+    notifyListeners();
+  }
 }
