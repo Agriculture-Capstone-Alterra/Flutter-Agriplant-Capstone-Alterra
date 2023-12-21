@@ -14,6 +14,7 @@ class PlantReminderProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+
  String appBarText = 'Pilih Jenis Tanaman';
   Icon searchIcon = const Icon(Icons.search, color: Colors.black,);
 

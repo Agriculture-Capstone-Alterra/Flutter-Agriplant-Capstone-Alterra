@@ -1,45 +1,104 @@
-import 'package:capstone_project/data/home_text_style.dart';
-import 'package:capstone_project/screens/navigation_bar.dart';
+import 'package:capstone_project/models/informasi_cuaca/current_weather_model.dart';
+import 'package:capstone_project/models/informasi_cuaca/geocode_location_model.dart';
+import 'package:capstone_project/services/informasi_cuaca/current_weather_api.dart';
+import 'package:capstone_project/services/informasi_cuaca/geocode_location_api.dart';
+import 'package:capstone_project/widgets/informasi_cuaca/card_cari_cuaca.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-List<String> imgBackground = [
-  'assets/images/rain.jpg',
-  'assets/images/sky.jpg'
-];
+// List<String> imgBackground = [
+// 'assets/images/rain.jpg',
+// 'assets/images/sky.jpg',
+// ];
 
-List<String> kota = ['Jakarta Selatan, ID', 'Bogor, ID'];
+// List<String> kota = [
+// 'Jakarta Selatan, ID',
+// 'Bogor, ID',
+// ];
 
 class KotaCuaca extends StatefulWidget {
-  const KotaCuaca({super.key});
+  final String currentPlace;
+  final double currentTemperature;
+  const KotaCuaca({
+    Key? key,
+    required this.currentPlace,
+    required this.currentTemperature,
+  }) : super(key: key);
 
   @override
   State<KotaCuaca> createState() => _KotaCuacaState();
 }
 
 class _KotaCuacaState extends State<KotaCuaca> {
+  final GeocodeLocationAPI geocodeLocationAPI = GeocodeLocationAPI();
+  CurrentWeatherAPI currentWeatherAPI = CurrentWeatherAPI();
+  String kotaSearch = '';
+  double? latSearch;
+  double? longSearch;
+  double? windSearch;
+  double? tempSearch;
   String result = '';
+  bool isSearch = false;
+
+  Future<void> getCurrentWeatherAPI(double lat, double long) async {
+    print('masuk getcurrent');
+    try {
+      CurrentWeatherModel response = await currentWeatherAPI.getCurrentWeather(
+        lat,
+        long,
+      );
+      if (mounted) {
+        setState(
+          () {
+            windSearch = response.data.current.windSpeed10M;
+            tempSearch = response.data.current.temperature2M;
+          },
+        );
+      }
+      // setState(() {
+      //   widget.label[0] = '${windSpeed ?? '0'} Km/h';
+      //   widget.temperature[0] = '${temperature2M ?? '0'} °C';
+      // });
+
+      print('dapat getcurrent');
+    } catch (e) {
+      rethrow;
+    }
+    print('dapat getcurrent');
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 50.0,
-              margin: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 12,
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 12,
-              ),
-              decoration: BoxDecoration(
-                color: const Color(0xFF2B2930),
-                borderRadius: BorderRadius.circular(55.0),
-              ),
-              child: Expanded(
+    String timeNow = DateFormat('HH:mm').format(DateTime.now());
+    List<String> imgBackground = [
+      'assets/images/rain.jpg',
+      'assets/images/sky.jpg',
+    ];
+    List<String> temp = [
+      "${widget.currentTemperature} °C",
+    ];
+    return SafeArea(
+      child: Column(
+        children: [
+          Column(
+            children: [
+              Container(
+                height: 50.0,
+                margin: const EdgeInsets.only(
+                  left: 12,
+                  right: 12,
+                  top: 12,
+                ),
+                padding: const EdgeInsets.only(
+                  left: 12,
+                  right: 12,
+                  top: 12,
+                  bottom: 7,
+                ),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2B2930),
+                  borderRadius: BorderRadius.circular(55.0),
+                ),
                 child: TextField(
                   onChanged: (value) {
                     setState(
@@ -60,77 +119,74 @@ class _KotaCuacaState extends State<KotaCuaca> {
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20.0),
-            Text('Result: $result'),
-          ],
-        ),
-        Expanded(
-          child: SizedBox(
-            height: 242,
-            width: 360,
-            child: ListView.builder(
-                itemCount: 2,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const NavBar(),
-                          ),
-                        );
-                      },
-                      child: SizedBox(
-                        width: 360,
-                        height: 108,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(imgBackground[index]),
-                                  fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(16)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16, top: 8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 8),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      BodyLarge(
-                                        text: kota[index],
-                                        color: Colors.black,
-                                      ),
-                                      BodyLarge(
-                                        text: '27°C',
-                                        color: Colors.black,
-                                        size: 32,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                BodyNormal(text: '13.10'),
-                                const SizedBox(
-                                  height: 14,
-                                ),
-                                BodySmall(text: 'Hujan Deras')
-                              ],
-                            ),
-                          ),
-                        ),
+              if (result.isNotEmpty)
+                InkWell(
+                  onTap: () async {
+                    try {
+                      print('test geocode');
+                      GeocodeLocationModel response =
+                          await geocodeLocationAPI.getGeocodeLocation(result);
+                      print('Response: $response'); // Tambahkan log ini
+                      setState(
+                        () {
+                          kotaSearch =
+                              "${response.data[1].name}, ${response.data[1].countryCode}";
+                          latSearch = response.data[1].latitude;
+                          longSearch = response.data[1].longitude;
+                          getCurrentWeatherAPI(
+                              latSearch ?? 0.0, longSearch ?? 0.0);
+                          print('keganti');
+                          print(kotaSearch);
+                          print('ganti card');
+                          isSearch = true;
+                        },
+                      );
+                    } catch (e) {
+                      rethrow;
+                    }
+                  },
+                  child: Container(
+                    height: 50.0,
+                    width: 365,
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 12,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 11,
+                      vertical: 12,
+                    ),
+                    child: Text(
+                      result,
+                      style: const TextStyle(
+                        color: Colors.white,
                       ),
                     ),
-                  );
-                }),
+                  ),
+                ),
+            ],
           ),
-        ),
-      ],
+          SizedBox(
+              height: 242,
+              width: 360,
+              child: Column(
+                children: [
+                  CardCariCuaca(
+                    imgBackground: imgBackground[0],
+                    kota: widget.currentPlace,
+                    temp: temp[0],
+                    timeNow: timeNow,
+                  ),
+                  if (isSearch)
+                    CardCariCuaca(
+                      imgBackground: imgBackground[1],
+                      kota: kotaSearch,
+                      temp: '$tempSearch °C',
+                      timeNow: timeNow,
+                    ),
+                ],
+              )),
+        ],
+      ),
     );
   }
 }

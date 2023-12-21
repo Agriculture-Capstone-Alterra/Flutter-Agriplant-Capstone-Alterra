@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 // 'assets/images/drop_water.png'
 // ];
 
+// ignore: must_be_immutable
 class LokasiDetailCuaca extends StatelessWidget {
   final double latitude;
   final double longitude;
@@ -55,7 +56,7 @@ class LokasiDetailCuaca extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          DisplayMedium(text: "$currentTemperature"),
+          DisplayMedium(text: "$currentTemperature °C"),
           const SizedBox(
             height: 12,
           ),
