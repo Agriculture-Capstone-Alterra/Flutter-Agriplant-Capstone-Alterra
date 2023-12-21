@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// ignore: must_be_immutable
-class PreparationTextHead1 extends StatelessWidget {
-  String plantingPreparation1TextHead;
+class Preparation3TextHead extends StatelessWidget {
+  String plantingPreparation3TextHead;
 
-  PreparationTextHead1({
+  Preparation3TextHead({
     Key? key,
-    required this.plantingPreparation1TextHead
+    required this.plantingPreparation3TextHead
   }) : super(key: key);
 
   @override
@@ -16,7 +15,7 @@ class PreparationTextHead1 extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 15),
       width: double.infinity,
       child: Text(
-        plantingPreparation1TextHead,
+        plantingPreparation3TextHead,
         style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700,),
       ),
     );
