@@ -1,7 +1,4 @@
 import 'package:capstone_project/data/home_text_style.dart';
-import 'package:capstone_project/models/informasi_cuaca/current_weather_model.dart';
-import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
-import 'package:capstone_project/services/informasi_cuaca/current_weather_api.dart';
 import 'package:flutter/material.dart';
 
 // List<String> imgBackground = [

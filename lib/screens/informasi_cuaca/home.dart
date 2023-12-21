@@ -2,7 +2,6 @@ import 'package:capstone_project/data/home_text_style.dart';
 import 'package:capstone_project/models/informasi_cuaca/current_weather_model.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/chat_bot.dart';
 import 'package:capstone_project/screens/implementasi_ai/chatbot/first_screen_chat_bot.dart';
-import 'package:capstone_project/screens/informasi_cuaca/detail_cuaca.dart';
 import 'package:capstone_project/services/informasi_cuaca/current_weather_api.dart';
 import 'package:capstone_project/widgets/implementasi_ai/chat_bot/screen_chat_bot/message_bubble_chat_bot.dart';
 import 'package:capstone_project/screens/informasi_cuaca/weather_detail.dart';
