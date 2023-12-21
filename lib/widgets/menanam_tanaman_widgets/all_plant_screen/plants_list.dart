@@ -1,7 +1,7 @@
-import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../models/all_plants_model.dart';
+import '../../../services/menanam_tanaman/plant_api.dart';
 
 // ignore: must_be_immutable
 class PlantsList extends StatefulWidget {
