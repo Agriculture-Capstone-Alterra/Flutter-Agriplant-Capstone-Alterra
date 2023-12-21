@@ -291,7 +291,7 @@ class _TimeReminderState extends State<TimeReminder> {
                             style: GoogleFonts.inter(
                               fontSize: 24,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF646E82),
+                              color: const Color(0xFF646E82),
                             ),
                           ),
                           Text(

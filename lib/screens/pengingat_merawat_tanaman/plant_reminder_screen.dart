@@ -22,7 +22,8 @@ class _PlantReminderState extends State<PlantReminder> {
             appBar: AppBar(
               centerTitle: true,
               title: Text(plantReminderProvider.PlantReminderAppBarText, style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w600),
-              ),),
+              ),
+            ),
             body: ListView(
               children: [
                 SearchAllPlants(), // search
@@ -56,7 +57,6 @@ class _PlantReminderState extends State<PlantReminder> {
                               if (!matchesSearch) {
                               return Container(); 
                               }
-                              
                               return GestureDetector(
                                 child: Container(
                                   decoration: BoxDecoration(

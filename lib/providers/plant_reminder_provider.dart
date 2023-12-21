@@ -14,25 +14,9 @@ class PlantReminderProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-
- String appBarText = 'Pilih Jenis Tanaman';
-  Icon searchIcon = const Icon(Icons.search, color: Colors.black,);
-
-  //search field
-  bool isSearching = false;
   bool seeAllPlantType = false;
-  String searchHinText =  'Cari Tanaman';
-  bool enableSearch = false;
-  TextEditingController searchController = TextEditingController();
-  FocusNode searchFocusNode = FocusNode();
-
-  // FocusNode searchFocusNode = FocusNode();
-
-  String headPlantTypeText = 'Jenis Tanaman';
-  String allPlantNavigatorText = 'Lihat semua';
-
+ 
   void allPlantNavigatorOnTap(BuildContext context) async{
-    // seeAllPlantType = true;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const PlantReminder()),
@@ -45,31 +29,12 @@ class PlantReminderProvider extends ChangeNotifier{
     return seeAllPlantType = false;
   }
 
-  String headLastPlantText = 'Tanaman Terakhir';
-
-  void search() async{
-    isSearching = true;
-    enableSearch = true;
-    // _searchFocusNode.requestFocus();
-    notifyListeners();
-  }
-
-  bool setIsSearchingFalse(){
-    notifyListeners();
-    enableSearch = false;
-    return isSearching = false;
-  }
-
-  //IsSearchingFalse
-
   //see all plant
   // ignore: non_constant_identifier_names
   String PlantReminderAppBarText = 'Tanaman Anda';
   // ignore: non_constant_identifier_names
   String TimeMenyiramAppBarText = 'REMINDER';
   
-  TextEditingController searchAllPlantController = TextEditingController();
-  String searchAllPlantHint = 'Cari tanaman';
   int idPlant = 0;
 
   void seeDetaiReminder({
