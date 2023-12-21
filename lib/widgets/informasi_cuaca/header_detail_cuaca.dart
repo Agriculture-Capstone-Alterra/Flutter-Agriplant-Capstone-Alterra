@@ -3,7 +3,13 @@ import 'package:capstone_project/screens/informasi_cuaca/cari_cuaca.dart';
 import 'package:flutter/material.dart';
 
 class HeaderDetailCuaca extends StatelessWidget {
-  const HeaderDetailCuaca({super.key});
+  final String currentPlace;
+  final double currentTemperature;
+  const HeaderDetailCuaca({
+    super.key,
+    required this.currentPlace,
+    required this.currentTemperature,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,10 @@ class HeaderDetailCuaca extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const CariCuaca(),
+                builder: (context) => CariCuaca(
+                  currentPlace: currentPlace,
+                  currentTemperature: currentTemperature,
+                ),
               ),
             );
           },
