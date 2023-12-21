@@ -310,25 +310,25 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 12,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        child: TitleMedium(
-                          text: 'Informasi Hama & Cara Menanganinya',
-                        ),
-                      ),
-                      // Text('Latitude = $latitudeValue'),
-                      // Text('Longitude = $longitudeValue'),
-                      // // Text('Jam = $hourNow'),
-                      // Text('Address = $currentPlace'),
-                    ],
-                  ),
-                ),
-              ),
+              // const Padding(
+              //   padding: EdgeInsets.only(left: 16),
+              //   child: Align(
+              //     alignment: Alignment.centerLeft,
+              //     child: Column(
+              //       // children: [
+              //       //   SizedBox(
+              //       //     child: TitleMedium(
+              //       //       text: 'Informasi Hama & Cara Menanganinya',
+              //       //     ),
+              //       //   ),
+              //       //   // Text('Latitude = $latitudeValue'),
+              //       //   // Text('Longitude = $longitudeValue'),
+              //       //   // // Text('Jam = $hourNow'),
+              //       //   // Text('Address = $currentPlace'),
+              //       // ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

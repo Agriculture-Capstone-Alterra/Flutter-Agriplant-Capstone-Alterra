@@ -25,8 +25,7 @@ class _PlantReminderState extends State<PlantReminder> {
               ),),
             body: ListView(
               children: [
-                SearchAllPlants(), 
-
+                SearchAllPlants(), // search
                 const SizedBox(height: 46,),
                 StreamBuilder(
                   stream: Stream.fromFuture(PlantApi().getAllPlants()),
@@ -52,11 +51,12 @@ class _PlantReminderState extends State<PlantReminder> {
                             itemCount: plantData.data.length,
                             itemBuilder: (_, index){
                               final datum = plantData.data[index];
+                              //search
                               final bool matchesSearch = datum.name.toLowerCase().contains(plantReminderProvider.searchQuery.toLowerCase());
-
                               if (!matchesSearch) {
                               return Container(); 
                               }
+                              
                               return GestureDetector(
                                 child: Container(
                                   decoration: BoxDecoration(

@@ -1,13 +1,9 @@
-import 'package:capstone_project/data/home_text_style.dart';
 import 'package:capstone_project/models/informasi_cuaca/current_weather_model.dart';
 import 'package:capstone_project/models/informasi_cuaca/geocode_location_model.dart';
-import 'package:capstone_project/screens/navigation_bar.dart';
 import 'package:capstone_project/services/informasi_cuaca/current_weather_api.dart';
 import 'package:capstone_project/services/informasi_cuaca/geocode_location_api.dart';
 import 'package:capstone_project/widgets/informasi_cuaca/card_cari_cuaca.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 
 // List<String> imgBackground = [

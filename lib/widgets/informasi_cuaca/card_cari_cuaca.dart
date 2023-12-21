@@ -21,12 +21,10 @@ class CardCariCuaca extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10),
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const NavBar(),
-            ),
-          );
+          Navigator.pushAndRemoveUntil(context,
+              MaterialPageRoute(builder: (context) {
+            return const NavBar();
+          }), (route) => false);
         },
         child: SizedBox(
           width: 360,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../models/plant_by_id_model.dart';
 
+// ignore: must_be_immutable
 class ImageSuggestion extends StatelessWidget {
   List plantingMediumImages;
 

@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 // 'assets/images/drop_water.png'
 // ];
 
+// ignore: must_be_immutable
 class LokasiDetailCuaca extends StatelessWidget {
   final double latitude;
   final double longitude;
