@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../models/plant_by_id_model.dart';
 
+// ignore: must_be_immutable
 class PlantingGuides extends StatelessWidget {
   String guideTextHead;
   List plantingGuidesList;

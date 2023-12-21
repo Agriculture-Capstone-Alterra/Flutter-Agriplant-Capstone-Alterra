@@ -2,6 +2,7 @@ import 'package:capstone_project/models/plant_by_id_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class PlantingTools extends StatelessWidget {
   String toolTextHead;
   List plantingToolsList;

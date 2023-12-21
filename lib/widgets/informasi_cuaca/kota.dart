@@ -1,13 +1,9 @@
-import 'package:capstone_project/data/home_text_style.dart';
 import 'package:capstone_project/models/informasi_cuaca/current_weather_model.dart';
 import 'package:capstone_project/models/informasi_cuaca/geocode_location_model.dart';
-import 'package:capstone_project/screens/navigation_bar.dart';
 import 'package:capstone_project/services/informasi_cuaca/current_weather_api.dart';
 import 'package:capstone_project/services/informasi_cuaca/geocode_location_api.dart';
 import 'package:capstone_project/widgets/informasi_cuaca/card_cari_cuaca.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 
 // List<String> imgBackground = [
@@ -35,11 +31,44 @@ class KotaCuaca extends StatefulWidget {
 
 class _KotaCuacaState extends State<KotaCuaca> {
   final GeocodeLocationAPI geocodeLocationAPI = GeocodeLocationAPI();
+  CurrentWeatherAPI currentWeatherAPI = CurrentWeatherAPI();
+  String kotaSearch = '';
+  double? latSearch;
+  double? longSearch;
+  double? windSearch;
+  double? tempSearch;
   String result = '';
+  bool isSearch = false;
+
+  Future<void> getCurrentWeatherAPI(double lat, double long) async {
+    print('masuk getcurrent');
+    try {
+      CurrentWeatherModel response = await currentWeatherAPI.getCurrentWeather(
+        lat,
+        long,
+      );
+      if (mounted) {
+        setState(
+          () {
+            windSearch = response.data.current.windSpeed10M;
+            tempSearch = response.data.current.temperature2M;
+          },
+        );
+      }
+      // setState(() {
+      //   widget.label[0] = '${windSpeed ?? '0'} Km/h';
+      //   widget.temperature[0] = '${temperature2M ?? '0'} °C';
+      // });
+
+      print('dapat getcurrent');
+    } catch (e) {
+      rethrow;
+    }
+    print('dapat getcurrent');
+  }
 
   @override
   Widget build(BuildContext context) {
-    String? kotaSearch;
     String timeNow = DateFormat('HH:mm').format(DateTime.now());
     List<String> imgBackground = [
       'assets/images/rain.jpg',
@@ -47,7 +76,6 @@ class _KotaCuacaState extends State<KotaCuaca> {
     ];
     List<String> temp = [
       "${widget.currentTemperature} °C",
-      '27 °C',
     ];
     return SafeArea(
       child: Column(
@@ -99,21 +127,20 @@ class _KotaCuacaState extends State<KotaCuaca> {
                       GeocodeLocationModel response =
                           await geocodeLocationAPI.getGeocodeLocation(result);
                       print('Response: $response'); // Tambahkan log ini
-                      setState(() {
-                        if (response.data != null && response.data.length > 1) {
+                      setState(
+                        () {
                           kotaSearch =
                               "${response.data[1].name}, ${response.data[1].countryCode}";
+                          latSearch = response.data[1].latitude;
+                          longSearch = response.data[1].longitude;
+                          getCurrentWeatherAPI(
+                              latSearch ?? 0.0, longSearch ?? 0.0);
                           print('keganti');
                           print(kotaSearch);
-                          CardCariCuaca(
-                            imgBackground: imgBackground[1],
-                            kota: kotaSearch!,
-                            temp: temp[1],
-                            timeNow: timeNow,
-                          );
                           print('ganti card');
-                        }
-                      });
+                          isSearch = true;
+                        },
+                      );
                     } catch (e) {
                       rethrow;
                     }
@@ -149,11 +176,11 @@ class _KotaCuacaState extends State<KotaCuaca> {
                     temp: temp[0],
                     timeNow: timeNow,
                   ),
-                  if (kotaSearch != null)
+                  if (isSearch)
                     CardCariCuaca(
                       imgBackground: imgBackground[1],
-                      kota: kotaSearch!,
-                      temp: temp[1],
+                      kota: kotaSearch,
+                      temp: '$tempSearch °C',
                       timeNow: timeNow,
                     ),
                 ],
