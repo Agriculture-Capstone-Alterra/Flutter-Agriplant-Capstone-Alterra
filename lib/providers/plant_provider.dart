@@ -3,11 +3,11 @@ import 'package:capstone_project/screens/menanam_tanaman_screens/detail_plant_sc
 import 'package:capstone_project/screens/menanam_tanaman_screens/menanam_screen.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/planting_preparation_screen1.dart';
 import 'package:capstone_project/screens/menanam_tanaman_screens/planting_preparation_screen2.dart';
-import 'package:capstone_project/services/plant_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../screens/menanam_tanaman_screens/planting_form_screen.dart';
+import '../screens/menanam_tanaman_screens/planting_preparation_screen3.dart';
 
 class PlantProvider extends ChangeNotifier{
   String appBarText = 'Pilih Jenis Tanaman';
@@ -40,7 +40,7 @@ class PlantProvider extends ChangeNotifier{
     return seeAllPlantType = false;
   }
 
-  String headLastPlantText = 'Tanaman Terakhir';
+  String recomendPlantHeadText = 'Rekomendasi';
 
   void search() async{
     isSearching = true;
@@ -76,7 +76,6 @@ class PlantProvider extends ChangeNotifier{
       );
     notifyListeners();
   }
-
 
   //detail plant by id
   String detailPlantAppBarText = 'Detail Halaman';
@@ -199,7 +198,7 @@ class PlantProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  Color indicatorBlock = Color(0xff1B392F);
+  Color indicatorBlockColor = Color(0xff1B392F);
   String indicatorNumber1 = '1';
   String indicatorNumber2 = '2';
   String indicatorNumber3 = '3';
@@ -210,8 +209,10 @@ class PlantProvider extends ChangeNotifier{
   String indicatorNumber3Text = 'Menanam Tanaman';
   String indicatorNumber4Text = 'Merawat Tanaman';
   String indicatorNumber5Text = 'Hasil/Panen';
-  String plantingPreparationTextHead = 'Alat yang Dibutuhkan';
-  Color toolItemColor = Color(0xff8BC7B2);
+  String plantingPreparation1TextHead = 'Alat yang Dibutuhkan';
+  String plantingPreparation2TextHead = 'Saran Untuk Tempat Penanaman';
+  String plantingPreparation3TextHead = 'Langkah Penanaman';
+  Color itemColor = Color(0xff8BC7B2);
 
   void goToPlantingPreparationScreen2({required BuildContext context}){
     Navigator.push(
@@ -221,13 +222,11 @@ class PlantProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  String textHeadPreparationScreen2 = 'Saran Untuk Tempat Penanaman';
-
   void goToPlantingPreparationScreen3({required BuildContext context}){
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => PlantingPreparationScreen3(),),
-    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PlantingPreparationScreen3(),),
+    );
     notifyListeners();
   }
 }

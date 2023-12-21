@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Indicator1 extends StatelessWidget {
+class Indicator3 extends StatelessWidget {
   String indicatorNumber1;
   String indicatorNumber2;
   String indicatorNumber3;
   String indicatorNumber4;
   String indicatorNumber5;
-  String indicatorNumber1Text;
+  String indicatorNumber3Text;
   Color textColor;
+  Color indicatorBlockColor;
 
-  Indicator1({
+  Indicator3({
     Key? key,
     required this.indicatorNumber1,
     required this.indicatorNumber2,
     required this.indicatorNumber3,
     required this.indicatorNumber4,
     required this.indicatorNumber5,
-    required this.indicatorNumber1Text,
+    required this.indicatorNumber3Text,
     required this.textColor,
+    required this.indicatorBlockColor,
   }) : super(key: key);
 
   @override
@@ -29,6 +31,32 @@ class Indicator1 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: indicatorBlockColor,
+              border: Border.all(color: indicatorBlockColor, width: 2),
+            ),
+            child: Text(
+              indicatorNumber1,
+              style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: Colors.white),
+            ),
+          ),
+
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: indicatorBlockColor,
+              border: Border.all(color: indicatorBlockColor, width: 2),
+            ),
+            child: Text(
+              indicatorNumber2,
+              style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: Colors.white),
+            ),
+          ),
+
           Column(
             children: [
               Container(
@@ -38,40 +66,16 @@ class Indicator1 extends StatelessWidget {
                   border: Border.all(color: textColor, width: 2),
                 ),
                 child: Text(
-                  indicatorNumber1,
-                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: textColor),
+                  indicatorNumber3,
+                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: textColor,),
                 ),
               ),
               const SizedBox(height: 11,),
               Text(
-                indicatorNumber1Text,
+                indicatorNumber3Text,
                 style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: textColor),
               )
             ],
-          ),
-
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: textColor, width: 2),
-            ),
-            child: Text(
-              indicatorNumber2,
-              style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: textColor,),
-            ),
-          ),
-
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: textColor, width: 2),
-            ),
-            child: Text(
-              indicatorNumber3,
-              style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: textColor,),
-            ),
           ),
 
           Container(

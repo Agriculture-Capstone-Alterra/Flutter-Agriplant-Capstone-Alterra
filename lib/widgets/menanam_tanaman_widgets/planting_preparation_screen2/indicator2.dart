@@ -9,7 +9,7 @@ class Indicator2 extends StatelessWidget {
   String indicatorNumber5;
   String indicatorNumber2Text;
   Color textColor;
-  Color indicatorBlock;
+  Color indicatorBlockColor;
 
   Indicator2({
     Key? key,
@@ -20,7 +20,7 @@ class Indicator2 extends StatelessWidget {
     required this.indicatorNumber5,
     required this.indicatorNumber2Text,
     required this.textColor,
-    required this.indicatorBlock,
+    required this.indicatorBlockColor,
   }) : super(key: key);
 
   @override
@@ -35,8 +35,8 @@ class Indicator2 extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: indicatorBlock,
-              border: Border.all(color: indicatorBlock, width: 2),
+              color: indicatorBlockColor,
+              border: Border.all(color: indicatorBlockColor, width: 2),
             ),
             child: Text(
               indicatorNumber1,
@@ -60,7 +60,7 @@ class Indicator2 extends StatelessWidget {
               const SizedBox(height: 11,),
               Text(
                 indicatorNumber2Text,
-                style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w400, color: textColor),
+                style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: textColor),
               )
             ],
           ),
