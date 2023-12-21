@@ -68,15 +68,15 @@ class _HomeState extends State<Home> {
     print(locationPermission);
 
     if (locationPermission == LocationPermission.denied) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Anda belum mengaktifkan izin lokasi di aplikasi anda',
-            ),
-          ),
-        );
-      }
+      // if (context.mounted) {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     const SnackBar(
+      //       content: Text(
+      //         'Anda belum mengaktifkan izin lokasi di aplikasi anda',
+      //       ),
+      //     ),
+      //   );
+      // }
       await Geolocator.requestPermission();
     }
 
@@ -102,8 +102,14 @@ class _HomeState extends State<Home> {
         _currentPosition?.latitude ?? 0,
         _currentPosition?.longitude ?? 0,
       );
-      currentWindSpeeds = response.data.current.windSpeed10M;
-      currentTemperatures = response.data.current.temperature2M;
+      if (mounted) {
+        setState(
+          () {
+            currentWindSpeeds = response.data.current.windSpeed10M;
+            currentTemperatures = response.data.current.temperature2M;
+          },
+        );
+      }
       // setState(() {
       //   widget.label[0] = '${windSpeed ?? '0'} Km/h';
       //   widget.temperature[0] = '${temperature2M ?? '0'} °C';
@@ -118,8 +124,9 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    _getCurrentPosition();
-    getCurrentWeatherAPI();
+    _getCurrentPosition().then((value) {
+      getCurrentWeatherAPI();
+    });
     super.initState();
   }
 

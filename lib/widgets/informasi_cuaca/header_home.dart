@@ -1,5 +1,7 @@
 import 'package:capstone_project/data/home_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 // List<String> imgBackground = [
 //   'assets/images/rain.jpg',
@@ -84,6 +86,7 @@ class HeaderHome extends StatefulWidget {
 }
 
 class _HeaderHomeState extends State<HeaderHome> {
+  String? currentTimeNow;
   // final CurrentWeatherAPI currentWeatherAPI = CurrentWeatherAPI();
   // double? windSpeed;
   // double? temperature2M;
@@ -115,14 +118,28 @@ class _HeaderHomeState extends State<HeaderHome> {
   //   print('dapat getcurrent');
   // }
 
-  // @override
-  // void initState() {
-  //   print('init state lagi jalan');
-  //   super.initState();
-  // }
+  Future<void> initTime() async {
+    print('masuk kok bang');
+    await initializeDateFormatting('id_ID', null).then(
+      (value) {
+        print('sedang menjalankan bang');
+        currentTimeNow = DateFormat('EEEE, d MMM yyyy', 'id_ID').format(
+          DateTime.now(),
+        );
+        print('jadi bang');
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    initTime();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    String datetimeNow = currentTimeNow ?? '-';
     return Padding(
       padding: const EdgeInsets.only(left: 12, top: 10, right: 14),
       child: SizedBox(
@@ -156,7 +173,7 @@ class _HeaderHomeState extends State<HeaderHome> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 BodyNormal(text: widget.kota[index]),
-                                BodySmall(text: 'Senin, 27 Sep 2023')
+                                BodySmall(text: datetimeNow),
                               ],
                             ),
                             Row(
