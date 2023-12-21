@@ -4,73 +4,70 @@
 
 import 'dart:convert';
 
-HourlyForecastModel hourlyForecastModelFromJson(String str) =>
-    HourlyForecastModel.fromJson(json.decode(str));
+HourlyForecastModel hourlyForecastModelFromJson(String str) => HourlyForecastModel.fromJson(json.decode(str));
 
-String hourlyForecastModelToJson(HourlyForecastModel data) =>
-    json.encode(data.toJson());
+String hourlyForecastModelToJson(HourlyForecastModel data) => json.encode(data.toJson());
 
 class HourlyForecastModel {
-  Data data;
-  String message;
-  String status;
+    Data data;
+    String message;
+    String status;
 
-  HourlyForecastModel({
-    required this.data,
-    required this.message,
-    required this.status,
-  });
+    HourlyForecastModel({
+        required this.data,
+        required this.message,
+        required this.status,
+    });
 
-  factory HourlyForecastModel.fromJson(Map<String, dynamic> json) =>
-      HourlyForecastModel(
+    factory HourlyForecastModel.fromJson(Map<String, dynamic> json) => HourlyForecastModel(
         data: Data.fromJson(json["data"]),
         message: json["message"],
         status: json["status"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "data": data.toJson(),
         "message": message,
         "status": status,
-      };
+    };
 }
 
 class Data {
-  double latitude;
-  double longitude;
-  double generationtimeMs;
-  int utcOffsetSeconds;
-  String timezone;
-  String timezoneAbbreviation;
-  int elevation;
-  DailyUnits dailyUnits;
-  Daily daily;
+    int latitude;
+    double longitude;
+    double generationtimeMs;
+    int utcOffsetSeconds;
+    String timezone;
+    String timezoneAbbreviation;
+    int elevation;
+    HourlyUnits hourlyUnits;
+    Hourly hourly;
 
-  Data({
-    required this.latitude,
-    required this.longitude,
-    required this.generationtimeMs,
-    required this.utcOffsetSeconds,
-    required this.timezone,
-    required this.timezoneAbbreviation,
-    required this.elevation,
-    required this.dailyUnits,
-    required this.daily,
-  });
+    Data({
+        required this.latitude,
+        required this.longitude,
+        required this.generationtimeMs,
+        required this.utcOffsetSeconds,
+        required this.timezone,
+        required this.timezoneAbbreviation,
+        required this.elevation,
+        required this.hourlyUnits,
+        required this.hourly,
+    });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        latitude: json["latitude"]?.toDouble(),
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
+        latitude: json["latitude"],
         longitude: json["longitude"]?.toDouble(),
         generationtimeMs: json["generationtime_ms"]?.toDouble(),
         utcOffsetSeconds: json["utc_offset_seconds"],
         timezone: json["timezone"],
         timezoneAbbreviation: json["timezone_abbreviation"],
         elevation: json["elevation"],
-        dailyUnits: DailyUnits.fromJson(json["daily_units"]),
-        daily: Daily.fromJson(json["daily"]),
-      );
+        hourlyUnits: HourlyUnits.fromJson(json["hourly_units"]),
+        hourly: Hourly.fromJson(json["hourly"]),
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "latitude": latitude,
         "longitude": longitude,
         "generationtime_ms": generationtimeMs,
@@ -78,72 +75,81 @@ class Data {
         "timezone": timezone,
         "timezone_abbreviation": timezoneAbbreviation,
         "elevation": elevation,
-        "daily_units": dailyUnits.toJson(),
-        "daily": daily.toJson(),
-      };
+        "hourly_units": hourlyUnits.toJson(),
+        "hourly": hourly.toJson(),
+    };
 }
 
-class Daily {
-  List<DateTime> time;
-  List<int> weatherCode;
-  List<String> weather;
-  List<double> temperature2MMax;
-  List<double> temperature2MMin;
+class Hourly {
+    List<String> time;
+    List<double> temperature2M;
+    List<int> weatherCode;
+    List<Weather> weather;
 
-  Daily({
-    required this.time,
-    required this.weatherCode,
-    required this.weather,
-    required this.temperature2MMax,
-    required this.temperature2MMin,
-  });
+    Hourly({
+        required this.time,
+        required this.temperature2M,
+        required this.weatherCode,
+        required this.weather,
+    });
 
-  factory Daily.fromJson(Map<String, dynamic> json) => Daily(
-        time: List<DateTime>.from(json["time"].map((x) => DateTime.parse(x))),
+    factory Hourly.fromJson(Map<String, dynamic> json) => Hourly(
+        time: List<String>.from(json["time"].map((x) => x)),
+        temperature2M: List<double>.from(json["temperature_2m"].map((x) => x?.toDouble())),
         weatherCode: List<int>.from(json["weather_code"].map((x) => x)),
-        weather: List<String>.from(json["weather"].map((x) => x)),
-        temperature2MMax: List<double>.from(
-            json["temperature_2m_max"].map((x) => x?.toDouble())),
-        temperature2MMin: List<double>.from(
-            json["temperature_2m_min"].map((x) => x?.toDouble())),
-      );
+        weather: List<Weather>.from(json["weather"].map((x) => weatherValues.map[x]!)),
+    );
 
-  Map<String, dynamic> toJson() => {
-        "time": List<dynamic>.from(time.map((x) =>
-            "${x.year.toString().padLeft(4, '0')}-${x.month.toString().padLeft(2, '0')}-${x.day.toString().padLeft(2, '0')}")),
+    Map<String, dynamic> toJson() => {
+        "time": List<dynamic>.from(time.map((x) => x)),
+        "temperature_2m": List<dynamic>.from(temperature2M.map((x) => x)),
         "weather_code": List<dynamic>.from(weatherCode.map((x) => x)),
-        "weather": List<dynamic>.from(weather.map((x) => x)),
-        "temperature_2m_max":
-            List<dynamic>.from(temperature2MMax.map((x) => x)),
-        "temperature_2m_min":
-            List<dynamic>.from(temperature2MMin.map((x) => x)),
-      };
+        "weather": List<dynamic>.from(weather.map((x) => weatherValues.reverse[x])),
+    };
 }
 
-class DailyUnits {
-  String time;
-  String weatherCode;
-  String temperature2MMax;
-  String temperature2MMin;
+enum Weather {
+    FOG,
+    OVERCAST
+}
 
-  DailyUnits({
-    required this.time,
-    required this.weatherCode,
-    required this.temperature2MMax,
-    required this.temperature2MMin,
-  });
+final weatherValues = EnumValues({
+    "Fog": Weather.FOG,
+    "Overcast": Weather.OVERCAST
+});
 
-  factory DailyUnits.fromJson(Map<String, dynamic> json) => DailyUnits(
+class HourlyUnits {
+    String time;
+    String temperature2M;
+    String weatherCode;
+
+    HourlyUnits({
+        required this.time,
+        required this.temperature2M,
+        required this.weatherCode,
+    });
+
+    factory HourlyUnits.fromJson(Map<String, dynamic> json) => HourlyUnits(
         time: json["time"],
+        temperature2M: json["temperature_2m"],
         weatherCode: json["weather_code"],
-        temperature2MMax: json["temperature_2m_max"],
-        temperature2MMin: json["temperature_2m_min"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "time": time,
+        "temperature_2m": temperature2M,
         "weather_code": weatherCode,
-        "temperature_2m_max": temperature2MMax,
-        "temperature_2m_min": temperature2MMin,
-      };
+    };
+}
+
+class EnumValues<T> {
+    Map<String, T> map;
+    late Map<T, String> reverseMap;
+
+    EnumValues(this.map);
+
+    Map<T, String> get reverse {
+        reverseMap = map.map((k, v) => MapEntry(v, k));
+        return reverseMap;
+    }
 }
