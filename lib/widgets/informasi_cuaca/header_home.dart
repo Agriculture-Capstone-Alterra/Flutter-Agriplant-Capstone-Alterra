@@ -32,6 +32,7 @@ import 'package:intl/date_symbol_data_local.dart';
 //   'assets/images/drop_water.png',
 // ];
 
+// ignore: must_be_immutable
 class HeaderHome extends StatefulWidget {
   final double latitude;
   final double longitude;

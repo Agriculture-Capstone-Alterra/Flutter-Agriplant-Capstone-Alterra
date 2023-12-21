@@ -3,8 +3,6 @@ import 'package:capstone_project/widgets/informasi_cuaca/glassmorph_temprature_d
 import 'package:capstone_project/widgets/informasi_cuaca/header_detail_cuaca.dart';
 import 'package:capstone_project/widgets/informasi_cuaca/lokasi_detail_cuaca.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 
 class WeatherDetail extends StatefulWidget {
   final double currentTemperature;
