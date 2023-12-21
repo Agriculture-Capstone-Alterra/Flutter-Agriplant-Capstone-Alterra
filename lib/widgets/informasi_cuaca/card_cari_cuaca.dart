@@ -45,7 +45,7 @@ class CardCariCuaca extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         BodyLarge(
-                          text: kota ?? '',
+                          text: kota,
                           color: Colors.black,
                         ),
                         BodyLarge(

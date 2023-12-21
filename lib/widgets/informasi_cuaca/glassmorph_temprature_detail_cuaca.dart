@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class TempratureDetailCuaca extends StatelessWidget {
-  const TempratureDetailCuaca({super.key});
+  final List<double> hourlyTemp;
+  final List<String> hourlyTime;
+  const TempratureDetailCuaca({
+    super.key,
+    required this.hourlyTemp,
+    required this.hourlyTime,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +55,11 @@ class TempratureDetailCuaca extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            const TempratureHome(
+            TempratureHome(
               colorText: Colors.white,
               leftPadding: 0,
+              hourlyTemp: hourlyTemp,
+              hourlyTime: hourlyTime,
             ),
           ],
         ),

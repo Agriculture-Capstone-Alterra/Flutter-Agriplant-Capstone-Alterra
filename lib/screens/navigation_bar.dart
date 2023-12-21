@@ -15,7 +15,7 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   List halaman = [
     const Home(),
-    const Menanam(),
+    const MenanamScreen(),
     const Pengingat(),
     const Riwayat(),
   ];

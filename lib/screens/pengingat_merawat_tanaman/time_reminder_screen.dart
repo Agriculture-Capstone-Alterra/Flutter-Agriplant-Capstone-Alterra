@@ -2,7 +2,7 @@ import 'package:capstone_project/data/pengingat_merawat_tanaman/theme_text_style
 import 'package:capstone_project/models/plant_by_id_model.dart';
 import 'package:capstone_project/providers/plant_reminder_provider.dart';
 import 'package:capstone_project/services/pengingat_merawat_tanaman/reminder_time_api.dart';
-import 'package:capstone_project/services/plant_api.dart';
+import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_add_reminder_widget.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_tidak_widget.dart';
 import 'package:capstone_project/widgets/pengingat_merawat_tanaman/button/button_ya_widget.dart';

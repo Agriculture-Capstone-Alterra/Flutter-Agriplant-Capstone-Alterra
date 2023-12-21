@@ -1,6 +1,6 @@
 import 'package:capstone_project/screens/pengingat_merawat_tanaman/plant_reminder_screen.dart';
 import 'package:capstone_project/screens/pengingat_merawat_tanaman/time_reminder_screen.dart';
-import 'package:capstone_project/services/plant_api.dart';
+import 'package:capstone_project/services/menanam_tanaman/plant_api.dart';
 import 'package:flutter/material.dart';
 
 class PlantReminderProvider extends ChangeNotifier{

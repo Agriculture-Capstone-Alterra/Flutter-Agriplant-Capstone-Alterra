@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../models/plant_by_id_model.dart';
-import '../../services/plant_api.dart';
+import '../../services/menanam_tanaman/plant_api.dart';
 
 class PlantingPreparationScreen2 extends StatefulWidget {
   const PlantingPreparationScreen2({Key? key}) : super(key: key);
@@ -33,6 +33,7 @@ class _PlantingPreparationScreen2State extends State<PlantingPreparationScreen2>
               ListView(
                 children: [
                   const SizedBox(height: 24,),
+
                   Indicator2(
                     indicatorNumber1: plantProvider.indicatorNumber1,
                     indicatorNumber2: plantProvider.indicatorNumber2,
@@ -41,7 +42,7 @@ class _PlantingPreparationScreen2State extends State<PlantingPreparationScreen2>
                     indicatorNumber5: plantProvider.indicatorNumber5,
                     indicatorNumber2Text: plantProvider.indicatorNumber2Text,
                     textColor: plantProvider.formTextColor,
-                    indicatorBlock: plantProvider.indicatorBlock,
+                    indicatorBlockColor: plantProvider.indicatorBlockColor,
                   ),
 
                   const SizedBox(height: 21,),
@@ -61,7 +62,7 @@ class _PlantingPreparationScreen2State extends State<PlantingPreparationScreen2>
                           PlantByIdModel plantByIdModel = snapshot.data! as PlantByIdModel;
                           PlantByIdData plantByIdData = plantByIdModel.data;
                           return buildItem(
-                            textHead: plantProvider.textHeadPreparationScreen2,
+                            textHead: plantProvider.plantingPreparation2TextHead,
                             plantingMediumSuggestions: plantByIdData.plantingMediumSuggestions,
                             plantingMediumImages: plantByIdData.plantingMediumImages,
                           );
@@ -82,7 +83,7 @@ class _PlantingPreparationScreen2State extends State<PlantingPreparationScreen2>
                 skipButtonColor: plantProvider.skipButtonColor,
                 lanjutButtonColor: plantProvider.menanamButtonColor,
                 onTapSkip: (){plantProvider.onTapSkip(context: context);},
-                onTapLanjut: (){},
+                onTapLanjut: (){plantProvider.goToPlantingPreparationScreen3(context: context);},
               )
             ],
           ),

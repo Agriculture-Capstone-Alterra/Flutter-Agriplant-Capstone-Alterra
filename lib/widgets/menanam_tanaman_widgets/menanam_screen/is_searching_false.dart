@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../data/menanam_tanaman/menanam_tanaman_icon.dart';
 import '../../../models/menanam_tanaman_model/plant_types_model.dart';
-import '../../../services/plant_api.dart';
+import '../../../services/menanam_tanaman/plant_api.dart';
 
 // ignore: must_be_immutable
 class IsSearchingFalse extends StatefulWidget {
   String headPlantTypeText;
   String allPlantNavigatorText;
   Function() allPlantNavigatorOnTap;
-  String headLastPlantText;
+  String recomendPlantHeadText;
 
   IsSearchingFalse({
     Key? key,
     required this.headPlantTypeText,
     required this.allPlantNavigatorText,
     required this.allPlantNavigatorOnTap,
-    required this.headLastPlantText,
+    required this.recomendPlantHeadText,
   }) : super(key: key);
 
   @override
@@ -87,7 +87,7 @@ class _IsSearchingFalseState extends State<IsSearchingFalse> {
             margin: EdgeInsets.symmetric(horizontal: 16),
             width: double.infinity,
             child: Text(
-              widget.headLastPlantText,
+              widget.recomendPlantHeadText,
               style: GoogleFonts.inter(
                 textStyle: TextStyle(
                   fontSize: 16, fontWeight: FontWeight.w600,
