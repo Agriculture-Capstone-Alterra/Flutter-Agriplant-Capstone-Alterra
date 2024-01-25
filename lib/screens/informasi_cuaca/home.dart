@@ -128,26 +128,26 @@ class _HomeState extends State<Home> {
     print('dapat getcurrent');
   }
 
-  Future<void> getHourlyForecast() async {
-    try {
-      print('masuk tuh bang hourlynya');
-      HourlyForecastModel response = await hourlyForecastAPI.getHourlyForecast(
-        _currentPosition?.latitude ?? 0,
-        _currentPosition?.longitude ?? 0,
-      );
-      print('hourlynya jalan bang');
-      if (mounted) {
-        hourlyTemp?.addAll(response.data.hourly.temperature2M);
-        hourlyTime?.addAll(response.data.hourly.time);
-        print('mounted kok bang');
-      }
-      print('udah kesimpan tuh bang di listnya');
-      print(hourlyTemp);
-      print(hourlyTime);
-    } catch (e) {
-      rethrow;
-    }
-  }
+  // Future<void> getHourlyForecast() async {
+  //   try {
+  //     print('masuk tuh bang hourlynya');
+  //     HourlyForecastModel response = await hourlyForecastAPI.getHourlyForecast(
+  //       _currentPosition?.latitude ?? 0,
+  //       _currentPosition?.longitude ?? 0,
+  //     );
+  //     print('hourlynya jalan bang');
+  //     if (mounted) {
+  //       hourlyTemp?.addAll(response.data.hourly.temperature2M);
+  //       hourlyTime?.addAll(response.data.hourly.time);
+  //       print('mounted kok bang');
+  //     }
+  //     print('udah kesimpan tuh bang di listnya');
+  //     print(hourlyTemp);
+  //     print(hourlyTime);
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
 
   // Future<void> getHourlyForecastAPI() async {
   //   try {
@@ -189,12 +189,12 @@ class _HomeState extends State<Home> {
     _getCurrentPosition().then((value) {
       getCurrentWeatherAPI();
       hourlyTemp = [];
-      hourlyTime = [];
-      getHourlyForecast().then(
-        (value) {
-          isAvailabe = true;
-        },
-      );
+      // hourlyTime = [];
+      // getHourlyForecast().then(
+      //   (value) {
+      //     isAvailabe = true;
+      //   },
+      // );
     });
     super.initState();
   }
@@ -312,11 +312,12 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 12,
               ),
-              if (isAvailabe)
-                TempratureHome(
-                  hourlyTemp: hourlyTempList,
-                  hourlyTime: hourlyTimeList,
-                ),
+              const TempratureHome(),
+              // if (isAvailabe)
+              //   TempratureHome(
+              //     // hourlyTemp: hourlyTempList,
+              //     // hourlyTime: hourlyTimeList,
+              // ),
               const SizedBox(
                 height: 16,
               ),
